@@ -1,4 +1,6 @@
-package main;
+package main.services;
+
+import main.models.User;
 
 import java.sql.*;
 

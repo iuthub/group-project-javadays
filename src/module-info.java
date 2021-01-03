@@ -4,4 +4,5 @@ module group.project.javadays {
     requires java.sql;
 
     opens main;
+    opens main.controllers;
 }

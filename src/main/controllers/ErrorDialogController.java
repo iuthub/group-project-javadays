@@ -1,4 +1,4 @@
-package main;
+package main.controllers;
 
 public class ErrorDialogController {
 

@@ -7,15 +7,15 @@
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
-<BorderPane fx:controller="main.LoginController"
+<BorderPane fx:controller="main.controllers.LoginController"
             xmlns:fx="http://javafx.com/fxml"
             fx:id="loginBorderPane"
-            stylesheets="@../resources/main.css">
+            stylesheets="@../../resources/main.css">
 
     <left>
         <VBox maxWidth="400" styleClass="vboxMain">
             <ImageView pickOnBounds="true" preserveRatio="true" fitWidth="230">
-                <Image url="@../resources/logo.png"/>
+                <Image url="@../../resources/logo.png"/>
             </ImageView>
 
             <VBox styleClass="vbox">
@@ -39,7 +39,7 @@
 
     <right>
         <ImageView pickOnBounds="true" preserveRatio="true" fitWidth="400" BorderPane.alignment="CENTER">
-            <Image url="@../resources/loginBackground.png"/>
+            <Image url="@../../resources/loginBackground.png"/>
         </ImageView>
     </right>
 

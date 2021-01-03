@@ -1,4 +1,4 @@
-package main;
+package main.controllers;
 
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -8,6 +8,7 @@ import javafx.scene.control.PasswordField;
 import javafx.scene.control.TextField;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.text.Text;
+import main.services.UsersRepository;
 
 import java.io.IOException;
 import java.sql.SQLException;

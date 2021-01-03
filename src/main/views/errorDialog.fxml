@@ -5,7 +5,7 @@
 
 <DialogPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="main.ErrorDialogController">
+            fx:controller="main.controllers.ErrorDialogController">
 
     <headerText>
         Login Status

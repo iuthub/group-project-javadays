@@ -8,7 +8,7 @@
 
 <DialogPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="main.SuccessDialogController">
+            fx:controller="main.controllers.SuccessDialogController">
 
     <headerText>
         Login Status
