@@ -3,10 +3,7 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.control.PasswordField?>
 <?import javafx.scene.text.Text?>
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.text.Font?>
 <?import javafx.scene.layout.VBox?>
-<?import javafx.scene.layout.ColumnConstraints?>
 <?import javafx.scene.layout.BorderPane?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
@@ -42,9 +39,7 @@
 
     <right>
         <ImageView pickOnBounds="true" preserveRatio="true" fitWidth="400" BorderPane.alignment="CENTER">
-            <image>
-                <Image url="@../resources/loginBackground.png" />
-            </image>
+            <Image url="@../resources/loginBackground.png"/>
         </ImageView>
     </right>
 

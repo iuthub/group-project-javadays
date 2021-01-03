@@ -27,8 +27,11 @@ public class LoginController {
 
     @FXML
     public void authenticate() {
+
+        // Creates Dialog with Buttons
         Dialog<ButtonType> dialog = new Dialog<>();
 
+        // Get all data inputted by user in loginDialog.fxml
         String login = txtLogin.getText();
         String password = txtPassword.getText();
 
@@ -36,7 +39,6 @@ public class LoginController {
         dialog.setTitle("Result");
 
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("successDialog.fxml"));
         boolean isAuthenticated;
 
         // Check if user inputted correct login and password
@@ -58,7 +60,10 @@ public class LoginController {
             e.printStackTrace();
         }
 
+        // Adding button OK
         dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
+
+        // Waiting until user's action is performed
         dialog.showAndWait();
     }
 }

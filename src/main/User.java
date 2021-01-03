@@ -1,5 +1,7 @@
 package main;
 
+// POJO Object
+
 public class User {
     private String userID;
     private String login;
@@ -18,9 +20,51 @@ public class User {
         this.role = role;
     }
 
-    public String getFirstName() { return firstName; }
+    public String getUserID() {
+        return userID;
+    }
 
-    public String getSecondName() { return secondName; }
+    public void setUserID(String userID) {
+        this.userID = userID;
+    }
 
+    public String getLogin() {
+        return login;
+    }
 
+    public void setLogin(String login) {
+        this.login = login;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getFirstName() {
+        return firstName;
+    }
+
+    public void setFirstName(String firstName) {
+        this.firstName = firstName;
+    }
+
+    public String getSecondName() {
+        return secondName;
+    }
+
+    public void setSecondName(String secondName) {
+        this.secondName = secondName;
+    }
+
+    public int getRole() {
+        return role;
+    }
+
+    public void setRole(int role) {
+        this.role = role;
+    }
 }

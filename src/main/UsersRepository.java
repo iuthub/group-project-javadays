@@ -2,7 +2,7 @@ package main;
 
 import java.sql.*;
 
-// Data Access Object
+// Data Access Object - UsersRepository
 
 public class UsersRepository {
     private static UsersRepository instance;
@@ -15,12 +15,14 @@ public class UsersRepository {
     private PreparedStatement getUserPassStmt;
     private PreparedStatement getStmt;
 
+    // Private Constructor for Singleton object
     private UsersRepository() throws SQLException {
         this.conn = DriverManager.getConnection(DATABASE_URL);
         this.getUserPassStmt = this.conn.prepareStatement(GET_USER_PASSWORD_QUERY);
         this.getStmt = this.conn.prepareStatement(GET_QUERY);
     }
 
+    // Singleton object getInstance() method
     public static UsersRepository getInstance() throws SQLException {
         if (instance == null) {
             instance = new UsersRepository();
@@ -29,11 +31,11 @@ public class UsersRepository {
     }
 
     /**
-     *
-     * @param login
-     * @param password
-     * @return
-     * @throws SQLException
+     * This method is used in LoginController class for authorizing User
+     * @param login User's login
+     * @param password User's password
+     * @return If user authenticated or not
+     * @throws SQLException If there is not a valid query
      */
     public boolean authenticate(String login, String password) throws SQLException {
         ResultSet result;
@@ -46,8 +48,10 @@ public class UsersRepository {
         return result.next();
     }
 
+
+
     public User get(String userID) throws SQLException {
-        ResultSet result = null;
+        ResultSet result;
         User user = null;
 
         this.getStmt.setString(1, userID);
