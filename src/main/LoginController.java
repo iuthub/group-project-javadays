@@ -20,7 +20,7 @@ public class LoginController {
     public Text h1;
 
     @FXML
-    private TextField txtLogin;
+    private TextField txtUserID;
 
     @FXML
     private PasswordField txtPassword;
@@ -32,7 +32,7 @@ public class LoginController {
         Dialog<ButtonType> dialog = new Dialog<>();
 
         // Get all data inputted by user in loginDialog.fxml
-        String login = txtLogin.getText();
+        String login = txtUserID.getText();
         String password = txtPassword.getText();
 
         dialog.initOwner(loginBorderPane.getScene().getWindow());
