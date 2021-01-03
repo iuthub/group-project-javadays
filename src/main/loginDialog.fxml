@@ -24,8 +24,8 @@
             </VBox>
 
             <VBox styleClass="vbox">
-                <Label text="Login" />
-                <TextField fx:id="txtLogin"/>
+                <Label text="User ID" />
+                <TextField fx:id="txtUserID"/>
             </VBox>
 
             <VBox styleClass="vbox">

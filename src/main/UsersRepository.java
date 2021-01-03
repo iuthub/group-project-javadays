@@ -61,7 +61,6 @@ public class UsersRepository {
         if (result.next()) {
             user = new User(
                     result.getString("UserID"),
-                    result.getString("Login"),
                     result.getString("Password"),
                     result.getString("FirstName"),
                     result.getString("LastName"),
