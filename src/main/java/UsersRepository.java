@@ -1,6 +1,4 @@
-package main.services;
-
-import main.models.User;
+package main.java;
 
 import java.sql.*;
 
@@ -8,19 +6,18 @@ import java.sql.*;
 
 public class UsersRepository {
     private static UsersRepository instance;
-    private final String DATABASE_URL = "jdbc:derby:./db/users";
-    private final String GET_USER_PASSWORD_QUERY = "SELECT * FROM Users WHERE Login=? AND Password=?";
-    private final String GET_QUERY = "SELECT * FROM Users WHERE Login=?";
+    private final Connection conn;
 
-    private Connection conn;
-
-    private PreparedStatement getUserPassStmt;
-    private PreparedStatement getStmt;
+    private final PreparedStatement getLoginStmt;
+    private final PreparedStatement getStmt;
 
     // Private Constructor for Singleton object
     private UsersRepository() throws SQLException {
-        this.conn = DriverManager.getConnection(DATABASE_URL);
-        this.getUserPassStmt = this.conn.prepareStatement(GET_USER_PASSWORD_QUERY);
+        String LOGIN_QUERY = "SELECT 1 FROM Users WHERE UserID=? AND Password=?";
+        String GET_QUERY = "SELECT * FROM Users WHERE UserID=?";
+
+        this.conn = DriverManager.getConnection("jdbc:derby:./db/users");
+        this.getLoginStmt = this.conn.prepareStatement(LOGIN_QUERY);
         this.getStmt = this.conn.prepareStatement(GET_QUERY);
     }
 
@@ -34,23 +31,20 @@ public class UsersRepository {
 
     /**
      * This method is used in LoginController class for authorizing User
-     * @param login User's login
+     * @param uid User's login
      * @param password User's password
      * @return If user authenticated or not
      * @throws SQLException If there is not a valid query
      */
-    public boolean authenticate(String login, String password) throws SQLException {
+    public boolean authenticate(String uid, String password) throws SQLException {
         ResultSet result;
 
-        this.getUserPassStmt.setString(1, login);
-        this.getUserPassStmt.setString(2, password);
+        this.getLoginStmt.setString(1, uid);
+        this.getLoginStmt.setString(2, password);
 
-        result = this.getUserPassStmt.executeQuery();
-
+        result = this.getLoginStmt.executeQuery();
         return result.next();
     }
-
-
 
     public User get(String userID) throws SQLException {
         ResultSet result;
@@ -63,7 +57,6 @@ public class UsersRepository {
         if (result.next()) {
             user = new User(
                     result.getString("UserID"),
-                    result.getString("Login"),
                     result.getString("Password"),
                     result.getString("FirstName"),
                     result.getString("LastName"),
@@ -73,6 +66,4 @@ public class UsersRepository {
 
         return user;
     }
-
-
 }
