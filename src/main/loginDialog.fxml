@@ -39,7 +39,7 @@
             </font>
          </Label>
 
-            <Button defaultButton="true" onAction="#authenticate" prefWidth="Infinity" styleClass="submitButton" text="Sign in" />
+            <Button defaultButton="true" onAction="#handleSubmit" prefWidth="Infinity" styleClass="submitButton" text="Sign in" />
         </VBox>
     </left>
 
