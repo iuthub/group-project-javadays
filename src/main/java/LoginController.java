@@ -65,6 +65,7 @@ public class LoginController {
             mainAppStage.setResizable(false);
             root = FXMLLoader.load(getClass().getResource("/main/res/fxml/mainApp.fxml"));
             Scene mainAppScene = new Scene(root, 1280, 720);
+            mainAppScene.getStylesheets().add(getClass().getResource("/main/res/css/style.css").toExternalForm());
             mainAppStage.setScene(mainAppScene);
             mainAppStage.show();
         }
