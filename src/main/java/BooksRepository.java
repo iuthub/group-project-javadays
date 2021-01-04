@@ -12,7 +12,7 @@ public class BooksRepository {
         String createBookQuery = "INSERT INTO Books(isbn, title, subject, author, publishDate, description) " +
                                   "VALUES ('?', '?', '?', '?', '?')";
 
-        this.connection = DriverManager.getConnection("jdbc:derby:./db/books");
+        this.connection = ConnectionManager.getConnection();
 
         this.createStmt = connection.prepareStatement(createBookQuery);
     }
