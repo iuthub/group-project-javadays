@@ -17,48 +17,9 @@ public class LoginController {
     @FXML private TextField txtLogin;
     @FXML private PasswordField txtPassword;
 
-    @FXML
-    public void authenticate_old() {
-        // Creates Dialog with Buttons
-        Dialog<ButtonType> dialog = new Dialog<>();
 
-        // Get all data inputted by user in loginDialog.fxml
-        String login = txtLogin.getText();
-        String password = txtPassword.getText();
 
-        dialog.initOwner(loginBorderPane.getScene().getWindow());
-        dialog.setTitle("Result");
-
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        boolean isAuthenticated;
-
-        // Check if user inputted correct login and password
-        try {
-            isAuthenticated = UsersRepository.getInstance().authenticate(login, password);
-
-            if (isAuthenticated){
-                fxmlLoader.setLocation(getClass().getResource("successDialog.fxml"));
-            } else {
-                fxmlLoader.setLocation(getClass().getResource("errorDialog.fxml"));
-            }
-        } catch (SQLException throwables) {
-            throwables.printStackTrace();
-        }
-
-        try {
-            dialog.getDialogPane().setContent(fxmlLoader.load());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        // Adding button OK
-        dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
-
-        // Waiting until user's action is performed
-        dialog.showAndWait();
-    }
-
-    public void authenticate(){
+    public void handleSubmit(){
         String login = txtLogin.getText();
         String password = txtPassword.getText();
         boolean status = false;
