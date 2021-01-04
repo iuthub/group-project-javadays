@@ -1,15 +1,11 @@
-package main;
+package main.java;
 
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.paint.Color;
-import javafx.scene.text.Text;
 
-import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Locale;
 
 public class LoginController {
     @FXML private Label lblAlert;

@@ -3,5 +3,5 @@ module group.project.javadays {
     requires javafx.controls;
     requires java.sql;
 
-    opens main;
+    opens main.java;
 }
