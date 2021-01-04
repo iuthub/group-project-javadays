@@ -18,7 +18,6 @@ public class LoginController {
     @FXML private TextField txtUserID;
     @FXML private PasswordField txtPassword;
 
-
     /**
      * This method verifies if user submitted correct login and password.
      * If UserID is not of the form "UXXXXXXX" where X is a digit, it asks user to re-submit
@@ -70,5 +69,4 @@ public class LoginController {
             mainAppStage.show();
         }
     }
-
 }

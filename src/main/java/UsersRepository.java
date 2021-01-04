@@ -6,19 +6,17 @@ import java.sql.*;
 
 public class UsersRepository {
     private static UsersRepository instance;
-    private final Connection conn;
-
     private final PreparedStatement getLoginStmt;
     private final PreparedStatement getStmt;
 
     // Private Constructor for Singleton object
     private UsersRepository() throws SQLException {
-        String LOGIN_QUERY = "SELECT 1 FROM Users WHERE UserID=? AND Password=?";
-        String GET_QUERY = "SELECT * FROM Users WHERE UserID=?";
+        String LOGIN_QUERY = "SELECT 1 FROM Users WHERE userId=? AND password=?";
+        String GET_QUERY = "SELECT * FROM Users WHERE userId=?";
 
-        this.conn = DriverManager.getConnection("jdbc:derby:./db/users");
-        this.getLoginStmt = this.conn.prepareStatement(LOGIN_QUERY);
-        this.getStmt = this.conn.prepareStatement(GET_QUERY);
+        Connection conn = ConnectionManager.getConnection();
+        this.getLoginStmt = conn.prepareStatement(LOGIN_QUERY);
+        this.getStmt = conn.prepareStatement(GET_QUERY);
     }
 
     // Singleton object getInstance() method
@@ -56,14 +54,40 @@ public class UsersRepository {
 
         if (result.next()) {
             user = new User(
-                    result.getString("UserID"),
-                    result.getString("Password"),
-                    result.getString("FirstName"),
-                    result.getString("LastName"),
-                    result.getInt("Role")
+                    result.getString("userId"),
+                    result.getString("password"),
+                    result.getString("firstName"),
+                    result.getString("lastName"),
+                    intToRole(result.getInt("role"))
             );
         }
 
         return user;
+    }
+
+    private int roleToInt(Role role) {
+        switch (role) {
+            case ADMIN:
+                return 0;
+            case LIBRARIAN:
+                return 1;
+            case STUDENT:
+                return 2;
+            default:
+                return -1;
+        }
+    }
+
+    private Role intToRole(int i) {
+        switch(i) {
+            case 0:
+                return Role.ADMIN;
+            case 1:
+                return Role.LIBRARIAN;
+            case 2:
+                return Role.STUDENT;
+            default:
+                return null;
+        }
     }
 }
