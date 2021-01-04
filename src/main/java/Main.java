@@ -12,8 +12,8 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-//        Parent root = FXMLLoader.load(getClass().getResource("/main/res/fxml/loginDialog.fxml"));
-        Parent root = FXMLLoader.load(getClass().getResource("/main/res/fxml/mainApp.fxml"));
+        Parent root = FXMLLoader.load(getClass().getResource("/main/res/fxml/loginDialog.fxml"));
+//        Parent root = FXMLLoader.load(getClass().getResource("/main/res/fxml/mainApp.fxml"));
         primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/main/res/img/favicon.png")));
 //        primaryStage.initStyle(StageStyle.DECORATED);
         primaryStage.setTitle("Inha Library");
