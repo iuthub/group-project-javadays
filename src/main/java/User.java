@@ -1,6 +1,5 @@
-package main.java;
-
 // POJO Object
+package main.java;
 
 public class User {
     private String userID;
