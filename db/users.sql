@@ -10,4 +10,4 @@ CREATE TABLE Users(
 
 INSERT INTO Users (UserID, Password, FirstName, LastName, Role)
 VALUES ('U1910223', '1234', 'Mukhammadsaid', 'Mamasaidov', 0),
-       ('U1910236', '1234', 'Jasur', 'Yusupov', 0);
+       ('U1910236', '1234', 'Jasur', 'Yusupov', 0),

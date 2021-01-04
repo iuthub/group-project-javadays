@@ -6,8 +6,6 @@ import java.sql.*;
 
 public class UsersRepository {
     private static UsersRepository instance;
-    private final Connection conn;
-
     private final PreparedStatement getLoginStmt;
     private final PreparedStatement getStmt;
 
@@ -16,9 +14,9 @@ public class UsersRepository {
         String LOGIN_QUERY = "SELECT 1 FROM Users WHERE UserID=? AND Password=?";
         String GET_QUERY = "SELECT * FROM Users WHERE UserID=?";
 
-        this.conn = DriverManager.getConnection("jdbc:derby:./db/users");
-        this.getLoginStmt = this.conn.prepareStatement(LOGIN_QUERY);
-        this.getStmt = this.conn.prepareStatement(GET_QUERY);
+        Connection conn = ConnectionManager.getConnection();
+        this.getLoginStmt = conn.prepareStatement(LOGIN_QUERY);
+        this.getStmt = conn.prepareStatement(GET_QUERY);
     }
 
     // Singleton object getInstance() method
