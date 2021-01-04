@@ -6,9 +6,57 @@
 .nav {
     -fx-padding: 30px;
     -fx-background-color: #fbfcfd;
+    -fx-max-width: 300px;
 }
 
 .img-logo {
     -fx-padding: 0px 0px 20px 0px;
+}
+
+.nav .button {
+    -fx-cursor: hand;
+    -fx-background-radius: 25px;
+    -fx-pref-width: 200px;
+    -fx-pref-height: 45px;
+    -fx-background-color: #fbfcfd;
+    -fx-content-display: graphic-only;
+}
+
+.nav .button:hover {
+    -fx-text-fill: #0b67b2;
+}
+
+.nav .button:hover .glyph-icon, .nav .button:focused .glyph-icon, .nav .button:pressed .glyph-icon {
+    -fx-fill: #0b67b2;
+}
+
+.nav .button:hover .menuGridPane .label, .nav .button:focused .menuGridPane .label, .nav .button:pressed .menuGridPane .label {
+    -fx-text-fill: #0b67b2;
+}
+
+.nav .button:hover .menuGridPane .label {
+    -fx-text-fill: #0b67b2;
+}
+
+.menuGridPane .label {
+    -fx-text-fill: #9fb1db;
+    -fx-font-family: "Lato Heavy";
+}
+
+.menuGridPane {
+    -fx-padding: 10px;
+
+}
+
+
+.nav .button:pressed, .nav .button:focused {
+    -fx-background-color: #ffffff;
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0.1, 0.0, 0.0);
+    -fx-text-fill: #0b67b2;
+}
+
+.glyph-icon {
+    -fx-font-family: Arial, sans-serif;
+    -fx-fill: #9fb1db;
 }
 
