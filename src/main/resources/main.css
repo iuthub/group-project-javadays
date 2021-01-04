@@ -5,6 +5,12 @@
 
 }
 
+.alert_label {
+   -fx-font-size: 11pt;
+   -fx-font-family: "Roboto Medium", sans-serif;
+   -fx-text-fill: red;
+}
+
 .h1 {
     -fx-font-weight: bold;
     -fx-font-size: 24pt;
@@ -13,17 +19,17 @@
 .vboxMain {
     -fx-background-color: rgb(255, 255, 255);
     -fx-padding: 30px;
-    -fx-spacing: 30px;
+    -fx-spacing: 10px;
     -fx-border-width: 1px;
     -fx-border-color: rgb(235, 235, 235);
     -fx-border-radius: 3px;
 }
 
 .vbox {
-    -fx-spacing: 5px;
+    -fx-spacing: 3px;
 }
 
-.label {
+.login_label {
    -fx-font-size: 11pt;
    -fx-font-family: "Roboto Medium", sans-serif;
    -fx-text-fill: gray;
