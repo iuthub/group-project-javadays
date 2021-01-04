@@ -1,18 +1,21 @@
 DROP TABLE Users;
 
-CREATE TABLE Users(
-    UserID    VARCHAR(8)  NOT NULL,
-    Password  VARCHAR(30) NOT NULL,
-    FirstName VARCHAR(30) NOT NULL,
-    LastName  VARCHAR(30) NOT NULL,
-    Role      INT         NOT NULL,
+CREATE TABLE Users (
+       userId      VARCHAR(8)  NOT NULL ALWAYS AS IDENTITY,
+       password    VARCHAR(20) NOT NULL,
+       firstName   VARCHAR(40) NOT NULL,
+       lastName    VARCHAR(40) NOT NULL,
+       role        INT         NOT NULL
+)
 
-    PRIMARY KEY (UserID)
-);
+-- Admins
+INSERT INTO Users(userId, password, firstName, lastName, role) VALUES ('U1410000', 'admin', 'Foo', 'Fighters', 0)
+INSERT INTO Users(userId, password, firstName, lastName, role) VALUES ('U1410001', 'admin', 'Black', 'Sabbath', 0)
 
-INSERT INTO Users (UserID, Password, FirstName, LastName, Role)
-VALUES ('U1910223', '1234', 'Mukhammadsaid', 'Mamasaidov', 0),
-       ('U1910236', '1234', 'Jasur', 'Yusupov', 0),
-       ('U0000000', '0000', 'admin', 'admin', 0),
-       ('U1111111', '1111', 'lib', 'lib', 1),
-       ('U1234567', '1234', 'Marat', 'Shpagat', 2);
+-- Librarians
+INSERT INTO Users(userId, password, firstName, lastName, role) VALUES ('U1510000', 'librarian', 'Led', 'Zeppelin', 1)
+INSERT INTO Users(userId, password, firstName, lastName, role) VALUES ('U1510001', 'librarian', 'Judas', 'Priest', 1)
+
+-- Students
+INSERT INTO Users(userId, password, firstName, lastName, role) VALUES ('U1910000', 'student', 'Pink', 'Floyd', 2)
+INSERT INTO Users(userId, password, firstName, lastName, role) VALUES ('U1910001', 'student', 'Deep', 'Purple', 2)
