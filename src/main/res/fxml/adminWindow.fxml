@@ -68,7 +68,7 @@
             </TableView>
             <ImageView fitHeight="186.0" fitWidth="143.0" layoutX="422.0" layoutY="33.0" pickOnBounds="true"
                        preserveRatio="true">
-                <Image url="@../main/resources/java_book.jpg"/>
+                <Image url="@../img/java_book.jpg"/>
             </ImageView>
             <Button layoutX="527.0" layoutY="332.0" mnemonicParsing="false" text="Remove"/>
             <Button layoutX="367.0" layoutY="332.0" mnemonicParsing="false" text="Add new book"/>
