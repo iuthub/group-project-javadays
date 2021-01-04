@@ -1,63 +1,104 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
 <?import javafx.scene.control.*?>
-<?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 
-<BorderPane fx:id="mainBorderPane" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.MainController">
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="main.java.MainController"
+            fx:id="mainBorderPane"
+            stylesheets="@../css/main.css">
 
     <left>
-        <VBox prefHeight="494.0" prefWidth="305.0" spacing="20" styleClass="nav">
+        <VBox spacing="15" styleClass="nav">
             <VBox styleClass="img-logo">
-                <ImageView><Image url="@../img/logo.png" /></ImageView>
+                <ImageView fitWidth="200" preserveRatio="true"><Image url="@../img/logo.png"/></ImageView>
             </VBox>
             <Button text="Home">
                 <graphic>
-                    <ImageView pickOnBounds="true">
-                        <Image url="@../icons/icons8-home-30.png" />
-                    </ImageView>
+                    <GridPane styleClass="menuGridPane">
+                        <columnConstraints>
+                            <ColumnConstraints prefWidth="40" />
+                        </columnConstraints>
+                        <FontAwesomeIconView glyphName="HOME" glyphSize="20" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                        <Label text="Home" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                    </GridPane>
+
                 </graphic>
             </Button>
-            <Button onAction="#handleStudentView" prefWidth="102.0" text="Students">
+            <Button text="Students" onAction="#handleStudentView" >
                 <graphic>
-                    <ImageView pickOnBounds="true">
-                        <Image url="@../icons/icons8-student-center-30.png" />
-                    </ImageView>
+                    <GridPane styleClass="menuGridPane">
+                        <columnConstraints>
+                            <ColumnConstraints prefWidth="40" />
+                        </columnConstraints>
+                        <FontAwesomeIconView glyphName="GRADUATION_CAP" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                        <Label text="Students" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                    </GridPane>
+
                 </graphic>
             </Button>
-            <Button onAction="#handleLibrarianView" text="Librarians">
+            <Button text="Librarians" onAction="#handleLibrarianView">
                 <graphic>
-                    <ImageView pickOnBounds="true">
-                        <Image url="@../icons/icons8-library-30.png" />
-                    </ImageView>
+                    <GridPane styleClass="menuGridPane">
+                        <columnConstraints>
+                            <ColumnConstraints prefWidth="40" />
+                        </columnConstraints>
+                        <FontAwesomeIconView glyphName="USERS" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                        <Label text="Librarians" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                    </GridPane>
                 </graphic>
             </Button>
-            <Button onAction="#handleBookView" prefHeight="38.0" prefWidth="100.0" text="Books">
+            <Button text="Books" onAction="#handleBookView">
                 <graphic>
-                    <ImageView preserveRatio="true">
-                        <Image url="@../icons/icons8-books-30.png" />
-                    </ImageView>
+                    <GridPane styleClass="menuGridPane">
+                        <columnConstraints>
+                            <ColumnConstraints prefWidth="40" />
+                        </columnConstraints>
+                        <FontAwesomeIconView glyphName="BOOK" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                        <Label text="Books" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                    </GridPane>
                 </graphic>
             </Button>
-            <Button prefHeight="38.0" prefWidth="101.0" text="Settings">
+            <Button text="Settings">
                 <graphic>
-                    <ImageView pickOnBounds="true">
-                        <Image url="@../icons/icons8-settings-30.png" />
-                    </ImageView>
+                    <GridPane styleClass="menuGridPane">
+                        <columnConstraints>
+                            <ColumnConstraints prefWidth="40" />
+                        </columnConstraints>
+                        <FontAwesomeIconView glyphName="COGS" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                        <Label text="Settings" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                    </GridPane>
                 </graphic>
             </Button>
-            <Button prefHeight="38.0" prefWidth="100.0" text="Logout">
+
+            <Region VBox.vgrow="ALWAYS" />
+
+            <Button text="Logout">
                 <graphic>
-                    <ImageView pickOnBounds="true">
-                        <Image url="@../icons/icons8-exit-30.png" />
-                    </ImageView>
+                    <GridPane styleClass="menuGridPane">
+                        <columnConstraints>
+                            <ColumnConstraints prefWidth="40" />
+                        </columnConstraints>
+                        <FontAwesomeIconView glyphName="SIGN_OUT" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                        <Label text="Log Out" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                    </GridPane>
                 </graphic>
             </Button>
         </VBox>
     </left>
 
     <center>
-        <fx:include source="adminWindow.fxml" />
+        <fx:include source="studentView.fxml"/>
     </center>
 
     <bottom>
