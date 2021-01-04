@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="main.java.MainController"
+            fx:id="mainBorderPane"
+            prefHeight="400.0" prefWidth="600.0"
+            stylesheets="@../css/main.css">
+
+    <left>
+
+        <VBox minHeight="Infinity" spacing="20">
+            <ImageView>
+                <Image url="@../img/logo.png"/>
+            </ImageView>
+            <Button text="Home" graphic=""/>
+            <Button text="Students" onAction="#handleStudentView"/>
+            <Button text="Librarians" onAction="#handleLibrarianView" />
+            <Button text="Books" onAction="#handleBookView" />
+            <Button text="Setting" />
+            <Button text="Logout" alignment="BOTTOM_LEFT"/>
+        </VBox>
+    </left>
+
+    <center>
+        <fx:include source="studentView.fxml"/>
+    </center>
+
+    <bottom>
+
+    </bottom>
+
+</BorderPane>

@@ -1,14 +1,8 @@
 .root {
     -fx-font-size: 12pt;
-    -fx-font-family: "Roboto", sans-serif;
+    -fx-font-family: "Lato", sans-serif;
     -fx-padding: 40px;
-
-}
-
-.alert_label {
-   -fx-font-size: 11pt;
-   -fx-font-family: "Roboto Medium", sans-serif;
-   -fx-text-fill: red;
+    /*-fx-background-image: url(../img/loginBackground.png);*/
 }
 
 .h1 {
@@ -19,28 +13,71 @@
 .vboxMain {
     -fx-background-color: rgb(255, 255, 255);
     -fx-padding: 30px;
-    -fx-spacing: 10px;
+    -fx-spacing: 25px;
     -fx-border-width: 1px;
     -fx-border-color: rgb(235, 235, 235);
+    -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0.1, 0.0, 0.0);
     -fx-border-radius: 3px;
+
 }
 
 .vbox {
-    -fx-spacing: 3px;
+    -fx-spacing: 8px;
 }
 
-.login_label {
-   -fx-font-size: 11pt;
-   -fx-font-family: "Roboto Medium", sans-serif;
+.label {
    -fx-text-fill: gray;
+}
+
+.alert {
+   -fx-text-fill: red;
+}
+
+.label, .alert {
+   -fx-font-size: 11pt;
+   -fx-font-family: "Lato Medium", sans-serif;
+
+}
+
+.text-field:focused {
+    -fx-border-style: solid outside;
+    -fx-border-width: 2px;
+    -fx-border-color: #c0cbf9;
+    -fx-border-radius: 3px;
 }
 
 .submitButton {
     -fx-font-weight: bold;
     -fx-text-fill: #ffffff;
     -fx-background-color: #0066b2;
+
+}
+
+.submitButton:hover {
+    -fx-background-color: #475cd4;
+}
+
+.submitButton:pressed, .submitButton:focused {
+    -fx-border-style: solid outside;
+    -fx-border-width: 3px;
+    -fx-border-color: #a9b5fc;
+    -fx-background-color: #475cd4;
+    -fx-border-radius: 3px;
 }
 
 .submitButton, .text-field {
-    -fx-pref-height: 40px;
+    -fx-min-height: 40px;
 }
+
+/*.footer {*/
+
+/*    -fx-background-color: #000000;*/
+/*    -fx-border-width: 3px 0px 0px 0px;*/
+/*    -fx-border-color: #0066b2;*/
+/*    -fx-font-size: 10pt;*/
+/*    -fx-alignment: center;*/
+/*}*/
+
+/*.footer > .text {*/
+/*    -fx-text-fill: #ffffff;*/
+/*}*/
