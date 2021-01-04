@@ -13,8 +13,6 @@ public class LoginController {
     @FXML private TextField txtLogin;
     @FXML private PasswordField txtPassword;
 
-
-
     public void handleSubmit(){
         String login = txtLogin.getText();
         String password = txtPassword.getText();
