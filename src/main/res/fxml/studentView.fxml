@@ -1,14 +1,67 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import java.lang.*?>
-<?import java.util.*?>
-<?import javafx.scene.*?>
-<?import javafx.scene.control.*?>
-<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.ChoiceBox?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Pagination?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.text.Font?>
 
-<AnchorPane xmlns="http://javafx.com/javafx"
-            xmlns:fx="http://javafx.com/fxml"
-            fx:controller="main.java.StudentViewController"
-            prefHeight="400.0" prefWidth="600.0">
-    <Label text="Students" />
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<AnchorPane prefHeight="597.0" prefWidth="755.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.StudentViewController">
+   <Label layoutX="21.0" layoutY="24.0" prefHeight="21.0" prefWidth="57.0" text="Search: ">
+      <font>
+         <Font size="15.0" />
+      </font>
+   </Label>
+   <TextField fx:id="search_field" layoutX="163.0" layoutY="21.0" prefHeight="26.0" prefWidth="232.0" />
+   <Button layoutX="399.0" layoutY="22.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="32.0">
+      <graphic>
+         <ImageView fx:id="search_button" fitHeight="26.0" fitWidth="16.0" pickOnBounds="true" preserveRatio="true">
+            <Image url="@../icons/icons8-saerch-30.png" />
+         </ImageView>
+      </graphic>
+   </Button>
+   <Pagination fx:id="page_controller" currentPageIndex="2" layoutX="22.0" layoutY="533.0" maxPageIndicatorCount="3" pageCount="10" prefHeight="50.0" prefWidth="409.0" />
+   <TableView fx:id="table" layoutX="22.0" layoutY="86.0" prefHeight="447.0" prefWidth="409.0">
+      <columns>
+         <TableColumn prefWidth="75.0" text="ID">
+            <cellValueFactory>
+               <PropertyValueFactory property="uid"/>
+            </cellValueFactory>
+         </TableColumn>
+         <TableColumn prefWidth="129.0" text="Name">
+            <cellValueFactory>
+               <PropertyValueFactory property="name"/>
+            </cellValueFactory>
+         </TableColumn>
+         <TableColumn prefWidth="204.0" text="Borrowed books count">
+            <cellValueFactory>
+               <PropertyValueFactory property="count"/>
+            </cellValueFactory>
+         </TableColumn>
+      </columns>
+   </TableView>
+   <ImageView fx:id="student_photo" fitHeight="191.0" fitWidth="171.0" layoutX="506.0" layoutY="101.0" pickOnBounds="true" preserveRatio="true">
+      <Image url="@../img/profile_male.png" />
+   </ImageView>
+   <ListView fx:id="student_info" layoutX="446.0" layoutY="299.0" prefHeight="204.0" prefWidth="288.0" />
+   <Button layoutX="446.0" layoutY="518.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="288.0" text="View book history" />
+   <Button fx:id="add_button" layoutX="502.0" layoutY="21.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="180.0" text="Add new student">
+      <graphic>
+         <ImageView fitHeight="20.0" fitWidth="21.0" pickOnBounds="true" preserveRatio="true">
+            <Image url="@../icons/icons8-plus-30.png" />
+         </ImageView>
+      </graphic>
+   </Button>
+   <Button layoutX="446.0" layoutY="550.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="217.0" text="Modify" />
+   <Button fx:id="delete_button" layoutX="669.0" layoutY="550.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="65.0" text="Delete" />
+   <Label fx:id="total_count" layoutX="22.0" layoutY="59.0" prefHeight="17.0" prefWidth="112.0" text="Students count: 1234" />
+   <ChoiceBox fx:id="search_type" layoutX="73.0" layoutY="21.0" prefHeight="26.0" prefWidth="84.0" />
 </AnchorPane>
