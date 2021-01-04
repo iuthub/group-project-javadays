@@ -5,7 +5,9 @@ CREATE TABLE Users(
     Password  VARCHAR(30) NOT NULL,
     FirstName VARCHAR(30) NOT NULL,
     LastName  VARCHAR(30) NOT NULL,
-    Role      INT         NOT NULL
+    Role      INT         NOT NULL,
+
+    PRIMARY KEY(UserID)
 );
 
 INSERT INTO Users (UserID, Password, FirstName, LastName, Role)
