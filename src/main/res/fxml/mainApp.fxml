@@ -21,6 +21,11 @@
                 <ImageView><Image url="@../img/logo.png"/></ImageView>
             </VBox>
             <Button text="Home">
+                <graphic>
+                    <ImageView pickOnBounds="true">
+                        <Image url="@../icons/icons8-home-30.png"/>
+                    </ImageView>
+                </graphic>
             </Button>
             <Button text="Students" onAction="#handleStudentView">
                 <graphic>
