@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="main.java.MainController"
+            fx:id="mainBorderPane"
+            stylesheets="@../css/main.css">
+
+    <left>
+        <VBox spacing="20" styleClass="nav">
+            <VBox styleClass="img-logo">
+                <ImageView><Image url="@../img/logo.png"/></ImageView>
+            </VBox>
+            <Button text="Home">
+                <graphic>
+                    <ImageView pickOnBounds="true">
+                        <Image url="@../icons/icons8-home-30.png"/>
+                    </ImageView>
+                </graphic>
+            </Button>
+            <Button text="Students" onAction="#handleStudentView">
+                <graphic>
+                    <ImageView pickOnBounds="true">
+                        <Image url="@../icons/icons8-student-center-30.png"/>
+                    </ImageView>
+                </graphic>
+            </Button>
+            <Button text="Librarians" onAction="#handleLibrarianView">
+                <graphic>
+                    <ImageView pickOnBounds="true">
+                        <Image url="@../icons/icons8-library-30.png"/>
+                    </ImageView>
+                </graphic>
+            </Button>
+            <Button text="Books" onAction="#handleBookView">
+                <graphic>
+                    <ImageView preserveRatio="true">
+                        <Image url="@../icons/icons8-books-30.png"/>
+                    </ImageView>
+                </graphic>
+            </Button>
+            <Button text="Settings">
+                <graphic>
+                    <ImageView pickOnBounds="true">
+                        <Image url="@../icons/icons8-settings-30.png"/>
+                    </ImageView>
+                </graphic>
+            </Button>
+            <Button text="Logout">
+                <graphic>
+                    <ImageView pickOnBounds="true">
+                        <Image url="@../icons/icons8-exit-30.png"/>
+                    </ImageView>
+                </graphic>
+            </Button>
+        </VBox>
+    </left>
+
+    <center>
+<!--        <fx:include source="studentView.fxml"/>-->
+    </center>
+
+    <bottom>
+
+    </bottom>
+
+</BorderPane>
