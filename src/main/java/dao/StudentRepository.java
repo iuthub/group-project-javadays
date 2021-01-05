@@ -8,16 +8,19 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.Locale;
 
 public class StudentRepository {
     private static StudentRepository instance;
     private final PreparedStatement getForAdminStmt;
     private final PreparedStatement getTotalCountStmt;
+    private final String DISPLAY_QUERY_ADMIN = "SELECT userId, firstName || ' ' || lastName AS name FROM Users WHERE role = 2 ";
 
     private StudentRepository() throws SQLException {
         Connection conn = ConnectionManager.getConnection();
-        getForAdminStmt = conn.prepareStatement("SELECT UserID, FirstName || ' ' || LastName AS Name FROM Users OFFSET ? ROWS FETCH NEXT 100 ROWS ONLY");
-        getTotalCountStmt = conn.prepareStatement("SELECT COUNT(*) FROM Users");
+        String TOTAL_COUNT = "SELECT COUNT(*) FROM Users WHERE role = 2";
+        getForAdminStmt = conn.prepareStatement(DISPLAY_QUERY_ADMIN + "OFFSET ? ROWS FETCH NEXT 100 ROWS ONLY");
+        getTotalCountStmt = conn.prepareStatement(TOTAL_COUNT);
     }
 
     // Singleton object getInstance() method
@@ -47,6 +50,48 @@ public class StudentRepository {
                 )
             );
         }
+        return list;
+    }
+
+    private String capitalize(String in){
+        return in.substring(0, 1).toUpperCase() + in.substring(1).toLowerCase();
+    }
+
+    public ObservableList<StudentBorrowedBooks> searchForAdmin(String type, String search) throws SQLException {
+        Connection conn = ConnectionManager.getConnection();
+        String cName = "UserId";
+        search = capitalize(search);
+
+        switch (type) {
+            case "User ID":
+                cName = "UserId";
+                if (!search.matches("[Uu].+")){
+                    search = "U"+search;
+                }
+                break;
+            case "First name":
+                cName = "firstName";
+                break;
+            case "Last name":
+                cName = "lastName";
+                break;
+        }
+        String LIKE_QUERY = String.format("AND %s LIKE ?", cName);
+        PreparedStatement searchByParamStmt = conn.prepareStatement(DISPLAY_QUERY_ADMIN + LIKE_QUERY);
+        searchByParamStmt.setString(1, search + "%");
+
+        ObservableList<StudentBorrowedBooks> list = FXCollections.observableArrayList();
+        ResultSet result = searchByParamStmt.executeQuery();
+
+        while (result.next()){
+            list.add(
+                new StudentBorrowedBooks(
+                    result.getString("userId"),
+                    result.getString("name")
+                )
+            );
+        }
+        searchByParamStmt.close();
         return list;
     }
 }
