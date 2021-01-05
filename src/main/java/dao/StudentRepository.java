@@ -1,7 +1,8 @@
-package main.java;
+package dao;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import model.StudentBorrowedBooks;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -36,16 +37,16 @@ public class StudentRepository {
         return result.getInt(1);
     }
 
-    public ObservableList<Result> getForAdmin(int page) throws SQLException {
-        ObservableList<Result> list = FXCollections.observableArrayList();
+    public ObservableList<StudentBorrowedBooks> getForAdmin(int page) throws SQLException {
+        ObservableList<StudentBorrowedBooks> list = FXCollections.observableArrayList();
         this.getForAdminStmt.setInt(1, page * 100);
         ResultSet result = this.getForAdminStmt.executeQuery();
 
         while (result.next()){
             list.add(
-                new Result(
-                    result.getString("userId"),
-                    result.getString("name")
+                new StudentBorrowedBooks(
+                    result.getString("UserID"),
+                    result.getString("Name")
                 )
             );
         }

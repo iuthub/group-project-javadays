@@ -14,7 +14,7 @@
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="main.java.MainController"
+            fx:controller="controllers.StudentWindowController"
             fx:id="mainBorderPane"
             stylesheets="@../css/main.css">
 
@@ -23,7 +23,7 @@
             <VBox styleClass="img-logo">
                 <ImageView fitWidth="200" preserveRatio="true"><Image url="@../img/logo.png"/></ImageView>
             </VBox>
-            <Button text="Home">
+            <Button text="Home" onAction="#handleStudentHomeView">
                 <graphic>
                     <GridPane styleClass="menuGridPane">
                         <columnConstraints>
@@ -35,30 +35,7 @@
 
                 </graphic>
             </Button>
-            <Button text="Students" onAction="#handleStudentView" >
-                <graphic>
-                    <GridPane styleClass="menuGridPane">
-                        <columnConstraints>
-                            <ColumnConstraints prefWidth="40" />
-                        </columnConstraints>
-                        <FontAwesomeIconView glyphName="GRADUATION_CAP" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-                        <Label text="Students" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
-                    </GridPane>
-
-                </graphic>
-            </Button>
-            <Button text="Librarians" onAction="#handleLibrarianView">
-                <graphic>
-                    <GridPane styleClass="menuGridPane">
-                        <columnConstraints>
-                            <ColumnConstraints prefWidth="40" />
-                        </columnConstraints>
-                        <FontAwesomeIconView glyphName="USERS" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-                        <Label text="Librarians" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
-                    </GridPane>
-                </graphic>
-            </Button>
-            <Button text="Books" onAction="#handleBookView">
+            <Button text="Books" onAction="#handleStudentBookView" >
                 <graphic>
                     <GridPane styleClass="menuGridPane">
                         <columnConstraints>
@@ -66,6 +43,18 @@
                         </columnConstraints>
                         <FontAwesomeIconView glyphName="BOOK" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
                         <Label text="Books" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                    </GridPane>
+
+                </graphic>
+            </Button>
+            <Button text="Fine" onAction="#handleFineView">
+                <graphic>
+                    <GridPane styleClass="menuGridPane">
+                        <columnConstraints>
+                            <ColumnConstraints prefWidth="40" />
+                        </columnConstraints>
+                        <FontAwesomeIconView glyphName="MONEY" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                        <Label text="Current Fine" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
                     </GridPane>
                 </graphic>
             </Button>
@@ -83,7 +72,7 @@
 
             <Region VBox.vgrow="ALWAYS" />
 
-            <Button text="Logout">
+            <Button text="Logout" onAction="#handleLogOut" fx:id="btnLogOut">
                 <graphic>
                     <GridPane styleClass="menuGridPane">
                         <columnConstraints>
@@ -98,7 +87,7 @@
     </left>
 
     <center>
-<!--        <fx:include source="studentView.fxml"/>-->
+<!--        <fx:include source="adminStudentView.fxml"/>-->
     </center>
 
     <bottom>

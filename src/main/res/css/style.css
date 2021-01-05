@@ -37,18 +37,18 @@
     -fx-border-radius: 3px;
 }
 
-.submitButton {
+.submit-button {
     -fx-font-weight: bold;
     -fx-text-fill: #ffffff;
     -fx-background-color: #0066b2;
 
 }
 
-.submitButton:hover {
+.submit-button:hover {
     -fx-background-color: #004d85;
 }
 
-.submitButton:pressed, .submitButton:focused {
+.submit-button:pressed, .submit-button:focused {
     -fx-border-style: solid outside;
     -fx-border-width: 3px;
     -fx-border-color: #a9b5fc;
@@ -56,9 +56,46 @@
     -fx-border-radius: 3px;
 }
 
-.submitButton, .text-field {
+.submit-button, .text-field {
     -fx-min-height: 40px;
 }
+
+.secondary-button {
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+    -fx-background-color: #6c757d;
+}
+
+.secondary-button:hover {
+    -fx-background-color: #5c636a;
+}
+
+.secondary-button:pressed, .secondary-button:focused {
+    -fx-border-style: solid outside;
+    -fx-border-width: 3px;
+    -fx-border-color: #eef2f7;
+    -fx-background-color: #5c636a;
+    -fx-border-radius: 3px;
+}
+
+.delete-button {
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+    -fx-background-color: #dc3545;
+}
+
+.delete-button:hover {
+    -fx-background-color: #bb2d3b;
+}
+
+.delete-button:pressed, .delete-button:focused {
+    -fx-border-style: solid outside;
+    -fx-border-width: 3px;
+    -fx-border-color: #e56e80;
+    -fx-background-color: #bb2d3b;
+    -fx-border-radius: 3px;
+}
+
 
 /*.footer {*/
 

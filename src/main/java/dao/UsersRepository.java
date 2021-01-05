@@ -1,8 +1,9 @@
-package main.java;
+package dao;
 
+import model.User;
 import java.sql.*;
 
-// Data Access Object - UsersRepository
+// Data Access Object - dao.UsersRepository
 
 public class UsersRepository {
     private static UsersRepository instance;
@@ -28,7 +29,7 @@ public class UsersRepository {
     }
 
     /**
-     * This method is used in LoginController class for authorizing User
+     * This method is used in controllers.LoginController class for authorizing model.User
      * @param uid User's login
      * @param password User's password
      * @return If user authenticated or not
@@ -66,28 +67,10 @@ public class UsersRepository {
     }
 
     private int roleToInt(Role role) {
-        switch (role) {
-            case ADMIN:
-                return 0;
-            case LIBRARIAN:
-                return 1;
-            case STUDENT:
-                return 2;
-            default:
-                return -1;
-        }
+        return role.getValue();
     }
 
     private Role intToRole(int i) {
-        switch(i) {
-            case 0:
-                return Role.ADMIN;
-            case 1:
-                return Role.LIBRARIAN;
-            case 2:
-                return Role.STUDENT;
-            default:
-                return null;
-        }
+        return Role.valueOf(i);
     }
 }
