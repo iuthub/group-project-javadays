@@ -1,0 +1,123 @@
+.chosen_label {
+    -fx-text-fill: #0b67b2;
+}
+
+.choice-box .context-menu {
+    -fx-background-color: #0b67b2;
+}
+
+.choice-box .menu-item:focused {
+    -fx-background-color: #9fb1db;
+}
+
+.choice-box .menu-item > .label {
+    -fx-text-fill: white;
+}
+
+.choice-box .menu-item:focused > .label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.choice-box {
+  -fx-background-color: #0b67b2;
+  -fx-mark-color: white;
+}
+
+.choice-box > .label {
+    -fx-text-fill: white;
+    -fx-font-weight: bold;
+}
+
+.table-view {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header-background{
+    -fx-background-color: #0b67b2;
+    -fx-background-radius: 7px 7px 0px 0px;
+    -fx-background-insets: 0 10px 0 0;
+    -fx-padding: 0 0 6px 0;
+}
+
+.table-view .column-header {
+    -fx-background-color: transparent;
+}
+
+.table-view .column-header .label{
+    -fx-text-fill: white;
+    -fx-alignment: CENTER;
+}
+
+.table-view .table-cell{
+    -fx-border-color: transparent;
+    -fx-padding: 2 0 2 10px;
+}
+
+.table-row-cell:hover {
+    -fx-text-background-color: #0b67b2;
+}
+
+.table-row-cell:focused {
+    -fx-text-background-color: black;
+    -fx-font-weight: bold;
+}
+
+.table-row-cell:odd{
+    -fx-background-color: #fbfcfd;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0px;
+}
+
+.table-row-cell:even{
+    -fx-background-color: #e2eef7;
+    -fx-background-insets: 0, 0 0 1 0;
+    -fx-padding: 0px;
+}
+
+.table-view .virtual-flow .scroll-bar:vertical,
+.table-view .virtual-flow .scroll-bar:vertical .track,
+.table-view .virtual-flow .scroll-bar:vertical .track-background,
+.table-view .virtual-flow .scroll-bar:horizontal,
+.table-view .virtual-flow .scroll-bar:horizontal .track,
+.table-view .virtual-flow .scroll-bar:horizontal .track-background {
+    -fx-background-color: transparent;
+}
+
+.table-view .virtual-flow .scroll-bar:vertical .thumb{
+    -fx-background-color:  #0b67b2;
+}
+.table-view .virtual-flow .scroll-bar:horizontal .thumb {
+    -fx-background-color:  #0b67b2;
+}
+
+.pagination > .pagination-control > .control-box > .number-button:hover,
+.pagination > .pagination-control > .control-box > .bullet-button:hover,
+.pagination > .pagination-control > .control-box > .left-arrow-button:hover,
+.pagination > .pagination-control > .control-box > .right-arrow-button:hover {
+    -fx-background-insets: 0;
+    -fx-background-color: lightblue;
+}
+
+/* Selected toggle color */
+.pagination > .pagination-control > .control-box > .number-button:selected,
+.pagination > .pagination-control > .control-box > .bullet-button:selected{
+    -fx-background-insets: 0;
+    -fx-background-color: #0b67b2;
+    -fx-text-fill: white;
+}
+
+.pagination > .pagination-control > .control-box > .left-arrow-button,
+.pagination > .pagination-control > .control-box > .right-arrow-button {
+    -fx-background-color: transparent
+}
+
+.pagination > .pagination-control > .control-box > .number-button {
+    -fx-background-radius: 7px 7px 7px 7px;
+    -fx-background-color: white;
+}
+
+/*.button {*/
+/*    -fx-background-color: #0b67b2;*/
+/*    -fx-text-fill: white;*/
+/*}*/
