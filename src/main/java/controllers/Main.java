@@ -1,4 +1,4 @@
-package main.java;
+package controllers;
 
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
@@ -12,14 +12,14 @@ public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
-        Parent root = FXMLLoader.load(getClass().getResource("/main/res/fxml/loginDialog.fxml"));
-//        Parent root = FXMLLoader.load(getClass().getResource("/main/res/fxml/mainApp.fxml"));
-        primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/main/res/img/favicon.png")));
+        Parent root = FXMLLoader.load(getClass().getResource("/res/fxml/loginDialog.fxml"));
+//        Parent root = FXMLLoader.load(getClass().getResource("/main/res/fxml/adminWindow.fxml"));
+        primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/res/img/favicon.png")));
 //        primaryStage.initStyle(StageStyle.DECORATED);
         primaryStage.setTitle("Inha Library");
         primaryStage.setResizable(false);
         Scene scene = new Scene(root, 1280, 720);
-        scene.getStylesheets().add(getClass().getResource("/main/res/css/style.css").toExternalForm());
+        scene.getStylesheets().add(getClass().getResource("/res/css/style.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.show();
     }

@@ -1,22 +1,22 @@
-package main.java;
+package model;
 
-public class Result {
-    private String uid;
+public class StudentBorrowedBooks {
+    private String userId;
     private String name;
     private int count;
 
-    public Result(String uid, String name){
-        this.uid = uid;
+    public StudentBorrowedBooks(String userId, String name){
+        this.userId = userId;
         this.name = name;
         this.count = 3;
     }
 
-    public String getUid() {
-        return uid;
+    public String getUserId() {
+        return userId;
     }
 
-    public void setUid(String uid) {
-        this.uid = uid;
+    public void setUserId(String userId) {
+        this.userId = userId;
     }
 
     public String getName() {

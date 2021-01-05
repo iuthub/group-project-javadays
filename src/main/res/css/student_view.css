@@ -54,25 +54,25 @@
     -fx-padding: 2 0 2 10px;
 }
 
-.table-row-cell: hover {
+.table-row-cell:hover {
     -fx-text-background-color: #0b67b2;
 }
 
-.table-row-cell: focused {
+.table-row-cell:focused {
     -fx-text-background-color: black;
     -fx-font-weight: bold;
 }
 
-.table-row-cell: odd{
-    -fx-background-color: #93f9b911;
+.table-row-cell:odd{
+    -fx-background-color: #fbfcfd;
     -fx-background-insets: 0, 0 0 1 0;
-    -fx-padding: 0.0em;
+    -fx-padding: 0px;
 }
 
-.table-row-cell: even{
-    -fx-background-color: #1dbbdd11;
+.table-row-cell:even{
+    -fx-background-color: #e2eef7;
     -fx-background-insets: 0, 0 0 1 0;
-    -fx-padding: 0.0em;
+    -fx-padding: 0px;
 }
 
 .table-view .virtual-flow .scroll-bar:vertical,
@@ -117,7 +117,7 @@
     -fx-background-color: white;
 }
 
-.button {
-    -fx-background-color: #0b67b2;
-    -fx-text-fill: white;
-}
+/*.button {*/
+/*    -fx-background-color: #0b67b2;*/
+/*    -fx-text-fill: white;*/
+/*}*/
