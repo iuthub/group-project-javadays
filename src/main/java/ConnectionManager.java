@@ -11,7 +11,7 @@ public class ConnectionManager {
 
     public static Connection getConnection() throws SQLException {
         if (conn == null){
-            conn = DriverManager.getConnection("jdbc:derby:./db/users");
+            conn = DriverManager.getConnection("jdbc:derby:./db/LMS");
         }
 
         return conn;
