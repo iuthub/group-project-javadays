@@ -57,7 +57,7 @@ public class StudentRepository {
         return in.substring(0, 1).toUpperCase() + in.substring(1).toLowerCase();
     }
 
-    public ObservableList<Result> searchForAdmin(String type, String search) throws SQLException {
+    public ObservableList<StudentBorrowedBooks> searchForAdmin(String type, String search) throws SQLException {
         Connection conn = ConnectionManager.getConnection();
         String cName = "UserId";
         search = capitalize(search);
@@ -80,12 +80,12 @@ public class StudentRepository {
         PreparedStatement searchByParamStmt = conn.prepareStatement(DISPLAY_QUERY_ADMIN + LIKE_QUERY);
         searchByParamStmt.setString(1, search + "%");
 
-        ObservableList<Result> list = FXCollections.observableArrayList();
+        ObservableList<StudentBorrowedBooks> list = FXCollections.observableArrayList();
         ResultSet result = searchByParamStmt.executeQuery();
 
         while (result.next()){
             list.add(
-                new Result(
+                new StudentBorrowedBooks(
                     result.getString("userId"),
                     result.getString("name")
                 )
