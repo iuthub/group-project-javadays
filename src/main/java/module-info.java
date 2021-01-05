@@ -5,5 +5,5 @@ module group.project.javadays {
     requires de.jensd.fx.fontawesomefx.commons;
     requires de.jensd.fx.fontawesomefx.fontawesome;
 
-    opens main.java;
+    opens controllers;
 }

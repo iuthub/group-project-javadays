@@ -8,7 +8,7 @@
 
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="main.java.StudentViewController"
+            fx:controller="controllers.StudentViewController"
             prefHeight="400.0" prefWidth="600.0">
     <Label text="Students" />
 </AnchorPane>

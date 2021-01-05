@@ -18,7 +18,7 @@
 <?import javafx.geometry.Insets?>
 <BorderPane fx:id="loginBorderPane"
             prefHeight="538.0" prefWidth="921.0" stylesheets="@../css/login.css"
-            xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="main.java.LoginController">
+            xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginController">
 
     <center>
         <VBox maxWidth="441.0" prefHeight="477.0" prefWidth="441.0" styleClass="vboxMain">

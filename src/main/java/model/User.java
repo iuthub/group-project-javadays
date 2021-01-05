@@ -1,5 +1,6 @@
-// POJO Object
-package main.java;
+package model;// POJO Object
+
+import dao.Role;
 
 public class User {
     private String userId;

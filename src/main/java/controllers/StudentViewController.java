@@ -1,4 +1,4 @@
-package main.java;
+package controllers;
 
 public class StudentViewController {
 }
