@@ -120,4 +120,10 @@
 .button {
     -fx-background-color: #0b67b2;
     -fx-text-fill: white;
+    -fx-background-radius: 22px 22px 22px 22px;
+}
+
+.button: hover {
+    -fx-background-color: #5ba0d9;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, 0.0, 0.0);
 }
