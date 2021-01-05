@@ -11,12 +11,12 @@ CREATE TABLE Users(
 );
 
 -- Admins
-INSERT INTO Users(userId, password, firstName, lastName, role) VALUES ('U1410000', 'admin', 'Foo', 'Fighters', 0);
-INSERT INTO Users(userId, password, firstName, lastName, role) VALUES ('U1410001', 'admin', 'Black', 'Sabbath', 0);
+INSERT INTO Users(UserID, Password, FirstName, LastName, Role) VALUES ('U1410000', 'admin', 'Foo', 'Fighters', 0);
+INSERT INTO Users(UserID, Password, FirstName, LastName, Role) VALUES ('U1410001', 'admin', 'Black', 'Sabbath', 0);
 
 -- Librarians
-INSERT INTO Users(userId, password, firstName, lastName, role) VALUES ('U1510000', 'librarian', 'Led', 'Zeppelin', 1);
-INSERT INTO Users(userId, password, firstName, lastName, role) VALUES ('U1510001', 'librarian', 'Judas', 'Priest', 1);
+INSERT INTO Users(UserID, Password, FirstName, LastName, Role) VALUES ('U1510000', 'librarian', 'Led', 'Zeppelin', 1);
+INSERT INTO Users(UserID, Password, FirstName, LastName, Role) VALUES ('U1510001', 'librarian', 'Judas', 'Priest', 1);
 
 -- Students
 INSERT INTO Users (UserID, Password, FirstName, LastName, Role) VALUES ('U1910223', '1234', 'Mukhammadsaid', 'Mamasaidov', 2);

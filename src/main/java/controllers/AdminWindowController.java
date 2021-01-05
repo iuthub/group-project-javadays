@@ -26,13 +26,13 @@ public class AdminWindowController {
     }
 
     public void handleStudentView(ActionEvent actionEvent) {
-//        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/main/res/fxml/studentView.fxml"));
-//        mainBorderPane.getChildren().remove(mainBorderPane.getCenter());
-//        try {
-//            mainBorderPane.setCenter(fxmlLoader.load());
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/main/res/fxml/studentView.fxml"));
+        mainBorderPane.getChildren().remove(mainBorderPane.getCenter());
+        try {
+            mainBorderPane.setCenter(fxmlLoader.load());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void handleLibrarianView(ActionEvent actionEvent) {
