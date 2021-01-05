@@ -85,7 +85,7 @@
     </left>
 
     <center>
-        <fx:include source="studentView.fxml"/>
+        <fx:include source="adminStudentView.fxml"/>
     </center>
 
     <bottom>

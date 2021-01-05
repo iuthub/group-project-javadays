@@ -2,6 +2,7 @@ package controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import model.User;
@@ -26,7 +27,7 @@ public class AdminWindowController {
     }
 
     public void handleStudentView(ActionEvent actionEvent) {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/main/res/fxml/studentView.fxml"));
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/res/fxml/adminStudentView.fxml"));
         mainBorderPane.getChildren().remove(mainBorderPane.getCenter());
         try {
             mainBorderPane.setCenter(fxmlLoader.load());
