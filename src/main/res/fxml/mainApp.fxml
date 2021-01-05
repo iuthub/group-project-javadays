@@ -98,7 +98,7 @@
     </left>
 
     <center>
-        <fx:include source="studentView.fxml"/>
+<!--        <fx:include source="studentView.fxml"/>-->
     </center>
 
     <bottom>

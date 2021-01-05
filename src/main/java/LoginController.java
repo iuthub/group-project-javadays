@@ -29,7 +29,7 @@ public class LoginController {
 
         String userID = txtUserID.getText();
         String password = txtPassword.getText();
-        boolean status = false;
+        boolean status = true;
 
 
         if (!userID.equals("") && !password.equals("")){

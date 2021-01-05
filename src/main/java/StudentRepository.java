@@ -10,12 +10,12 @@ import java.sql.SQLException;
 
 public class StudentRepository {
     private static StudentRepository instance;
-    private final PreparedStatement getAllStmt;
+    private final PreparedStatement getForAdminStmt;
     private final PreparedStatement getTotalCountStmt;
 
     private StudentRepository() throws SQLException {
         Connection conn = ConnectionManager.getConnection();
-        getAllStmt = conn.prepareStatement("SELECT userId, firstName || ' ' || lastName AS name FROM Users");
+        getForAdminStmt = conn.prepareStatement("SELECT userId, firstName || ' ' || lastName AS name FROM Users OFFSET ? ROWS FETCH NEXT 100 ROWS ONLY");
         getTotalCountStmt = conn.prepareStatement("SELECT COUNT(*) FROM Users");
     }
 
@@ -33,9 +33,10 @@ public class StudentRepository {
         return result.getInt(1);
     }
 
-    public ObservableList<Result> getAll() throws SQLException {
+    public ObservableList<Result> getForAdmin(int page) throws SQLException {
         ObservableList<Result> list = FXCollections.observableArrayList();
-        ResultSet result = this.getAllStmt.executeQuery();
+        this.getForAdminStmt.setInt(1, page * 100);
+        ResultSet result = this.getForAdminStmt.executeQuery();
 
         while (result.next()){
             list.add(
