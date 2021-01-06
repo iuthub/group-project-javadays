@@ -23,7 +23,7 @@
             <VBox styleClass="img-logo">
                 <ImageView fitWidth="200" preserveRatio="true"><Image url="@../img/logo.png"/></ImageView>
             </VBox>
-            <Button text="Home" onAction="#handleStudentHomeView">
+            <Button text="Home" fx:id="btnStudentHome" onAction="#handleStudentHome">
                 <graphic>
                     <GridPane styleClass="menuGridPane">
                         <columnConstraints>
@@ -35,7 +35,7 @@
 
                 </graphic>
             </Button>
-            <Button text="Books" onAction="#handleStudentBookView" >
+            <Button text="Books" fx:id="btnStudentBooks" onAction="#handleStudentBooks">
                 <graphic>
                     <GridPane styleClass="menuGridPane">
                         <columnConstraints>
