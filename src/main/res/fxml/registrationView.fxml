@@ -20,7 +20,7 @@
             </rowConstraints>
             <children>
                 <Label text="Books" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                <TableView prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
+                <TableView fx:id="booksTable" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
                     <columns>
                         <TableColumn prefWidth="42.0" text="ID" />
                         <TableColumn prefWidth="74.0" text="ISBN" />
@@ -98,7 +98,7 @@
                   <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
                </children>
             </GridPane>
-            <Pagination prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3" />
+            <Pagination fx:id="booksPagination" refHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3" />
             </children>
         </GridPane>
     </children>
