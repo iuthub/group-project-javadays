@@ -3,43 +3,43 @@ package model;
 import java.sql.Date;
 
 public class Book {
-    private int id;
-    private String isbn;
-    private String title;
-    private String subject;
-    private String author;
-    private Date publishData;
+    private int BookID;
+    private String ISBN;
+    private String Title;
+    private String Subject;
+    private String Author;
+    private Date PublishDate;
 
     public Book(int id, String isbn, String title, String subject, String author, Date publishData) {
         setId(id);
-        setIsbn(isbn);
+        setISBN(isbn);
         setTitle(title);
         setSubject(subject);
         setAuthor(author);
-        setPublishData(publishData);
+        setPublishDate(publishData);
     }
 
-    public int getId() { return id; }
+    public int getId() { return BookID; }
 
-    public void setId(int id) { this.id = id; }
+    public void setId(int id) { this.BookID = id; }
 
-    public String getIsbn() { return isbn; }
+    public String getISBN() { return ISBN; }
 
-    public void setIsbn(String isbn) { this.isbn = isbn; }
+    public void setISBN(String ISBN) { this.ISBN = ISBN; }
 
-    public String getTitle() { return title; }
+    public String getTitle() { return Title; }
 
-    public void setTitle(String title) { this.title = title; }
+    public void setTitle(String title) { this.Title = title; }
 
-    public String getSubject() { return subject; }
+    public String getSubject() { return Subject; }
 
-    public void setSubject(String subject) { this.subject = subject; }
+    public void setSubject(String subject) { this.Subject = subject; }
 
-    public String getAuthor() { return author; }
+    public String getAuthor() { return Author; }
 
-    public void setAuthor(String author) { this.author = author; }
+    public void setAuthor(String author) { this.Author = author; }
 
-    public Date getPublishData() { return publishData; }
+    public Date getPublishDate() { return PublishDate; }
 
-    public void setPublishData(Date publishData) { this.publishData = publishData; }
+    public void setPublishDate(Date publishDate) { this.PublishDate = publishDate; }
 }
