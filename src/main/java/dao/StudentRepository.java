@@ -14,13 +14,17 @@ public class StudentRepository {
     private static StudentRepository instance;
     private final PreparedStatement getForAdminStmt;
     private final PreparedStatement getTotalCountStmt;
-    private final String DISPLAY_QUERY_ADMIN = "SELECT userId, firstName || ' ' || lastName AS name FROM Users WHERE role = 2 ";
+    private final PreparedStatement addStudentStmt;
+    private final PreparedStatement remStudentStmt;
+    private final String DISPLAY_QUERY_ADMIN = "SELECT UserID, FirstName || ' ' || LastName AS name FROM Users WHERE Role = 2 ";
 
     private StudentRepository() throws SQLException {
         Connection conn = ConnectionManager.getConnection();
-        String TOTAL_COUNT = "SELECT COUNT(*) FROM Users WHERE role = 2";
+        String TOTAL_COUNT = "SELECT COUNT(*) FROM Users WHERE Role = 2";
         getForAdminStmt = conn.prepareStatement(DISPLAY_QUERY_ADMIN + "OFFSET ? ROWS FETCH NEXT 100 ROWS ONLY");
         getTotalCountStmt = conn.prepareStatement(TOTAL_COUNT);
+        addStudentStmt = conn.prepareStatement("INSERT INTO Users VALUES(?, ?, ?, ?, 2)");
+        remStudentStmt = conn.prepareStatement("DELETE FROM Users WHERE UserID = ?");
     }
 
     // Singleton object getInstance() method
@@ -94,4 +98,19 @@ public class StudentRepository {
         searchByParamStmt.close();
         return list;
     }
+
+    public void add(String userId, String firstName, String lastName, String password) throws SQLException {
+        addStudentStmt.setString(1, userId.toUpperCase());
+        addStudentStmt.setString(2, capitalize(firstName));
+        addStudentStmt.setString(3, capitalize(lastName));
+        addStudentStmt.setString(4, capitalize(password));
+
+        addStudentStmt.executeUpdate();
+    }
+
+    public void delete(String userId) throws SQLException{
+        remStudentStmt.setString(1, userId);
+        remStudentStmt.executeUpdate();
+    }
+
 }

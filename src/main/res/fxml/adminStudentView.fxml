@@ -75,7 +75,7 @@
 
     <Button fx:id="btnBookHistory" disable="true" layoutX="683.0" layoutY="601.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="307.0" text="View book history" />
     <Button fx:id="btnModify" styleClass="secondary-button" disable="true" layoutX="684.0" layoutY="658.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="171.0" text="Modify" />
-    <Button fx:id="btnDelete" styleClass="delete-button" disable="true" layoutX="878.0" layoutY="658.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="112.0" text="Delete" />
+    <Button fx:id="btnDelete" onAction="#deleteStudent" styleClass="delete-button" disable="true" layoutX="878.0" layoutY="658.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="112.0" text="Delete" />
 
     <GridPane layoutX="683.0" layoutY="299.0" prefHeight="259.0" prefWidth="307.0">
         <columnConstraints>

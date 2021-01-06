@@ -9,15 +9,18 @@ public class UsersRepository {
     private static UsersRepository instance;
     private final PreparedStatement getLoginStmt;
     private final PreparedStatement getStmt;
+    private final PreparedStatement isExistsStmt;
 
     // Private Constructor for Singleton object
     private UsersRepository() throws SQLException {
-        String LOGIN_QUERY = "SELECT 1 FROM Users WHERE userID=? AND Password=?";
+        String LOGIN_QUERY = "SELECT 1 FROM Users WHERE UserID=? AND Password=?";
         String GET_QUERY = "SELECT * FROM Users WHERE userID=?";
+        String IS_EXISTS_QUERY = "SELECT 1 FROM Users WHERE UserID=?";
 
         Connection conn = ConnectionManager.getConnection();
         this.getLoginStmt = conn.prepareStatement(LOGIN_QUERY);
         this.getStmt = conn.prepareStatement(GET_QUERY);
+        this.isExistsStmt = conn.prepareStatement(IS_EXISTS_QUERY);
     }
 
     // Singleton object getInstance() method
@@ -26,6 +29,12 @@ public class UsersRepository {
             instance = new UsersRepository();
         }
         return instance;
+    }
+
+    public boolean isExists(String userId) throws SQLException {
+        this.isExistsStmt.setString(1, userId);
+        ResultSet r =  this.isExistsStmt.executeQuery();
+        return r.next();
     }
 
     /**
