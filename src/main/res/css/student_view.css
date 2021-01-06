@@ -44,7 +44,7 @@
 .table-view .column-header-background{
     -fx-background-color: #0066b2;
     -fx-background-radius: 7px 7px 0px 0px;
-    -fx-background-insets: 0 10px 0 0;
+    -fx-background-insets: 0 13px 0 0;
     -fx-padding: 5px 0 5px 0;
 
 }
@@ -52,7 +52,6 @@
 .table-view .column-header {
     -fx-background-color: transparent;
     -fx-padding: 2 0 2 12px;
-
 
 }
 
@@ -64,7 +63,6 @@
 
 .table-view .table-cell{
     -fx-border-color: transparent;
-    -fx-padding: 10 0 2 10px;
     -fx-text-alignment: center;
 }
 
@@ -151,13 +149,13 @@
     -fx-background-color: white;
 }
 
-.button {
-    -fx-background-color: #0b67b2;
-    -fx-text-fill: white;
-    -fx-background-radius: 22px 22px 22px 22px;
-}
+/*.button {*/
+/*    -fx-background-color: #0b67b2;*/
+/*    -fx-text-fill: white;*/
+/*    -fx-background-radius: 22px 22px 22px 22px;*/
+/*}*/
 
-.button: hover {
-    -fx-background-color: #5ba0d9;
-    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, 0.0, 0.0);
-}
+/*.button:hover {*/
+/*    -fx-background-color: #5ba0d9;*/
+/*    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, 0.0, 0.0);*/
+/*}*/
