@@ -2,6 +2,7 @@
 
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.*?>
 <?import javafx.scene.layout.*?>
 
 <AnchorPane prefHeight="716.0" prefWidth="1011.0" stylesheets="@../css/student_view.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LibrarianRegistrationController">
@@ -20,14 +21,38 @@
             </rowConstraints>
             <children>
                 <Label text="Books" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                <TableView prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
+                <TableView fx:id="booksTable" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
                     <columns>
-                        <TableColumn prefWidth="42.0" text="ID" />
-                        <TableColumn prefWidth="74.0" text="ISBN" />
-                        <TableColumn prefWidth="76.0" text="Title" />
-                        <TableColumn prefWidth="75.0" text="Subject" />
-                        <TableColumn prefWidth="76.0" text="Author" />
-                        <TableColumn prefWidth="152.0" text="Published date" />
+                        <TableColumn minWidth="53.0" prefWidth="53.0" text="BookID">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="BookID" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn minWidth="90.0" prefWidth="90.0" text="ISBN">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="ISBN" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn minWidth="85.0" prefWidth="85.0" text="Title">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="Title" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn minWidth="67.0" prefWidth="82.0" text="Author">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="Author" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn minWidth="64.0" prefWidth="66.0" text="Subject">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="Subject" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn maxWidth="195.0" minWidth="84.0" prefWidth="119.0" text="Published Date">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="PublishDate" />
+                            </cellValueFactory>
+                        </TableColumn>
                     </columns>
                     <GridPane.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -49,7 +74,7 @@
                     </rowConstraints>
                     <children>
                         <Label text="ID:" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                        <TextArea prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
+                        <TextArea fx:id="IdField" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
                             <GridPane.margin>
                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                             </GridPane.margin>
@@ -60,25 +85,34 @@
                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                             </GridPane.margin>
                         </Label>
-                        <TableView prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
+                        <TableView fx:id="choosedBooksTable" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                             <columns>
-                                <TableColumn prefWidth="42.0" text="ID" />
-                                <TableColumn prefWidth="74.0" text="ISBN" />
-                                <TableColumn prefWidth="76.0" text="Title" />
-                                <TableColumn prefWidth="75.0" text="Subject" />
-                                <TableColumn prefWidth="76.0" text="Author" />
-                                <TableColumn prefWidth="131.0" text="Published date" />
+                                <TableColumn minWidth="53.0" prefWidth="63.0" text="BookID">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="BookID" />
+                                    </cellValueFactory>
+                                </TableColumn>
+                                <TableColumn minWidth="85.0" prefWidth="206.0" text="Title">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="Title" />
+                                    </cellValueFactory>
+                                </TableColumn>
+                                <TableColumn minWidth="67.0" prefWidth="188.0" text="Author">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="Author" />
+                                    </cellValueFactory>
+                                </TableColumn>
                             </columns>
                             <GridPane.margin>
                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                             </GridPane.margin>
                         </TableView>
-                        <DatePicker GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
+                        <DatePicker fx:id="dueDatePicker" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                             <GridPane.margin>
                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                             </GridPane.margin>
                         </DatePicker>
-                        <Button mnemonicParsing="false" text="Issue" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+                        <Button mnemonicParsing="false" text="Issue" onAction="#issueHandler" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
                     </children>
                     <GridPane.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -95,10 +129,10 @@
               </rowConstraints>
                <children>
                   <Label text="Filter by:" GridPane.halignment="CENTER" />
-                  <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+                  <ChoiceBox fx:id="filterChoiceBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
                </children>
             </GridPane>
-            <Pagination prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3" />
+            <Pagination fx:id="booksPagination" prefWidth="200.0" GridPane.rowIndex="3" />
             </children>
         </GridPane>
     </children>
