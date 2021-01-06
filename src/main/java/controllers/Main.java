@@ -17,7 +17,7 @@ public class Main extends Application {
         primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/res/img/favicon.png")));
 //        primaryStage.initStyle(StageStyle.DECORATED);
         primaryStage.setTitle("Inha Library");
-        primaryStage.setResizable(false);
+        primaryStage.setResizable(true);
         Scene scene = new Scene(root, 1280, 720);
         scene.getStylesheets().add(getClass().getResource("/res/css/style.css").toExternalForm());
         primaryStage.setScene(scene);
