@@ -58,12 +58,9 @@
                         <Label text="Borrowed books" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
                         <TableView prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.rowIndex="4">
                             <columns>
-                                <TableColumn prefWidth="35.0" text="ID" />
-                                <TableColumn prefWidth="81.0" text="ISBN" />
-                                <TableColumn text="Title" />
-                                <TableColumn prefWidth="78.0" text="Subject" />
-                                <TableColumn prefWidth="75.0" text="Author" />
-                                <TableColumn prefWidth="124.0" text="Published date" />
+                                <TableColumn prefWidth="147.0" text="ID" />
+                                <TableColumn prefWidth="173.0" text="Title" />
+                                <TableColumn prefWidth="139.0" text="Author" />
                             </columns>
                             <GridPane.margin>
                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
