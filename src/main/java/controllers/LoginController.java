@@ -30,13 +30,13 @@ public class LoginController {
         Stage mainAppStage;
         Parent root;
 
-        String userID = txtUserID.getText();
+        String userID = txtUserID.getText().toUpperCase();
         String password = txtPassword.getText();
         boolean status = false;
 
 
         if (!userID.equals("") && !password.equals("")){
-            if (userID.matches("[uU][\\d]{7}")){
+            if (userID.matches("U[\\d]{7}")){
                 try {
                     status = UsersRepository.getInstance().authenticate(userID, password);
                     if (!status) lblAlert.setText("Incorrect login or password!");
