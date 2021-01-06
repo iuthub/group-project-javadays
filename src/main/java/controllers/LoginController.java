@@ -32,7 +32,7 @@ public class LoginController {
 
         String userID = txtUserID.getText();
         String password = txtPassword.getText();
-        boolean status = true;
+        boolean status = false;
 
 
         if (!userID.equals("") && !password.equals("")){
@@ -59,8 +59,6 @@ public class LoginController {
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
-
-
 
             // Changing Stage to the main App
             mainAppStage = (Stage) btnSubmit.getScene().getWindow();
