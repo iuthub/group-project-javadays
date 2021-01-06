@@ -2,10 +2,12 @@ package controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.control.TabPane;
 import javafx.scene.control.TableView;
 import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
 
@@ -18,21 +20,37 @@ public class LibrarianWindowController {
     @FXML public TableView tblBooksTable;
     @FXML public GridPane studentsGridPane;
     @FXML Button btnLogOut;
+    @FXML
+    BorderPane mainBorderPane;
 
     public void handleHome(ActionEvent actionEvent) {
-        studentsGridPane.setVisible(false);
-        booksTabPane.setVisible(false);
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/res/fxml/adminStudentView.fxml"));
+        mainBorderPane.getChildren().remove(mainBorderPane.getCenter());
+        try {
+            mainBorderPane.setCenter(fxmlLoader.load());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void handleBooks(ActionEvent actionEvent) {
-        tblBooksTable.setColumnResizePolicy(TableView.CONSTRAINED_RESIZE_POLICY);
-        studentsGridPane.setVisible(false);
-        booksTabPane.setVisible(true);
+    public void handleRegistrationPanel(ActionEvent actionEvent) {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/res/fxml/registrationView.fxml"));
+        mainBorderPane.getChildren().remove(mainBorderPane.getCenter());
+        try {
+            mainBorderPane.setCenter(fxmlLoader.load());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
-    public void handleStudents(ActionEvent actionEvent) {
-        booksTabPane.setVisible(false);
-        studentsGridPane.setVisible(true);
+    public void handleJournal(ActionEvent actionEvent) {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/res/fxml/journalView.fxml"));
+        mainBorderPane.getChildren().remove(mainBorderPane.getCenter());
+        try {
+            mainBorderPane.setCenter(fxmlLoader.load());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void handleLogOut(ActionEvent actionEvent) throws IOException {

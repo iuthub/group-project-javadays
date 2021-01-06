@@ -4,7 +4,7 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<AnchorPane prefHeight="716.0" prefWidth="1011.0" stylesheets="@../css/student_view.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.RegistrationController">
+<AnchorPane prefHeight="716.0" prefWidth="1011.0" stylesheets="@../css/student_view.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LibrarianRegistrationController">
     <children>
         <GridPane layoutX="-2.0" layoutY="-1.0" prefHeight="716.0" prefWidth="1011.0">
             <columnConstraints>
@@ -13,10 +13,10 @@
             </columnConstraints>
             <rowConstraints>
                 <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="43.0" minHeight="10.0" prefHeight="43.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="600.0" minHeight="10.0" prefHeight="566.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="37.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
                 <Label text="Books" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
@@ -27,7 +27,7 @@
                         <TableColumn prefWidth="76.0" text="Title" />
                         <TableColumn prefWidth="75.0" text="Subject" />
                         <TableColumn prefWidth="76.0" text="Author" />
-                        <TableColumn prefWidth="117.0" text="Published date" />
+                        <TableColumn prefWidth="152.0" text="Published date" />
                     </columns>
                     <GridPane.margin>
                         <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
@@ -41,9 +41,9 @@
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                     </columnConstraints>
                     <rowConstraints>
-                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-                        <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="48.0" minHeight="10.0" prefHeight="48.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="38.0" minHeight="10.0" prefHeight="20.0" vgrow="SOMETIMES" />
+                        <RowConstraints maxHeight="25.0" minHeight="10.0" prefHeight="22.0" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="1.7976931348623157E308" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                         <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
@@ -67,13 +67,13 @@
                                 <TableColumn prefWidth="76.0" text="Title" />
                                 <TableColumn prefWidth="75.0" text="Subject" />
                                 <TableColumn prefWidth="76.0" text="Author" />
-                                <TableColumn prefWidth="117.0" text="Published date" />
+                                <TableColumn prefWidth="131.0" text="Published date" />
                             </columns>
                             <GridPane.margin>
                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                             </GridPane.margin>
                         </TableView>
-                        <DatePicker GridPane.columnIndex="1" GridPane.rowIndex="1">
+                        <DatePicker GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
                             <GridPane.margin>
                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                             </GridPane.margin>
@@ -95,7 +95,7 @@
               </rowConstraints>
                <children>
                   <Label text="Filter by:" GridPane.halignment="CENTER" />
-                  <ComboBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
+                  <ChoiceBox prefWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
                </children>
             </GridPane>
             <Pagination prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="3" />
