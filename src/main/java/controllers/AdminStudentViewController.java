@@ -55,7 +55,7 @@ public class AdminStudentViewController {
             btnModify.setDisable(false);
             btnDelete.setDisable(false);
         } else{
-            System.out.println("NULL JALAB!");
+            System.out.println("NULL!");
         }
     }
 

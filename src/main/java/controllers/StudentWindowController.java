@@ -1,14 +1,11 @@
 package controllers;
 
-import com.sun.javafx.stage.EmbeddedWindow;
+import dao.StudentRepository;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.Parent;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ChoiceBox;
-import javafx.scene.image.Image;
 import javafx.scene.layout.BorderPane;
 import javafx.stage.Stage;
 
@@ -28,10 +25,15 @@ public class StudentWindowController {
     private Stage primaryStage;
     @FXML private ChoiceBox<String> filterBooks;
 
+    private final StudentRepository newInst;
 
+    public StudentWindowController() throws SQLException {
+        newInst =  StudentRepository.getInstance();
+    }
 
     public void handleStudentBooks(ActionEvent actionEvent)
     {
+
         FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource("/res/fxml/studentBooksView.fxml"));
         mainBorderPane.getChildren().remove(mainBorderPane.getCenter());
         try
@@ -44,7 +46,8 @@ public class StudentWindowController {
     public void handleLogOut(ActionEvent actionEvent) throws IOException {
         HandleLogOut.logOut(getClass(), btnLogOut);
     }
-    public void handleStudentHome(ActionEvent actionEvent) {
+    public void handleStudentHome(ActionEvent actionEvent) throws SQLException{
+        StudentRepository.getInstance();
         FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource("/res/fxml/studentHomeView.fxml"));
         mainBorderPane.getChildren().remove(mainBorderPane.getCenter());
         try
@@ -54,4 +57,5 @@ public class StudentWindowController {
         catch (IOException e){e.printStackTrace();}
 
     }
+
 }
