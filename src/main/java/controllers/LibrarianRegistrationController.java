@@ -7,5 +7,5 @@ import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
 import model.User;
 
-public class RegistrationController {
+public class LibrarianRegistrationController {
 }
