@@ -32,7 +32,7 @@ public class LoginController {
 
         String userID = txtUserID.getText().toUpperCase();
         String password = txtPassword.getText();
-        boolean status = true;
+        boolean status = false;
 
 
         if (!userID.equals("") && !password.equals("")){
