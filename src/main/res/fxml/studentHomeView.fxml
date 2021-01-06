@@ -1,15 +1,12 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import de.jensd.fx.glyphs.fontawesome.*?>
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-
-
-        <AnchorPane prefHeight="600.0" prefWidth="800.0" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.StudentWindowController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.StudentWindowController">
             <children>
                 <GridPane layoutX="39.0" layoutY="47.0" prefHeight="507.0" prefWidth="722.0">
                     <columnConstraints>
@@ -29,26 +26,6 @@
                                 <TableColumn prefWidth="112.0" style="-fx-background-color: #D6EAF8" text="Due date" />
                             </columns>
                         </TableView>
-                        <HBox prefHeight="100.0" prefWidth="200.0" GridPane.rowIndex="2">
-                            <children>
-                                <Label alignment="CENTER" prefHeight="40.0" prefWidth="95.0" style="-fx-background-color: #D6EAF8;" text="Current fine:" textFill="#0a0a0a">
-                                    <font>
-                                        <Font size="14.0" />
-                                    </font>
-                                    <padding>
-                                        <Insets right="5.0" />
-                                    </padding>
-                                </Label>
-                                <Label fx:id="labelFineStudent" prefHeight="40.0" prefWidth="114.0" text="Label">
-                                    <font>
-                                        <Font size="14.0" />
-                                    </font>
-                                    <padding>
-                                        <Insets left="5.0" />
-                                    </padding>
-                                </Label>
-                            </children>
-                        </HBox>
                   <HBox prefHeight="100.0" prefWidth="200.0">
                      <children>
                               <GridPane prefHeight="139.0" prefWidth="709.0">
@@ -126,8 +103,48 @@
                         </ImageView>
                      </children>
                   </HBox>
+            <GridPane GridPane.rowIndex="2">
+              <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="356.0" minWidth="10.0" prefWidth="101.0" />
+                <ColumnConstraints hgrow="SOMETIMES" maxWidth="621.0" minWidth="10.0" prefWidth="621.0" />
+              </columnConstraints>
+              <rowConstraints>
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+                <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+              </rowConstraints>
+               <children>
+                                <Label alignment="CENTER" prefHeight="81.0" prefWidth="152.0" style="-fx-background-color: #D6EAF8;" text="Current fine:" textFill="#0a0a0a">
+                                    <font>
+                                        <Font size="14.0" />
+                                    </font>
+                                    <padding>
+                                        <Insets right="5.0" />
+                                    </padding>
+                                </Label>
+                                <Label fx:id="labelFineStudent" prefHeight="72.0" prefWidth="685.0" text="Label" GridPane.columnIndex="1">
+                                    <font>
+                                        <Font size="14.0" />
+                                    </font>
+                                    <padding>
+                                        <Insets left="5.0" />
+                                    </padding>
+                                </Label>
+                  <Label alignment="CENTER" prefHeight="120.0" prefWidth="158.0" style="-fx-background-color: #D6EAF8;" text="Status:" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                  </Label>
+                  <Label fx:id="labelStatusStudent" prefHeight="134.0" prefWidth="669.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                     <font>
+                        <Font size="14.0" />
+                     </font>
+                     <padding>
+                        <Insets left="5.0" />
+                     </padding>
+                  </Label>
+               </children>
+            </GridPane>
                     </children>
                 </GridPane>
             </children>
         </AnchorPane>
-
