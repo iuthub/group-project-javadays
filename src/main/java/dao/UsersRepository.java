@@ -12,8 +12,8 @@ public class UsersRepository {
 
     // Private Constructor for Singleton object
     private UsersRepository() throws SQLException {
-        String LOGIN_QUERY = "SELECT 1 FROM Users WHERE userId=? AND password=?";
-        String GET_QUERY = "SELECT * FROM Users WHERE userId=?";
+        String LOGIN_QUERY = "SELECT 1 FROM Users WHERE userID=? AND Password=?";
+        String GET_QUERY = "SELECT * FROM Users WHERE userID=?";
 
         Connection conn = ConnectionManager.getConnection();
         this.getLoginStmt = conn.prepareStatement(LOGIN_QUERY);
@@ -55,11 +55,11 @@ public class UsersRepository {
 
         if (result.next()) {
             user = new User(
-                    result.getString("userId"),
-                    result.getString("password"),
-                    result.getString("firstName"),
-                    result.getString("lastName"),
-                    intToRole(result.getInt("role"))
+                    result.getString("userID"),
+                    result.getString("Password"),
+                    result.getString("FirstName"),
+                    result.getString("LastName"),
+                    intToRole(result.getInt("Role"))
             );
         }
 

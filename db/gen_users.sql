@@ -1,4 +1,4 @@
-INSERT INTO Users(userId, password, firstName, lastName, role) VALUES 
+INSERT INTO Users(UserID, Password, FirstName, LastName, Role) VALUES
 ('U1000000', '33rDS64imjLTVppynQYO', 'Joaquin', 'Young', 1),
 ('U1000001', 'tg5rCy85WKY5yUTPMEpT', 'Johan', 'Ramirez', 1),
 ('U1000002', 'ehd98GSywmsJ1uM41VzP', 'Tristen', 'Thomas', 0),
