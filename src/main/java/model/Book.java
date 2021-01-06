@@ -11,7 +11,7 @@ public class Book {
     private Date PublishDate;
 
     public Book(int id, String isbn, String title, String subject, String author, Date publishData) {
-        setId(id);
+        setBookID(id);
         setISBN(isbn);
         setTitle(title);
         setSubject(subject);
@@ -19,9 +19,9 @@ public class Book {
         setPublishDate(publishData);
     }
 
-    public int getId() { return BookID; }
+    public int getBookID() { return BookID; }
 
-    public void setId(int id) { this.BookID = id; }
+    public void setBookID(int id) { this.BookID = id; }
 
     public String getISBN() { return ISBN; }
 

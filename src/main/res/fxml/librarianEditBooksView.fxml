@@ -4,6 +4,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.control.cell.PropertyValueFactory?>
 
+<?import javafx.scene.chart.BubbleChart?>
 <AnchorPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="controllers.LibrarianEditBooksController"
@@ -15,7 +16,11 @@
             AnchorPane.leftAnchor="10.0"
             AnchorPane.rightAnchor="10.0">
 
-        <TextField text="FUKKKKK SLEEEEEP" VBox.vgrow="ALWAYS"/>
+        <HBox VBox.vgrow="NEVER" spacing="15.0">
+            <Button text="Add" onAction="#handleAddButton"/>
+            <Button text="Edit" onAction="#handleEditButton"/>
+            <Button text="Delete" onAction="#handleDeleteButton"/>
+        </HBox>
 
         <TableView fx:id="tblBooksTable" VBox.vgrow="ALWAYS">
             <columns>
@@ -36,5 +41,6 @@
                 </TableColumn>
             </columns>
         </TableView>
+        <Pagination fx:id="pagination" layoutX="21.0" layoutY="658.0" maxPageIndicatorCount="5" pageCount="10" prefHeight="50.0" prefWidth="602.0" />
     </VBox>
 </AnchorPane>
