@@ -1,11 +1,16 @@
 package controllers;
 
 import dao.StudentRepository;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
+import javafx.scene.image.ImageView;
 import model.StudentBorrowedBooks;
 
+import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Optional;
 
 public class AdminStudentViewController {
     @FXML private ChoiceBox<String> choiceBoxSearchType;
@@ -16,6 +21,9 @@ public class AdminStudentViewController {
     @FXML private TableView<StudentBorrowedBooks> tblStudentsDisplay;
     @FXML private Pagination pagination;
 
+    @FXML private Button btnAdd;
+
+    @FXML private ImageView imgStudentPhoto;
     @FXML private Label lblName;
     @FXML private Label lblEmail;
     @FXML private Label lblPhone;
@@ -55,7 +63,7 @@ public class AdminStudentViewController {
             btnModify.setDisable(false);
             btnDelete.setDisable(false);
         } else{
-            System.out.println("NULL JALAB!");
+            System.out.println("NULL!");
         }
     }
 
@@ -94,4 +102,29 @@ public class AdminStudentViewController {
         }
     }
 
+    public void createStudent() {
+        Dialog<ButtonType> dialog = new Dialog<>();
+        dialog.initOwner(btnAdd.getScene().getWindow());
+        dialog.setTitle("Add Student");
+
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("/res/fxml/adminStudentCreateDialog.fxml"));
+
+        try {
+            dialog.getDialogPane().setContent(fxmlLoader.load());
+        } catch (IOException ex){
+            System.out.println(ex.getMessage());
+        }
+
+        dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
+        dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
+
+        AdminStudentAddController controller = fxmlLoader.getController();
+
+        Optional<ButtonType> result = dialog.showAndWait();
+
+        if(result.isPresent() && result.get()==ButtonType.OK) {
+            System.out.println("Button pressed!");
+        }
+    }
 }

@@ -63,7 +63,7 @@
     </TableView>
     <Pagination fx:id="pagination" layoutX="21.0" layoutY="658.0" maxPageIndicatorCount="5" pageCount="10" prefHeight="50.0" prefWidth="602.0" />
 
-    <Button fx:id="btnAdd" layoutX="756.0" layoutY="31.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="180.0" text="Add new student">
+    <Button fx:id="btnAdd" onAction="#createStudent" layoutX="756.0" layoutY="31.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="180.0" text="Add new student">
         <graphic>
             <FontAwesomeIconView glyphName="USER_PLUS" glyphSize="20" />
         </graphic>
