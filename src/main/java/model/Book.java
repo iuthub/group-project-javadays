@@ -9,16 +9,18 @@ public class Book {
     private String Subject;
     private String Author;
     private Date PublishDate;
+    private String Description;
 
     public Book(){}
 
-    public Book(int id, String isbn, String title, String subject, String author, Date publishData) {
+    public Book(int id, String isbn, String title, String subject, String author, Date publishData, String description) {
         setBookID(id);
         setISBN(isbn);
         setTitle(title);
         setSubject(subject);
         setAuthor(author);
         setPublishDate(publishData);
+        setDescription(description);
     }
 
     public int getBookID() { return BookID; }
@@ -44,4 +46,8 @@ public class Book {
     public Date getPublishDate() { return PublishDate; }
 
     public void setPublishDate(Date publishDate) { this.PublishDate = publishDate; }
+
+    public void setDescription(String description) { this.Description = description; }
+
+    public String getDescription() { return Description; }
 }
