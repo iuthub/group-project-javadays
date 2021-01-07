@@ -3,6 +3,7 @@ package dao;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.StudentBorrowedBooks;
+import model.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -16,11 +17,13 @@ public class StudentRepository {
     private final PreparedStatement getTotalCountStmt;
     private final String DISPLAY_QUERY_ADMIN = "SELECT userId, firstName || ' ' || lastName AS name FROM Users WHERE role = 2 ";
 
+    Connection connection;
+
     private StudentRepository() throws SQLException {
-        Connection conn = ConnectionManager.getConnection();
+        connection = ConnectionManager.getConnection();
         String TOTAL_COUNT = "SELECT COUNT(*) FROM Users WHERE role = 2";
-        getForAdminStmt = conn.prepareStatement(DISPLAY_QUERY_ADMIN + "OFFSET ? ROWS FETCH NEXT 100 ROWS ONLY");
-        getTotalCountStmt = conn.prepareStatement(TOTAL_COUNT);
+        getForAdminStmt = connection.prepareStatement(DISPLAY_QUERY_ADMIN + "OFFSET ? ROWS FETCH NEXT 100 ROWS ONLY");
+        getTotalCountStmt = connection.prepareStatement(TOTAL_COUNT);
     }
 
     // Singleton object getInstance() method
@@ -93,5 +96,48 @@ public class StudentRepository {
         }
         searchByParamStmt.close();
         return list;
+    }
+
+    //Returns student who borrowed book
+    public ObservableList<User> getStudentsWithBooks() throws SQLException
+    {
+        ResultSet result;
+        ObservableList<User> students = FXCollections.observableArrayList();//Students who borrowed books
+        ObservableList<String> IDs = FXCollections.observableArrayList();//Student's IDs who borrowed book
+
+        //IDs of students who borrowed book
+        String studentIDsStat = "Select Users.UserId From Users" +
+                " Inner Join IssuedBooks  " +
+                "On Users.UserId = IssuedBooks.UserId " +
+                "Group By Users.UserId";
+
+        PreparedStatement studentsWithBookStatement = connection.prepareStatement(studentIDsStat);
+
+        result = studentsWithBookStatement.executeQuery();
+
+        while (result.next())
+            IDs.add(result.getString("UserId"));
+
+        for (String id:IDs)
+        {
+            String studentWithBooks = String.format("Select * From Users Where userId= '%s'",id);
+
+            PreparedStatement studentWithBookStat = connection.prepareStatement(studentWithBooks);
+
+            result = studentWithBookStat.executeQuery();
+
+            if(result.next())
+            {
+                User student = new User(result.getString("UserId"),
+                        result.getString("password"),
+                        result.getString("FirstName"),
+                        result.getString("LastName"),
+                        null);
+
+                students.add(student);
+            }
+        }
+
+        return students;
     }
 }
