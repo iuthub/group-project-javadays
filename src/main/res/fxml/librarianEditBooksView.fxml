@@ -17,8 +17,8 @@
             AnchorPane.rightAnchor="10.0">
 
         <HBox VBox.vgrow="NEVER" spacing="15.0">
-            <Button text="Add" onAction="#handleAddButton"/>
-            <Button text="Edit" onAction="#handleEditButton"/>
+            <Button text="Create" onAction="#handleCreateButton"/>
+            <Button text="Update" onAction="#handleUpdateButton"/>
             <Button text="Delete" onAction="#handleDeleteButton"/>
         </HBox>
 
@@ -41,6 +41,8 @@
                 </TableColumn>
             </columns>
         </TableView>
+<!--
         <Pagination fx:id="pagination" layoutX="21.0" layoutY="658.0" maxPageIndicatorCount="5" pageCount="10" prefHeight="50.0" prefWidth="602.0" />
+-->
     </VBox>
 </AnchorPane>
