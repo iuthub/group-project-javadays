@@ -10,6 +10,7 @@ import java.util.ArrayList;
 
 public class BooksRepository {
     private static BooksRepository instance;
+    private Connection connection;
 
     private final PreparedStatement createStmt;
     private final PreparedStatement getAllStmt;
@@ -29,11 +30,11 @@ public class BooksRepository {
                 .append("WHERE BookID=?")
                 .toString();
 
-        Connection conn = ConnectionManager.getConnection();
+        connection = ConnectionManager.getConnection();
 
-        this.createStmt = conn.prepareStatement(CREATE_QUERY);
-        this.getAllStmt = conn.prepareStatement(GET_ALL);
-        this.updateStmt = conn.prepareStatement(UPDATE_QUERY);
+        this.createStmt = connection.prepareStatement(CREATE_QUERY);
+        this.getAllStmt = connection.prepareStatement(GET_ALL);
+        this.updateStmt = connection.prepareStatement(UPDATE_QUERY);
     }
 
     public static BooksRepository getInstance() throws SQLException {
@@ -59,5 +60,34 @@ public class BooksRepository {
             );
         }
         return result;
+    }
+
+
+    public Book getById(int bookId) throws SQLException
+    {
+        ResultSet result;
+        Book selectedBook = new Book();
+
+        String selectBook = String.format("Select * From Books Where bookId=%d",bookId);
+
+        try
+        {
+            PreparedStatement selectBookStat = connection.prepareStatement(selectBook);
+            result = selectBookStat.executeQuery();
+
+            if(result.next())
+                selectedBook = new Book(result.getInt("BookId"),
+                        result.getString("ISBN"),
+                        result.getString("Title"),
+                        result.getString("Subject"),
+                        result.getString("Author"),
+                        result.getDate("PublishDate"));
+        }
+        catch (SQLException exception)
+        {
+            exception.fillInStackTrace();
+        }
+
+        return selectedBook;
     }
 }

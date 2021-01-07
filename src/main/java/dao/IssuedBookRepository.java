@@ -8,16 +8,16 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
-public class IssuerBookRepository
+public class IssuedBookRepository
 {
     //region <Declarations>
-    private static IssuerBookRepository instance;
+    private static IssuedBookRepository instance;
 
     private final Connection connection;
     //endregion
 
     //region <StartUp>
-    private IssuerBookRepository() throws SQLException
+    private IssuedBookRepository() throws SQLException
     {
         connection = ConnectionManager.getConnection();
     }
@@ -32,7 +32,7 @@ public class IssuerBookRepository
         ObservableList<IssuedBook> issuedBooksByUser = FXCollections.observableArrayList();
 
         //https://stackoverflow.com/a/10019205/10304482
-        String getIssuedBooksByUser = String.format("Select * From IssuedBooks Where usedId = %s",userId);
+        String getIssuedBooksByUser = String.format("Select * From IssuedBooks Where userId = '%s'",userId);
 
         PreparedStatement getIssuedBooksByUserStat = connection.prepareStatement(getIssuedBooksByUser);
 
@@ -43,7 +43,7 @@ public class IssuerBookRepository
             issuedBooksByUser.add(new IssuedBook(
                     result.getInt("BookId"),
                     result.getString("UserId"),
-                    result.getDate("IssuedDate"),
+                    result.getDate("IssueDate"),
                     result.getDate("ReturnDate")
                     ));
         }
@@ -53,11 +53,11 @@ public class IssuerBookRepository
     //endregion
 
     //region <Utilities>
-    public static IssuerBookRepository getInstance() throws SQLException
+    public static IssuedBookRepository getInstance() throws SQLException
     {
         if(instance==null)
         {
-            instance = new IssuerBookRepository();
+            instance = new IssuedBookRepository();
         }
         return instance;
     }

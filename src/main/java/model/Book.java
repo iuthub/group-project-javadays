@@ -10,6 +10,8 @@ public class Book {
     private String Author;
     private Date PublishDate;
 
+    public Book(){}
+
     public Book(int id, String isbn, String title, String subject, String author, Date publishData) {
         setBookID(id);
         setISBN(isbn);
