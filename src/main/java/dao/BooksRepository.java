@@ -14,7 +14,7 @@ public class BooksRepository {
     private final PreparedStatement getById;
 
     private BooksRepository() throws SQLException {
-        String GET_ALL = "SELECT * FROM Books";
+        String GET_ALL =   "SELECT * FROM Books";
         String GET_BY_ID = "SELECT * FROM Books WHERE bookID= ?";
         String CREATE_QUERY = "INSERT INTO Books(BookID, ISBN, Title, Subject, Author, PublishDate) VALUES (?, '?', '?', '?', '?', '?')";
         String UPDATE_QUERY = "UPDATE Books SET BookID = ?, ISBN = ?, Title = ?, Subject = ? , Author = ?, PublishDate = ? WHERE BookID = ?";
@@ -39,12 +39,12 @@ public class BooksRepository {
 
         while (rs.next()) {
             results.add(new Book(
-                    rs.getInt("BookID"),
+                    rs.getInt   ("BookID"),
                     rs.getString("ISBN"),
                     rs.getString("Title"),
                     rs.getString("Subject"),
                     rs.getString("Author"),
-                    rs.getDate("PublishDate"),
+                    rs.getDate  ("PublishDate"),
                     rs.getString("Description")
                 )
             );
@@ -60,12 +60,12 @@ public class BooksRepository {
 
         if(result.next()) {
             selectedBook = new Book(
-                    result.getInt("BookId"),
+                    result.getInt   ("BookId"),
                     result.getString("ISBN"),
                     result.getString("Title"),
                     result.getString("Subject"),
                     result.getString("Author"),
-                    result.getDate("PublishDate"),
+                    result.getDate  ("PublishDate"),
                     result.getString("Description")
             );
         }
