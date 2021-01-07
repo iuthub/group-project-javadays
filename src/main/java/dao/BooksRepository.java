@@ -55,7 +55,8 @@ public class BooksRepository {
                             rs.getString("Title"),
                             rs.getString("Subject"),
                             rs.getString("Author"),
-                            rs.getDate("PublishDate")
+                            rs.getDate("PublishDate"),
+                            rs.getString("Description")
                     )
             );
         }
@@ -81,7 +82,9 @@ public class BooksRepository {
                         result.getString("Title"),
                         result.getString("Subject"),
                         result.getString("Author"),
-                        result.getDate("PublishDate"));
+                        result.getDate("PublishDate"),
+                        ""
+                        );
         }
         catch (SQLException exception)
         {
