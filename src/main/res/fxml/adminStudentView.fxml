@@ -30,7 +30,7 @@
     </Label>
     <ChoiceBox fx:id="choiceBoxSearchType" layoutX="109.0" layoutY="33.0" prefHeight="36.0" prefWidth="112.0" />
     <TextField fx:id="searchField" layoutX="235.0" layoutY="32.0" prefHeight="25.0" prefWidth="340.0" />
-    <Button fx:id="btnSearch" defaultButton="true" layoutX="592.0" layoutY="29.0" mnemonicParsing="false" onAction="#search" prefHeight="44.0" prefWidth="48.0">
+    <Button onAction="#search" defaultButton="true" layoutX="592.0" layoutY="29.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="48.0">
         <graphic>
             <FontAwesomeIconView glyphName="SEARCH" glyphSize="20" />
         </graphic>
@@ -74,7 +74,7 @@
     </ImageView>
 
     <Button fx:id="btnBookHistory" disable="true" layoutX="683.0" layoutY="601.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="307.0" text="View book history" />
-    <Button fx:id="btnModify" styleClass="secondary-button" disable="true" layoutX="684.0" layoutY="658.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="171.0" text="Modify" />
+    <Button fx:id="btnModify" onAction="#modifyStudent" styleClass="secondary-button" disable="true" layoutX="684.0" layoutY="658.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="171.0" text="Modify" />
     <Button fx:id="btnDelete" onAction="#deleteStudent" styleClass="delete-button" disable="true" layoutX="878.0" layoutY="658.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="112.0" text="Delete" />
 
     <GridPane layoutX="683.0" layoutY="299.0" prefHeight="259.0" prefWidth="307.0">

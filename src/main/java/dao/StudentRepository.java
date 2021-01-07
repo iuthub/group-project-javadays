@@ -2,13 +2,12 @@ package dao;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import model.StudentBorrowedBooks;
+import model.AdminWindowStudent;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Locale;
 
 public class StudentRepository {
     private static StudentRepository instance;
@@ -16,6 +15,7 @@ public class StudentRepository {
     private final PreparedStatement getTotalCountStmt;
     private final PreparedStatement addStudentStmt;
     private final PreparedStatement remStudentStmt;
+    private final PreparedStatement updStudentStmt;
     private final String DISPLAY_QUERY_ADMIN = "SELECT UserID, FirstName || ' ' || LastName AS name FROM Users WHERE Role = 2 ";
 
     private StudentRepository() throws SQLException {
@@ -25,6 +25,8 @@ public class StudentRepository {
         getTotalCountStmt = conn.prepareStatement(TOTAL_COUNT);
         addStudentStmt = conn.prepareStatement("INSERT INTO Users VALUES(?, ?, ?, ?, 2)");
         remStudentStmt = conn.prepareStatement("DELETE FROM Users WHERE UserID = ?");
+        updStudentStmt = conn.prepareStatement("UPDATE Users SET UserID = ?, FirstName = ?, LastName = ?, Password = ? WHERE UserID = ?");
+
     }
 
     // Singleton object getInstance() method
@@ -41,14 +43,14 @@ public class StudentRepository {
         return result.getInt(1);
     }
 
-    public ObservableList<StudentBorrowedBooks> getForAdmin(int page) throws SQLException {
-        ObservableList<StudentBorrowedBooks> list = FXCollections.observableArrayList();
+    public ObservableList<AdminWindowStudent> getForAdmin(int page) throws SQLException {
+        ObservableList<AdminWindowStudent> list = FXCollections.observableArrayList();
         this.getForAdminStmt.setInt(1, page * 100);
         ResultSet result = this.getForAdminStmt.executeQuery();
 
         while (result.next()){
             list.add(
-                new StudentBorrowedBooks(
+                new AdminWindowStudent(
                     result.getString("UserID"),
                     result.getString("Name")
                 )
@@ -61,7 +63,7 @@ public class StudentRepository {
         return in.substring(0, 1).toUpperCase() + in.substring(1).toLowerCase();
     }
 
-    public ObservableList<StudentBorrowedBooks> searchForAdmin(String type, String search) throws SQLException {
+    public ObservableList<AdminWindowStudent> searchForAdmin(String type, String search) throws SQLException {
         Connection conn = ConnectionManager.getConnection();
         String cName = "UserId";
         search = capitalize(search);
@@ -84,14 +86,14 @@ public class StudentRepository {
         PreparedStatement searchByParamStmt = conn.prepareStatement(DISPLAY_QUERY_ADMIN + LIKE_QUERY);
         searchByParamStmt.setString(1, search + "%");
 
-        ObservableList<StudentBorrowedBooks> list = FXCollections.observableArrayList();
+        ObservableList<AdminWindowStudent> list = FXCollections.observableArrayList();
         ResultSet result = searchByParamStmt.executeQuery();
 
         while (result.next()){
             list.add(
-                new StudentBorrowedBooks(
-                    result.getString("userId"),
-                    result.getString("name")
+                new AdminWindowStudent(
+                    result.getString("UserID"),
+                    result.getString("Name")
                 )
             );
         }
@@ -104,7 +106,6 @@ public class StudentRepository {
         addStudentStmt.setString(2, capitalize(firstName));
         addStudentStmt.setString(3, capitalize(lastName));
         addStudentStmt.setString(4, capitalize(password));
-
         addStudentStmt.executeUpdate();
     }
 
@@ -113,4 +114,12 @@ public class StudentRepository {
         remStudentStmt.executeUpdate();
     }
 
+    public void update(String oldId, String newId, String firstName, String lastName, String password) throws SQLException {
+        updStudentStmt.setString(1, newId);
+        updStudentStmt.setString(2, firstName);
+        updStudentStmt.setString(3, lastName);
+        updStudentStmt.setString(4, password);
+        updStudentStmt.setString(5, oldId);
+        updStudentStmt.executeUpdate();
+    }
 }

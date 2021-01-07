@@ -6,22 +6,21 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
-import model.StudentBorrowedBooks;
+import model.AdminWindowStudent;
 
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Optional;
 import java.util.Random;
 
-// Written by Jasur Yusupov
+// Originally written by Jasur Yusupov
 
 public class AdminStudentViewController {
     @FXML private ChoiceBox<String> choiceBoxSearchType;
     @FXML private TextField searchField;
-    @FXML private Button btnSearch;
 
     @FXML private Label lblTotalCount;
-    @FXML private TableView<StudentBorrowedBooks> tblStudentsDisplay;
+    @FXML private TableView<AdminWindowStudent> tblStudentsDisplay;
     @FXML private Pagination pagination;
 
     @FXML private Button btnAdd;
@@ -106,7 +105,7 @@ public class AdminStudentViewController {
         return String.format("%d", 2014 + new Random().nextInt(6));
     }
 
-    void handleTableItemSelection(StudentBorrowedBooks student){
+    void handleTableItemSelection(AdminWindowStudent student){
         if (student != null){
             selectedStudentId = student.getUserId();
 
@@ -146,7 +145,7 @@ public class AdminStudentViewController {
         dialog.setResizable(false);
 
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("/res/fxml/adminStudentCreateDialog.fxml"));
+        fxmlLoader.setLocation(getClass().getResource("/fxml/adminStudentAddModifyDialog.fxml"));
 
         try {
             dialog.getDialogPane().setContent(fxmlLoader.load());
@@ -157,11 +156,11 @@ public class AdminStudentViewController {
         dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
         dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
 
-        AdminStudentAddController controller = fxmlLoader.getController();
+        AdminStudentAddModifyController controller = fxmlLoader.getController();
 
         final Button okButton = (Button) dialog.getDialogPane().lookupButton(ButtonType.OK);
         okButton.addEventFilter(ActionEvent.ACTION, ae -> {
-            if (!controller.validate()) {
+            if (controller.notValid()) {
                 ae.consume();
             }
         });
@@ -178,6 +177,49 @@ public class AdminStudentViewController {
             StudentRepository.getInstance().delete(selectedStudentId);
             selectedStudentId = null;
 
+            btnBookHistory.setDisable(true);
+            btnDelete.setDisable(true);
+            btnModify.setDisable(true);
+            initTableView();
+        }
+    }
+
+    public void modifyStudent() throws SQLException{
+        if (selectedStudentId != null) {
+            Dialog<ButtonType> dialog = new Dialog<>();
+            dialog.initOwner(btnModify.getScene().getWindow());
+            dialog.setTitle("Modify Student");
+            dialog.setResizable(false);
+
+            FXMLLoader fxmlLoader = new FXMLLoader();
+            fxmlLoader.setLocation(getClass().getResource("/fxml/adminStudentAddModifyDialog.fxml"));
+
+            try {
+                dialog.getDialogPane().setContent(fxmlLoader.load());
+            } catch (IOException ex) {
+                System.out.println(ex.getMessage());
+            }
+
+            dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
+            dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
+
+            AdminStudentAddModifyController controller = fxmlLoader.getController();
+            controller.initializeFields(selectedStudentId);
+
+            final Button okButton = (Button) dialog.getDialogPane().lookupButton(ButtonType.OK);
+            okButton.addEventFilter(ActionEvent.ACTION, ae -> {
+                if (controller.notValid()) {
+                    ae.consume();
+                }
+            });
+
+            Optional<ButtonType> result = dialog.showAndWait();
+
+            if (result.isPresent() && result.get() == ButtonType.OK) {
+                controller.modifyStudent();
+            }
+
+            selectedStudentId = null;
             btnBookHistory.setDisable(true);
             btnDelete.setDisable(true);
             btnModify.setDisable(true);
