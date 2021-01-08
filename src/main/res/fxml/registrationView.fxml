@@ -16,7 +16,6 @@
                 <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
             <RowConstraints maxHeight="43.0" minHeight="10.0" prefHeight="43.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="600.0" minHeight="10.0" prefHeight="566.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="60.0" minHeight="10.0" prefHeight="40.0" vgrow="SOMETIMES" />
                 <RowConstraints maxHeight="37.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
@@ -59,7 +58,7 @@
                     </GridPane.margin>
                 </TableView>
                 <Label text="Registration panel" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                <Label text="Operation result message:" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+                <Label text="Operation result message:" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
                 <GridPane GridPane.columnIndex="1" GridPane.rowIndex="2">
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -112,13 +111,13 @@
                                 <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                             </GridPane.margin>
                         </DatePicker>
-                        <Button mnemonicParsing="false" text="Issue" onAction="#issueHandler" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+                        <Button mnemonicParsing="false" onAction="#issueHandler" text="Issue" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
                     </children>
                     <GridPane.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                     </GridPane.margin>
                 </GridPane>
-                <Label text="Result here" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+                <Label fx:id="resultLabel" text="" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
             <GridPane GridPane.rowIndex="1">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="100.0" />
@@ -132,7 +131,6 @@
                   <ChoiceBox fx:id="filterChoiceBox" prefWidth="150.0" GridPane.columnIndex="1" GridPane.halignment="CENTER" />
                </children>
             </GridPane>
-            <Pagination fx:id="booksPagination" prefWidth="200.0" GridPane.rowIndex="3" />
             </children>
         </GridPane>
     </children>
