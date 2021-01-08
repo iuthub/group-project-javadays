@@ -5,3 +5,4 @@ RUN 'books_tbl.sql';
 RUN 'gen_users.sql';
 RUN 'gen_books.sql';
 RUN 'issued_books_tbl.sql';
+RUN 'gen_issued_books.sql';
