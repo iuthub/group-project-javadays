@@ -37,6 +37,13 @@ public class AdminWindowController {
     }
 
     public void handleLibrarianView(ActionEvent actionEvent) {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/res/fxml/adminLibrarianView.fxml"));
+        mainBorderPane.getChildren().remove(mainBorderPane.getCenter());
+        try {
+            mainBorderPane.setCenter(fxmlLoader.load());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void handleBookView(ActionEvent actionEvent) {

@@ -4,12 +4,12 @@ import java.util.HashMap;
 import java.util.Map;
 
 public enum Role {
-    ADMIN(0),
+    ADMIN    (0),
     LIBRARIAN(1),
-    STUDENT(2);
+    STUDENT  (2);
 
-    private int value;
-    private static Map rolesMap = new HashMap<>();
+    private final int value;
+    private static final Map<Integer, Role> rolesMap = new HashMap<>();
 
     Role(int value) {
         this.value = value;
@@ -22,7 +22,7 @@ public enum Role {
     }
 
     public static Role valueOf(int roleType) {
-        return (Role) rolesMap.get(roleType);
+        return rolesMap.get(roleType);
     }
 
     public int getValue() {

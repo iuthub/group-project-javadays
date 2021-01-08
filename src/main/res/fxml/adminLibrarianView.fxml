@@ -21,7 +21,7 @@
             xmlns="http://javafx.com/javafx/11.0.1"
             xmlns:fx="http://javafx.com/fxml/1"
             stylesheets="@../css/student_view.css"
-            fx:controller="controllers.AdminStudentViewController">
+            fx:controller="controllers.AdminLibrarianViewController">
 
     <Label layoutX="28.0" layoutY="41.0" prefHeight="21.0" prefWidth="83.0" text="Search by: ">
         <font>
@@ -41,7 +41,7 @@
             <Font name="System Bold" size="13.0" />
         </font>
     </Label>
-    <TableView fx:id="tblStudentsDisplay" layoutX="22.0" layoutY="122.0" prefHeight="532.0" prefWidth="633.0">
+    <TableView fx:id="tblLibrariansDisplay" layoutX="22.0" layoutY="122.0" prefHeight="532.0" prefWidth="633.0">
         <columns>
             <TableColumn prefWidth="148.0" text="ID">
                 <cellValueFactory>
@@ -53,7 +53,7 @@
                     <PropertyValueFactory property="name" />
                 </cellValueFactory>
             </TableColumn>
-            <TableColumn prefWidth="217.0" text="Borrowed books count">
+            <TableColumn prefWidth="217.0" text="Issued Books">
                 <cellValueFactory>
                     <PropertyValueFactory property="count" />
                 </cellValueFactory>
@@ -63,7 +63,7 @@
     </TableView>
     <Pagination fx:id="pagination" layoutX="21.0" layoutY="658.0" maxPageIndicatorCount="5" pageCount="10" prefHeight="50.0" prefWidth="602.0" />
 
-    <Button fx:id="btnAdd" onAction="#createStudent" layoutX="756.0" layoutY="31.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="180.0" text="Add new student">
+    <Button fx:id="btnAdd" onAction="#createLibrarian" layoutX="756.0" layoutY="31.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="180.0" text="Add new librarian">
         <graphic>
             <FontAwesomeIconView glyphName="USER_PLUS" glyphSize="20" />
         </graphic>
@@ -74,8 +74,8 @@
     </ImageView>
 
     <Button fx:id="btnBookHistory" disable="true" layoutX="683.0" layoutY="601.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="307.0" text="View book history" />
-    <Button fx:id="btnModify" onAction="#modifyStudent" styleClass="secondary-button" disable="true" layoutX="684.0" layoutY="658.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="171.0" text="Modify" />
-    <Button fx:id="btnDelete" onAction="#deleteStudent" styleClass="delete-button" disable="true" layoutX="878.0" layoutY="658.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="112.0" text="Delete" />
+    <Button fx:id="btnModify" onAction="#modifyLibrarian" styleClass="secondary-button" disable="true" layoutX="684.0" layoutY="658.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="171.0" text="Modify" />
+    <Button fx:id="btnDelete" onAction="#deleteLibrarian" styleClass="delete-button" disable="true" layoutX="878.0" layoutY="658.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="112.0" text="Delete" />
 
     <GridPane layoutX="683.0" layoutY="299.0" prefHeight="259.0" prefWidth="307.0">
         <columnConstraints>
@@ -92,13 +92,13 @@
         <Label text="Name:"/>
         <Label text="Email:" GridPane.rowIndex="1"/>
         <Label text="Phone:" GridPane.rowIndex="2"/>
-        <Label text="Department:" GridPane.rowIndex="3"/>
-        <Label text="Academic year:" GridPane.rowIndex="4"/>
+        <Label text="Building:" GridPane.rowIndex="3"/>
+        <Label text="Working since:" GridPane.rowIndex="4"/>
         <Label fx:id="lblName" GridPane.columnIndex="1"/>
         <Label fx:id="lblEmail" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
         <Label fx:id="lblPhone" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
         <Label fx:id="lblDepartment" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
-        <Label fx:id="lblAcademicYear" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+        <Label fx:id="lblWorkingYear" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
     </GridPane>
 
 </AnchorPane>

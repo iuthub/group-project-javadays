@@ -1,6 +1,6 @@
 package controllers;
 
-import dao.StudentRepository;
+import dao.Role;
 import dao.UsersRepository;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -76,15 +76,15 @@ public class AdminStudentAddModifyController {
         return false;
     }
 
-    public void addStudent() throws SQLException{
-        StudentRepository.getInstance().add(
+    public void addStudent(Role role) throws SQLException{
+        UsersRepository.getInstance().add(
             txtID.getText(), txtFirstName.getText(),
-            txtLastName.getText(), txtPassword.getText()
+            txtLastName.getText(), txtPassword.getText(), role
         );
     }
 
     public void modifyStudent() throws SQLException{
-        StudentRepository.getInstance().update(
+        UsersRepository.getInstance().update(
             this.userId, txtID.getText(),
             txtFirstName.getText(), txtLastName.getText(), txtPassword.getText()
         );
