@@ -23,7 +23,7 @@ INSERT INTO Users(UserID, Password, FirstName, LastName, Role) VALUES
 -- Students
 INSERT INTO Users (UserID, Password, FirstName, LastName, Role) VALUES
     ('U1910000', '1234', 'Eshmat', 'Toshmatov', 2),
-    ('U1910000', '1234', 'Marat', 'Shpagat', 2),
+    ('U1910001', '1234', 'Marat', 'Shpagat', 2),
     ('U1910223', '1234', 'Mukhammadsaid', 'Mamasaidov', 2),
     ('U1910236', '1234', 'Jasur', 'Yusupov', 2),
     ('U1910103', '1234', 'Asadbek', 'Khasanov', 2),

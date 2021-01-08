@@ -23,7 +23,7 @@ public class LibrarianRegistrationController
     @FXML
     public ChoiceBox<String> filterChoiceBox;
     @FXML
-    public TableView choosedBooksTable;
+    public TableView<Book> choosedBooksTable;
     @FXML
     public TextArea IdField;
     @FXML
@@ -83,14 +83,15 @@ public class LibrarianRegistrationController
     private void issueHandler() throws SQLException {
         ObservableList<Book> choosedBooks = choosedBooksTable.getItems();
 
-        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy"); //Setting date format
+
 
         for (Book choosedBook:choosedBooks)
         {
             LocalDate issuedDate = LocalDate.now();
             LocalDate returnDate = dueDatePicker.getValue();
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy"); //Setting date format
 
-            IssuedBook issuedBook = new IssuedBook(choosedBook.getBookID(),IdField.getText(), Date.valueOf(issuedDate), Date.valueOf(returnDate));
+            IssuedBook issuedBook = new IssuedBook(choosedBook.getBookID(), IdField.getText(), Date.valueOf(issuedDate), Date.valueOf(returnDate));
 
             issuedBookRepository.addIssuedBook(issuedBook);
         }
