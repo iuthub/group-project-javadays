@@ -147,7 +147,7 @@ public class AdminLibrarianViewController {
         dialog.setResizable(false);
 
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("/fxml/adminStudentAddModifyDialog.fxml"));
+        fxmlLoader.setLocation(getClass().getResource("/fxml/adminAddModifyDialog.fxml"));
 
         try {
             dialog.getDialogPane().setContent(fxmlLoader.load());
@@ -158,7 +158,7 @@ public class AdminLibrarianViewController {
         dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
         dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
 
-        AdminStudentAddModifyController controller = fxmlLoader.getController();
+        AdminAddModifyDialogController controller = fxmlLoader.getController();
 
         final Button okButton = (Button) dialog.getDialogPane().lookupButton(ButtonType.OK);
         okButton.addEventFilter(ActionEvent.ACTION, ae -> {
@@ -191,7 +191,7 @@ public class AdminLibrarianViewController {
             dialog.setResizable(false);
 
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("/fxml/adminStudentAddModifyDialog.fxml"));
+            fxmlLoader.setLocation(getClass().getResource("/fxml/adminAddModifyDialog.fxml"));
 
             try {
                 dialog.getDialogPane().setContent(fxmlLoader.load());
@@ -202,7 +202,7 @@ public class AdminLibrarianViewController {
             dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
             dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
 
-            AdminStudentAddModifyController controller = fxmlLoader.getController();
+            AdminAddModifyDialogController controller = fxmlLoader.getController();
             controller.initializeFields(selectedLibrarianId);
 
             final Button okButton = (Button) dialog.getDialogPane().lookupButton(ButtonType.OK);

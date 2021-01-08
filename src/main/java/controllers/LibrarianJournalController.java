@@ -16,26 +16,22 @@ import java.sql.SQLException;
 public class LibrarianJournalController
 {
     //region <Declarations>
-    @FXML
-    public TableView<User> studentsTableView;
-    @FXML
-    public TableView<Book> choosedBooksTable;
+    @FXML private TableView<User> studentsTableView;
+    @FXML private TableView<Book> chosenBooksTable;
 
-    private StudentRepository studentRepository;
-    private IssuedBookRepository issuedBookRepository;
-    private BooksRepository booksRepository;
+    private final StudentRepository studentRepository;
+    private final IssuedBookRepository issuedBookRepository;
+    private final BooksRepository booksRepository;
     //endregion
 
     //region <StartUp>
-    public LibrarianJournalController() throws SQLException
-    {
+    public LibrarianJournalController() throws SQLException {
         studentRepository = StudentRepository.getInstance();
         issuedBookRepository = IssuedBookRepository.getInstance();
         booksRepository = BooksRepository.getInstance();
     }
 
-    public void initialize() throws SQLException
-    {
+    public void initialize() throws SQLException {
         studentsTableView.setItems(studentRepository.getStudentsWithBooks());
         
         studentsTableView.setRowFactory( tv ->
@@ -43,8 +39,8 @@ public class LibrarianJournalController
             TableRow<User> row = new TableRow<User>();
             row.setOnMouseClicked(event ->
             {
-                if(choosedBooksTable.getItems().stream().count()!=0)
-                    choosedBooksTable.getItems().clear();
+                if(chosenBooksTable.getItems().stream().count()!=0)
+                    chosenBooksTable.getItems().clear();
                 if (event.getClickCount() == 1 && (! row.isEmpty()) ) {
                     User student = row.getItem();
                     try
@@ -55,7 +51,7 @@ public class LibrarianJournalController
                         {
                             var a = booksRepository.getById(issuedBook.getIssueBookId());
                             Book book = booksRepository.getById(issuedBook.getIssueBookId());
-                            choosedBooksTable.getItems().add(book);
+                            chosenBooksTable.getItems().add(book);
                         }
                     }
                     catch (SQLException throwables)
@@ -72,20 +68,18 @@ public class LibrarianJournalController
 
     //region <Event Handlers>
     @FXML
-    private void refreshHandle() throws SQLException
-    {
+    private void refreshHandle() throws SQLException {
         studentsTableView.setItems(studentRepository.getStudentsWithBooks());
     }
 
     @FXML
-    private void returnIssuedBook()throws SQLException
-    {
+    private void returnIssuedBook()throws SQLException {
         User selectedStudent = studentsTableView.getSelectionModel().getSelectedItem();
-        Book selectedBook = choosedBooksTable.getSelectionModel().getSelectedItem();
+        Book selectedBook = chosenBooksTable.getSelectionModel().getSelectedItem();
 
         issuedBookRepository.removeIssuedBook(selectedBook.getBookID(),selectedStudent.getUserId());
 
-        choosedBooksTable.getItems().remove(selectedBook);
+        chosenBooksTable.getItems().remove(selectedBook);
     }
     //endregion
 
