@@ -8,9 +8,7 @@ import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.scene.control.TableRow;
 import javafx.scene.control.TableView;
-import javafx.scene.control.cell.PropertyValueFactory;
 import model.Book;
-import model.StudentBorrowedBooks;
 import model.User;
 
 import java.sql.SQLException;
@@ -19,9 +17,9 @@ public class LibrarianJournalController
 {
     //region <Declarations>
     @FXML
-    public TableView studentsTableView;
+    public TableView<User> studentsTableView;
     @FXML
-    public TableView choosedBooksTable;
+    public TableView<Book> choosedBooksTable;
 
     private StudentRepository studentRepository;
     private IssuedBookRepository issuedBookRepository;
@@ -70,4 +68,25 @@ public class LibrarianJournalController
         });
     }
     //endregion
+
+
+    //region <Event Handlers>
+    @FXML
+    private void refreshHandle() throws SQLException
+    {
+        studentsTableView.setItems(studentRepository.getStudentsWithBooks());
+    }
+
+    @FXML
+    private void returnIssuedBook()throws SQLException
+    {
+        User selectedStudent = studentsTableView.getSelectionModel().getSelectedItem();
+        Book selectedBook = choosedBooksTable.getSelectionModel().getSelectedItem();
+
+        issuedBookRepository.removeIssuedBook(selectedBook.getBookID(),selectedStudent.getUserId());
+
+        choosedBooksTable.getItems().remove(selectedBook);
+    }
+    //endregion
+
 }

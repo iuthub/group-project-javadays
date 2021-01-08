@@ -1,16 +1,17 @@
 package controllers;
 
 import dao.BooksRepository;
+import dao.IssuedBook;
+import dao.IssuedBookRepository;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
-import javafx.scene.layout.BorderPane;
 import model.Book;
-import model.User;
 
+import java.sql.Date;
 import java.sql.SQLException;
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 public class LibrarianRegistrationController
 {
@@ -23,19 +24,25 @@ public class LibrarianRegistrationController
     public ChoiceBox<String> filterChoiceBox;
     @FXML
     public TableView choosedBooksTable;
+    @FXML
+    public TextArea IdField;
+    @FXML
+    public DatePicker dueDatePicker;
 
-    private final BooksRepository repository;
+    private final BooksRepository bookRepository;
+    private final IssuedBookRepository issuedBookRepository;
     // endregion
 
     // region <StartUp>
     public LibrarianRegistrationController() throws SQLException
     {
-        repository = BooksRepository.getInstance();
+        bookRepository = BooksRepository.getInstance();
+        issuedBookRepository = IssuedBookRepository.getInstance();
     }
 
     public void initialize() throws SQLException
     {
-        ObservableList<Book> books = repository.getAll();
+        ObservableList<Book> books = bookRepository.getAll();
         booksTable.setItems(books);
 
         filterChoiceBox.getItems().add("Book Id");
@@ -73,9 +80,23 @@ public class LibrarianRegistrationController
 
     // region <Event handlers>
     @FXML
-    private void issueHandler()
-    {
+    private void issueHandler() throws SQLException {
+        ObservableList<Book> choosedBooks = choosedBooksTable.getItems();
 
+        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy"); //Setting date format
+
+        for (Book choosedBook:choosedBooks)
+        {
+            LocalDate issuedDate = LocalDate.now();
+            LocalDate returnDate = dueDatePicker.getValue();
+
+            IssuedBook issuedBook = new IssuedBook(choosedBook.getBookID(),IdField.getText(), Date.valueOf(issuedDate), Date.valueOf(returnDate));
+
+            issuedBookRepository.addIssuedBook(issuedBook);
+        }
+
+        IdField.setText(" ");
+        choosedBooksTable.getItems().clear();
     }
     // endregion
 
