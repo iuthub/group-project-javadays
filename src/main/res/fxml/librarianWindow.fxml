@@ -37,14 +37,14 @@
                 </GridPane>
             </graphic>
         </Button>
-        <Button text="Registration Panel" onAction="#handleRegistrationPanel">
+        <Button text="Registration" onAction="#handleRegistrationPanel">
             <graphic>
                 <GridPane styleClass="menuGridPane">
                     <columnConstraints>
                         <ColumnConstraints prefWidth="40" />
                     </columnConstraints>
                     <FontAwesomeIconView glyphName="UNDO" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-                    <Label text="Registration Panel" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                    <Label text="Registration" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
                 </GridPane>
             </graphic>
         </Button>
