@@ -26,10 +26,10 @@ public class IssuedBookRepository
     //region <Get>
 
     //Returns all books borowed by this user
-    public ObservableList<IssuedBook> getByUser(String userId) throws SQLException
+    public ObservableList<dao.IssuedBook> getByUser(String userId) throws SQLException
     {
         ResultSet result;
-        ObservableList<IssuedBook> issuedBooksByUser = FXCollections.observableArrayList();
+        ObservableList<dao.IssuedBook> issuedBooksByUser = FXCollections.observableArrayList();
 
         //https://stackoverflow.com/a/10019205/10304482
         String getIssuedBooksByUser = String.format("Select * From IssuedBooks Where userId = '%s'",userId);
@@ -40,7 +40,7 @@ public class IssuedBookRepository
 
         while (result.next())
         {
-            issuedBooksByUser.add(new IssuedBook(
+            issuedBooksByUser.add(new dao.IssuedBook(
                     result.getInt("BookId"),
                     result.getString("UserId"),
                     result.getDate("IssueDate"),
@@ -51,6 +51,36 @@ public class IssuedBookRepository
         return issuedBooksByUser;
     }
     //endregion
+
+    //region <Add>
+    public void addIssuedBook(dao.IssuedBook issuedBook) throws SQLException
+    {
+        PreparedStatement addIssuedBookStat =
+                connection.prepareStatement("INSERT INTO IssuedBooks(BookID, UserID, IssueDate, ReturnDate) " +
+                        "Values (?,?,?,?)");
+
+        addIssuedBookStat.setInt(1,issuedBook.getIssueBookId());
+        addIssuedBookStat.setString(2,issuedBook.getIssuedBookUserId());
+        addIssuedBookStat.setDate(3,issuedBook.getIssuedDate());
+        addIssuedBookStat.setDate(4,issuedBook.getReturnDate());
+
+        addIssuedBookStat.execute();
+    }
+    //endregion
+
+    //region <Delete>
+    public void removeIssuedBook(int bookId,String userId) throws SQLException
+    {
+        PreparedStatement addIssuedBookStat =
+                connection.prepareStatement("Delete From IssuedBooks Where IssuedBooks.BookId = ? And IssuedBooks.UserId = ? ");
+
+        addIssuedBookStat.setInt(1,bookId);
+        addIssuedBookStat.setString(2,userId);
+
+        addIssuedBookStat.execute();
+    }
+    //endregion
+
 
     //region <Utilities>
     public static IssuedBookRepository getInstance() throws SQLException
