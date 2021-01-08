@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.scene.layout.*?>
+
+<AnchorPane prefHeight="716.0" prefWidth="1011.0" stylesheets="@../css/student_view.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LibrarianJournalController">
+    <children>
+        <GridPane prefHeight="716.0" prefWidth="1011.0">
+            <columnConstraints>
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                <ColumnConstraints />
+            </columnConstraints>
+            <rowConstraints>
+                <RowConstraints maxHeight="57.0" minHeight="10.0" prefHeight="57.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="57.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="681.0" minHeight="10.0" prefHeight="659.0" vgrow="SOMETIMES" />
+                <RowConstraints />
+            </rowConstraints>
+            <children>
+                <Label text="Students" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+                    <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                    </GridPane.margin></Label>
+                <TableView fx:id="studentsTableView" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2" GridPane.rowSpan="2">
+                    <columns>
+                        <TableColumn minWidth="53.0" prefWidth="115.0" text="ID">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="UserId" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn minWidth="90.0" prefWidth="160.0" text="First name">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="FirstName" />
+                            </cellValueFactory>
+                        </TableColumn>
+                        <TableColumn minWidth="90.0" prefWidth="159.0" text="Last name">
+                            <cellValueFactory>
+                                <PropertyValueFactory property="LastName" />
+                            </cellValueFactory>
+                        </TableColumn>
+                    </columns>
+                    <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                    </GridPane.margin>
+                </TableView>
+                <Label text="Borrowed books" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
+                <GridPane GridPane.columnIndex="1" GridPane.rowIndex="2">
+                    <columnConstraints>
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                        <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                    </columnConstraints>
+                    <rowConstraints>
+                        <RowConstraints maxHeight="619.0" minHeight="10.0" prefHeight="589.0" vgrow="SOMETIMES" />
+                    </rowConstraints>
+                    <GridPane.margin>
+                        <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                    </GridPane.margin>
+                    <children>
+                        <TableView fx:id="choosedBooksTable" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2">
+                            <columns>
+                                <TableColumn minWidth="53.0" prefWidth="106.0" text="BookID">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="BookID" />
+                                    </cellValueFactory>
+                                </TableColumn>
+                                <TableColumn minWidth="90.0" prefWidth="127.0" text="Title">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="Title" />
+                                    </cellValueFactory>
+                                </TableColumn>
+                                <TableColumn maxWidth="158.0" minWidth="90.0" prefWidth="144.0" text="Author">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="Author" />
+                                    </cellValueFactory>
+                                </TableColumn>
+                            </columns>
+                            <GridPane.margin>
+                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                            </GridPane.margin>
+                        </TableView>
+                    </children>
+                </GridPane>
+                <Button mnemonicParsing="false" onAction="#refreshHandle" text="Refresh List" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+                <Button mnemonicParsing="false" text="Return" onAction="#returnIssuedBook" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1" />
+            </children>
+        </GridPane>
+    </children>
+
+</AnchorPane>
