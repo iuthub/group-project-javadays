@@ -10,8 +10,6 @@
     -fx-font-size: 24pt;
 }
 
-
-
 .vbox {
     -fx-spacing: 8px;
 }
@@ -30,6 +28,10 @@
 
 }
 
+.error-label {
+    -fx-text-fill: RED;
+}
+
 .text-field:focused {
     -fx-border-style: solid outside;
     -fx-border-width: 2px;
@@ -37,11 +39,22 @@
     -fx-border-radius: 3px;
 }
 
+.button {
+    -fx-background-color: #0b67b2;
+    -fx-text-fill: white;
+    -fx-background-radius: 22px 22px 22px 22px;
+}
+
+.button: hover {
+    -fx-background-color: #5ba0d9;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.5, 0.0, 0.0);
+}
+
 .submit-button {
     -fx-font-weight: bold;
     -fx-text-fill: #ffffff;
     -fx-background-color: #0066b2;
-
+    -fx-background-radius: 0 0 0 0;
 }
 
 .submit-button:hover {
@@ -71,11 +84,7 @@
 }
 
 .secondary-button:pressed, .secondary-button:focused {
-    -fx-border-style: solid outside;
-    -fx-border-width: 3px;
-    -fx-border-color: #eef2f7;
     -fx-background-color: #5c636a;
-    -fx-border-radius: 3px;
 }
 
 .delete-button {
@@ -89,11 +98,7 @@
 }
 
 .delete-button:pressed, .delete-button:focused {
-    -fx-border-style: solid outside;
-    -fx-border-width: 3px;
-    -fx-border-color: #e56e80;
     -fx-background-color: #bb2d3b;
-    -fx-border-radius: 3px;
 }
 
 

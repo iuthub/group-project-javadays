@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.layout.ColumnConstraints?>
+<?import javafx.scene.layout.GridPane?>
+<?import javafx.scene.layout.RowConstraints?>
+
+<GridPane prefHeight="382.0" prefWidth="511.0"
+          fx:controller="controllers.AdminStudentAddModifyController"
+          xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+   <columnConstraints>
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="295.0" minWidth="10.0" prefWidth="85.0"/>
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="472.0" minWidth="10.0" prefWidth="386.0"/>
+   </columnConstraints>
+   <rowConstraints>
+      <RowConstraints/>
+      <RowConstraints minHeight="-Infinity" percentHeight="30.0"/>
+      <RowConstraints minHeight="-Infinity" percentHeight="30.0"/>
+      <RowConstraints minHeight="-Infinity" percentHeight="30.0"/>
+      <RowConstraints minHeight="-Infinity" percentHeight="30.0"/>
+      <RowConstraints minHeight="-Infinity" percentHeight="30.0"/>
+      <RowConstraints minHeight="-Infinity" percentHeight="30.0"/>
+      <RowConstraints minHeight="-Infinity" percentHeight="30.0"/>
+      <RowConstraints minHeight="-Infinity" percentHeight="20.0"/>
+   </rowConstraints>
+   <padding>
+      <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
+   </padding>
+   <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="101.0" text="*ID:"
+          GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER"/>
+   <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="115.0" text="*First name:"
+          GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER"/>
+   <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="184.0" text="*Last name:"
+          GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER"/>
+   <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="147.0" text="*Password:"
+          GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="CENTER"/>
+   <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="172.0" text="Email:"
+          GridPane.halignment="RIGHT" GridPane.rowIndex="5" GridPane.valignment="CENTER"/>
+   <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="181.0" text="Department:"
+          GridPane.halignment="RIGHT" GridPane.rowIndex="7" GridPane.valignment="CENTER"/>
+   <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="153.0" text="Phone:"
+          GridPane.halignment="RIGHT" GridPane.rowIndex="6"/>
+   <TextField fx:id="txtID" GridPane.columnIndex="1" GridPane.rowIndex="1">
+      <GridPane.margin>
+         <Insets bottom="5.0" left="15.0" right="10.0" top="5.0"/>
+      </GridPane.margin>
+   </TextField>
+   <TextField fx:id="txtFirstName" GridPane.columnIndex="1" GridPane.rowIndex="2">
+      <GridPane.margin>
+         <Insets bottom="5.0" left="15.0" right="10.0" top="5.0"/>
+      </GridPane.margin>
+   </TextField>
+   <TextField fx:id="txtLastName" GridPane.columnIndex="1" GridPane.rowIndex="3">
+      <GridPane.margin>
+         <Insets bottom="5.0" left="15.0" right="10.0" top="5.0"/>
+      </GridPane.margin>
+   </TextField>
+   <TextField fx:id="txtPassword" GridPane.columnIndex="1" GridPane.rowIndex="4">
+      <GridPane.margin>
+         <Insets bottom="5.0" left="15.0" right="10.0" top="5.0"/>
+      </GridPane.margin>
+   </TextField>
+   <TextField GridPane.columnIndex="1" GridPane.rowIndex="5">
+      <GridPane.margin>
+         <Insets bottom="5.0" left="15.0" right="10.0" top="5.0"/>
+      </GridPane.margin>
+   </TextField>
+   <TextField GridPane.columnIndex="1" GridPane.rowIndex="6">
+      <GridPane.margin>
+         <Insets bottom="5.0" left="15.0" right="10.0" top="5.0"/>
+      </GridPane.margin>
+   </TextField>
+   <TextField GridPane.columnIndex="1" GridPane.rowIndex="7">
+      <GridPane.margin>
+         <Insets bottom="5.0" left="15.0" right="10.0" top="5.0"/>
+      </GridPane.margin>
+   </TextField>
+   <Label fx:id="lblStatus" styleClass="error-label" GridPane.columnIndex="1" GridPane.rowIndex="8">
+      <GridPane.margin>
+         <Insets left="15.0"/>
+      </GridPane.margin>
+   </Label>
+</GridPane>
