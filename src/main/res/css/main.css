@@ -39,7 +39,7 @@
 }
 
 .menuGridPane .label {
-    -fx-text-fill: #9fb1db;
+    -fx-text-fill: #66a3d1;
     -fx-font-family: "Lato Heavy";
 }
 
@@ -57,6 +57,6 @@
 
 .glyph-icon {
     -fx-font-family: Arial, sans-serif;
-    -fx-fill: #9fb1db;
+    -fx-fill: #66a3d1;
 }
 

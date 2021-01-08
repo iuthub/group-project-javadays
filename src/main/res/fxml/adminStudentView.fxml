@@ -30,9 +30,9 @@
     </Label>
     <ChoiceBox fx:id="choiceBoxSearchType" layoutX="109.0" layoutY="33.0" prefHeight="36.0" prefWidth="112.0" />
     <TextField fx:id="searchField" layoutX="235.0" layoutY="32.0" prefHeight="25.0" prefWidth="340.0" />
-    <Button onAction="#search" defaultButton="true" layoutX="592.0" layoutY="29.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="48.0">
+    <Button onAction="#search" defaultButton="true" layoutX="592.0" layoutY="29.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="48.0" style="-fx-background-radius: 50px">
         <graphic>
-            <FontAwesomeIconView glyphName="SEARCH" glyphSize="20" />
+            <FontAwesomeIconView glyphName="SEARCH" glyphSize="20" fill="white"/>
         </graphic>
     </Button>
 
@@ -42,28 +42,29 @@
         </font>
     </Label>
     <TableView fx:id="tblStudentsDisplay" layoutX="22.0" layoutY="122.0" prefHeight="532.0" prefWidth="633.0">
+        <columnResizePolicy><TableView fx:constant="CONSTRAINED_RESIZE_POLICY"/></columnResizePolicy>
         <columns>
             <TableColumn prefWidth="148.0" text="ID">
                 <cellValueFactory>
                     <PropertyValueFactory property="userId" />
                 </cellValueFactory>
             </TableColumn>
-            <TableColumn prefWidth="236.0" text="Name">
+            <TableColumn prefWidth="280.0" text="Name">
                 <cellValueFactory>
                     <PropertyValueFactory property="name" />
                 </cellValueFactory>
             </TableColumn>
-            <TableColumn prefWidth="217.0" text="Borrowed books count">
+            <TableColumn text="Borrowed Books">
                 <cellValueFactory>
                     <PropertyValueFactory property="count" />
                 </cellValueFactory>
             </TableColumn>
-            <TableColumn prefWidth="75.0" />
+<!--            <TableColumn prefWidth="75.0" />-->
         </columns>
     </TableView>
     <Pagination fx:id="pagination" layoutX="21.0" layoutY="658.0" maxPageIndicatorCount="5" pageCount="10" prefHeight="50.0" prefWidth="602.0" />
 
-    <Button fx:id="btnAdd" onAction="#createStudent" layoutX="756.0" layoutY="31.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="180.0" text="Add new student">
+    <Button fx:id="btnAdd" onAction="#createStudent" layoutX="756.0" layoutY="31.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="180.0" text="Add new student" styleClass="submit-button">
         <graphic>
             <FontAwesomeIconView glyphName="USER_PLUS" glyphSize="20" />
         </graphic>
