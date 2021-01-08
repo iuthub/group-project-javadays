@@ -6,7 +6,7 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.StudentWindowController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.StudentHomeController">
             <children>
                 <GridPane layoutX="39.0" layoutY="47.0" prefHeight="507.0" prefWidth="722.0">
                     <columnConstraints>
@@ -18,7 +18,7 @@
                         <RowConstraints maxHeight="116.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
-                        <TableView prefHeight="263.0" prefWidth="769.0" style="" GridPane.rowIndex="1">
+                        <TableView fx:id="studentTblIssuedBooks" prefHeight="263.0" prefWidth="769.0" style="" GridPane.rowIndex="1">
                             <columns>
                                 <TableColumn prefWidth="75.0" style="-fx-background-color: #D6EAF8" text="ISBN" />
                                 <TableColumn prefWidth="265.0" style="-fx-background-color: #D6EAF8" text="TITLE" />
@@ -72,7 +72,7 @@
                                     <Font size="15.0" />
                                  </font>
                                       </Label>
-                                      <Label fx:id="labelNameStudent" prefHeight="40.0" prefWidth="433.0" text="Label" GridPane.columnIndex="1">
+                                      <Label fx:id="labelNameStudent" prefHeight="40.0" prefWidth="433.0" text="NONE" GridPane.columnIndex="1">
                                           <GridPane.margin>
                                               <Insets left="5.0" />
                                           </GridPane.margin>
@@ -80,7 +80,7 @@
                                     <Font size="14.0" />
                                  </font>
                                       </Label>
-                                      <Label fx:id="labelSurnameStudent" prefHeight="215.0" prefWidth="609.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                      <Label fx:id="labelSurnameStudent" prefHeight="215.0" prefWidth="609.0" text="NONE" GridPane.columnIndex="1" GridPane.rowIndex="1">
                                           <GridPane.margin>
                                               <Insets left="5.0" />
                                           </GridPane.margin>
@@ -88,7 +88,7 @@
                                     <Font size="14.0" />
                                  </font>
                                       </Label>
-                                      <Label fx:id="labelIDStudent" prefHeight="78.0" prefWidth="441.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                      <Label fx:id="labelIDStudent" prefHeight="78.0" prefWidth="441.0" text="NONE" GridPane.columnIndex="1" GridPane.rowIndex="2">
                                           <GridPane.margin>
                                               <Insets left="5.0" />
                                           </GridPane.margin>

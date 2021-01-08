@@ -9,7 +9,7 @@
 
 <?import javafx.collections.FXCollections?>
 <?import java.lang.String?>
-<AnchorPane prefHeight="531.0" prefWidth="771.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.StudentWindowController">
+<AnchorPane prefHeight="531.0" fx:id="studentMainAnchorPane" prefWidth="771.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.StudentBooksController">
             <children>
                 <GridPane alignment="CENTER" layoutX="-1.0" prefHeight="700.0" prefWidth="1000.0">
                     <columnConstraints>
@@ -21,7 +21,7 @@
                         <RowConstraints maxHeight="177.0" minHeight="10.0" prefHeight="169.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
-                        <TableView prefHeight="291.0" prefWidth="771.0" GridPane.rowIndex="1">
+                        <TableView fx:id="studentTblBooksTable" prefHeight="291.0" prefWidth="771.0" GridPane.rowIndex="1">
                             <columns>
                                 <TableColumn prefWidth="75.0" style="-fx-background-color: #D6EAF8" text="ISBN" />
                                 <TableColumn prefWidth="341.0" style="-fx-background-color: #D6EAF8" text="Title" />
