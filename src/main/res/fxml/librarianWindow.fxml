@@ -4,8 +4,12 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.image.Image?>
-<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
 
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 
 <AnchorPane xmlns="http://javafx.com/javafx"
@@ -33,14 +37,36 @@
                 </GridPane>
             </graphic>
         </Button>
-        <Button text="Books" onAction="#handleBooks">
+        <Button text="Registration Panel" onAction="#handleRegistrationPanel">
+            <graphic>
+                <GridPane styleClass="menuGridPane">
+                    <columnConstraints>
+                        <ColumnConstraints prefWidth="40" />
+                    </columnConstraints>
+                    <FontAwesomeIconView glyphName="UNDO" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                    <Label text="Registration Panel" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                </GridPane>
+            </graphic>
+        </Button>
+        <Button text="Journal" onAction="#handleJournal" >
             <graphic>
                 <GridPane styleClass="menuGridPane">
                     <columnConstraints>
                         <ColumnConstraints prefWidth="40" />
                     </columnConstraints>
                     <FontAwesomeIconView glyphName="BOOK" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-                    <Label text="Books" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                    <Label text="Journal" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                </GridPane>
+            </graphic>
+        </Button>
+        <Button text="Edit Books" onAction="#handleEditBooks">
+            <graphic>
+                <GridPane styleClass="menuGridPane">
+                    <columnConstraints>
+                        <ColumnConstraints prefWidth="40" />
+                    </columnConstraints>
+                    <FontAwesomeIconView glyphName="BOOK" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                    <Label text="Edit Books" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
                 </GridPane>
             </graphic>
         </Button>
@@ -51,7 +77,7 @@
                         <ColumnConstraints prefWidth="40" />
                     </columnConstraints>
                     <FontAwesomeIconView glyphName="USERS" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-                    <Label text="STUDENTS" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                    <Label text="Students" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
                 </GridPane>
             </graphic>
         </Button>
@@ -80,57 +106,60 @@
         </Button>
     </VBox>
 
-    <TabPane fx:id="booksTabPane" visible="false" tabClosingPolicy="UNAVAILABLE"
-             AnchorPane.rightAnchor="10.0"
-             AnchorPane.leftAnchor="280.0"
-             AnchorPane.bottomAnchor="10.0"
-             AnchorPane.topAnchor="10.0">
-        <Tab text="All Books">
-            <AnchorPane>
-                <TableView fx:id="tblBooksTable"
-                           AnchorPane.rightAnchor="450.0"
-                           AnchorPane.bottomAnchor="10.0"
-                           AnchorPane.topAnchor="10.0"
-                           AnchorPane.leftAnchor="10.0">
-                    <columns>
-                        <TableColumn minWidth="60.0" text="ID">
-                            <cellValueFactory>
-                                <PropertyValueFactory property="id" />
-                            </cellValueFactory>
-                        </TableColumn>
-                        <TableColumn minWidth="200.0" text="Title">
-                            <cellValueFactory>
-                                <PropertyValueFactory property="title" />
-                            </cellValueFactory>
-                        </TableColumn>
-                        <TableColumn minWidth="200.0" text="Author">
-                            <cellValueFactory>
-                                <PropertyValueFactory property="author" />
-                            </cellValueFactory>
-                        </TableColumn>
-                    </columns>
-                </TableView>
-                <VBox spacing="10.0"
-                      AnchorPane.rightAnchor="10.0"
-                      AnchorPane.bottomAnchor="10.0"
-                      AnchorPane.topAnchor="10.0">
-                    <TextArea maxWidth="430.0" VBox.vgrow="ALWAYS"/>
-                    <TextArea maxWidth="430.0" VBox.vgrow="ALWAYS"/>
-                </VBox>
-            </AnchorPane>
-        </Tab>
-        <Tab text="RegistrationPanel">
-        </Tab>
-        <Tab text="Journal">
-        </Tab>
-    </TabPane>
+    <GridPane visible="false" fx:id="journalGridPane"
+              AnchorPane.leftAnchor="280.0"
+              AnchorPane.rightAnchor="10.0"
+              AnchorPane.topAnchor="10.0"
+              AnchorPane.bottomAnchor="10.0">
+        <columnConstraints>
+            <ColumnConstraints hgrow="ALWAYS"/>
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints vgrow="ALWAYS"/>
+        </rowConstraints>
+        <fx:include source="journalView.fxml" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+    </GridPane>
+
+    <GridPane visible="false" fx:id="registrationPanelGridPane"
+              AnchorPane.leftAnchor="280.0"
+              AnchorPane.rightAnchor="10.0"
+              AnchorPane.topAnchor="10.0"
+              AnchorPane.bottomAnchor="10.0">
+        <columnConstraints>
+            <ColumnConstraints hgrow="ALWAYS"/>
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints vgrow="ALWAYS"/>
+        </rowConstraints>
+        <fx:include source="registrationView.fxml" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+    </GridPane>
+
+    <GridPane visible="false" fx:id="editBooksGridPane"
+              AnchorPane.leftAnchor="280.0"
+              AnchorPane.rightAnchor="10.0"
+              AnchorPane.topAnchor="10.0"
+              AnchorPane.bottomAnchor="10.0">
+        <columnConstraints>
+            <ColumnConstraints hgrow="ALWAYS"/>
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints vgrow="ALWAYS"/>
+        </rowConstraints>
+        <fx:include source="librarianEditBooksView.fxml" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+    </GridPane>
 
     <GridPane visible="false" fx:id="studentsGridPane"
               AnchorPane.leftAnchor="280.0"
               AnchorPane.rightAnchor="10.0"
               AnchorPane.bottomAnchor="10.0"
               AnchorPane.topAnchor="10.0">
-        <fx:include source="adminStudentView.fxml"/>
+        <columnConstraints>
+            <ColumnConstraints hgrow="ALWAYS"/>
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints vgrow="ALWAYS"/>
+        </rowConstraints>
+        <fx:include source="adminStudentView.fxml" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
     </GridPane>
 
 </AnchorPane>
