@@ -2,14 +2,13 @@ package dao;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import model.StudentBorrowedBooks;
+import model.AdminWindowStudent;
 import model.User;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.util.Locale;
 
 public class StudentRepository {
     private static StudentRepository instance;
@@ -40,14 +39,14 @@ public class StudentRepository {
         return result.getInt(1);
     }
 
-    public ObservableList<StudentBorrowedBooks> getForAdmin(int page) throws SQLException {
-        ObservableList<StudentBorrowedBooks> list = FXCollections.observableArrayList();
+    public ObservableList<AdminWindowStudent> getForAdmin(int page) throws SQLException {
+        ObservableList<AdminWindowStudent> list = FXCollections.observableArrayList();
         this.getForAdminStmt.setInt(1, page * 100);
         ResultSet result = this.getForAdminStmt.executeQuery();
 
         while (result.next()){
             list.add(
-                new StudentBorrowedBooks(
+                new AdminWindowStudent(
                     result.getString("UserID"),
                     result.getString("Name")
                 )
@@ -60,7 +59,7 @@ public class StudentRepository {
         return in.substring(0, 1).toUpperCase() + in.substring(1).toLowerCase();
     }
 
-    public ObservableList<StudentBorrowedBooks> searchForAdmin(String type, String search) throws SQLException {
+    public ObservableList<AdminWindowStudent> searchForAdmin(String type, String search) throws SQLException {
         Connection conn = ConnectionManager.getConnection();
         String cName = "UserId";
         search = capitalize(search);
@@ -83,12 +82,12 @@ public class StudentRepository {
         PreparedStatement searchByParamStmt = conn.prepareStatement(DISPLAY_QUERY_ADMIN + LIKE_QUERY);
         searchByParamStmt.setString(1, search + "%");
 
-        ObservableList<StudentBorrowedBooks> list = FXCollections.observableArrayList();
+        ObservableList<AdminWindowStudent> list = FXCollections.observableArrayList();
         ResultSet result = searchByParamStmt.executeQuery();
 
         while (result.next()){
             list.add(
-                new StudentBorrowedBooks(
+                new AdminWindowStudent(
                     result.getString("userId"),
                     result.getString("name")
                 )

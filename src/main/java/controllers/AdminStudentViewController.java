@@ -3,7 +3,7 @@ package controllers;
 import dao.StudentRepository;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
-import model.StudentBorrowedBooks;
+import model.AdminWindowStudent;
 
 import java.sql.SQLException;
 
@@ -13,7 +13,7 @@ public class AdminStudentViewController {
     @FXML private Button btnSearch;
 
     @FXML private Label lblTotalCount;
-    @FXML private TableView<StudentBorrowedBooks> tblStudentsDisplay;
+    @FXML private TableView<AdminWindowStudent> tblStudentsDisplay;
     @FXML private Pagination pagination;
 
     @FXML private Label lblName;
@@ -48,7 +48,7 @@ public class AdminStudentViewController {
         pagination.setPageCount((int) Math.ceil(total / 100.0));
     }
 
-    void handleTableItemSelection(StudentBorrowedBooks student){
+    void handleTableItemSelection(AdminWindowStudent student){
         if (student != null){
             System.out.println(student.getUserId());
             btnBookHistory.setDisable(false);
