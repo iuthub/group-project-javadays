@@ -1,20 +1,22 @@
 package controllers;
 import dao.*;
 import dao.IssuedBook;
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
-import javafx.scene.control.Button;
-import javafx.scene.control.ChoiceBox;
-import javafx.scene.control.Label;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
+import model.Book;
+
 import java.io.IOException;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Calendar;
+
+import static java.lang.System.currentTimeMillis;
 
 public class StudentHomeController {
 
@@ -29,25 +31,29 @@ public class StudentHomeController {
     @FXML
     public Label labelIDStudent;
     @FXML
-    private TableView studentTblIssuedBooks;
-    @FXML private ChoiceBox<String> filterBooks;
+    private ChoiceBox<String> filterBooks;
+
+    @FXML
+    private TableView<issuedBooksRow> studentTblIssuedBooks;
+    @FXML
+    private Label labelFineStudent;
+    @FXML
+    private Label labelStatusStudent;
     private static String userID;
-    private StudentRepository studentRepository;
+    private BooksRepository booksRepository;
     private IssuedBookRepository issuedBookRepository;
-    ObservableList<IssuedBook> issuedBooks;
+    ObservableList<Book> Books;
     private final Connection connection;
     public StudentHomeController() throws SQLException {
         connection = ConnectionManager.getConnection();
-        studentRepository = StudentRepository.getInstance();
-        issuedBookRepository = IssuedBookRepository.getInstance();
+        booksRepository=BooksRepository.getInstance();
         userID=LoginController.getUserID();
-
-      //  setIssuedBooksByStudent();
-
     }
     public void initialize() throws SQLException {
         setInfo();
-        setIssuedBooksByStudent();
+        //setIssuedBooksByStudent();
+        //setCurrentFine();
+        //populateStudentBookView();
     }
     public void setInfo() throws SQLException {
         ResultSet result;
@@ -61,13 +67,78 @@ public class StudentHomeController {
             labelIDStudent.setText(userID);
         }
     }
-    public void setIssuedBooksByStudent() throws SQLException {
 
-        issuedBooks = issuedBookRepository.getByUser(userID);
-        studentTblIssuedBooks.setItems(issuedBooks);
+//    public void populateStudentBookView() throws SQLException
+//    {
+//        Books=booksRepository.getAll();
+//    }
 
 
-    }
+//    public void setIssuedBooksByStudent() throws SQLException {
+//        ObservableList<issuedBooksRow> issuedBooksRows= FXCollections.observableArrayList();
+//        ObservableList<IssuedBook> issuedBooks= FXCollections.observableArrayList();
+//            int issuedBookId;
+//            ResultSet result;
+//            PreparedStatement preparedStatement;
+//            ResultSet resultForID;
+//            PreparedStatement preparedStatementForID;
+//            issuedBooks = issuedBookRepository.getByUser(userID);
+//            for (int i = 0; i < issuedBooks.size(); i++) {
+//
+//                issuedBookId = issuedBooks.get(i).getIssueBookId();
+//                //taking data from Books database
+//                preparedStatement = connection.prepareStatement("Select * FROM Books Where BookID = ?");
+//                preparedStatement.setInt(1, issuedBookId);
+//                result = preparedStatement.executeQuery();
+//                if(result.next()) {
+//                    //taking data from IssuedBooks database
+//                    preparedStatementForID = connection.prepareStatement("Select * FROM IssuedBooks Where BookID = ?");
+//                    preparedStatementForID.setInt(1, issuedBookId);
+//                    resultForID = preparedStatementForID.executeQuery();
+//                    //setting them to columns
+//                    if(resultForID.next()) {
+//                        issuedBooksRows.add(new issuedBooksRow(result.getString(2), result.getString(3), result.getString(5), resultForID.getDate(3)));
+//                    }
+//            }
+//               if(studentTblIssuedBooks!=null) {
+//                    studentTblIssuedBooks.setItems(issuedBooksRows);
+//                }
+//        }
+//
+//    }
+
+
+//    public void setCurrentFine() throws SQLException
+//    {
+//        Date issuedDate;
+//        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy");
+//        LocalDateTime currentDate = LocalDateTime.now();
+//        long currentFine=0;
+//        int lateMonths=0;
+//        int numberOfBooks=0;
+//        issuedBooks = issuedBookRepository.getByUser(userID);
+//       for (int i=0;i < issuedBooks.size();i++) {
+//           issuedDate = issuedBooks.get(i).getIssuedDate();
+//
+//           if(((currentTimeMillis()-issuedDate.getTime())/100000)>26298)
+//           {
+//               lateMonths=Math.round((((currentTimeMillis()-issuedDate.getTime())/100000)-26298)/(26298*100000));
+//                currentFine+=lateMonths*5;
+//
+//           }
+//
+//       }
+//       if(currentFine!=0){
+//           if(labelFineStudent!=null&&labelStatusStudent!=null)
+//           {
+//               labelFineStudent.setText(currentFine+"$ for late return of "+numberOfBooks+" books (5$ for each month)!");
+//               labelStatusStudent.setText("BANNED");
+//           }
+//       }
+//
+//    }
+
+
     public void handleStudentBooks(ActionEvent actionEvent){
 
         FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource("/res/fxml/studentBooksView.fxml"));
@@ -93,5 +164,41 @@ public class StudentHomeController {
         catch (IOException e){e.printStackTrace();}
 
     }
+
+}
+// class for adding rows of issued books in student's information
+class issuedBooksRow
+{
+
+    private String ISBN;
+    private String Title;
+    private String Author;
+    private Date IssuedDate;
+
+    public issuedBooksRow(){}
+
+    public issuedBooksRow(String isbn, String title, String author, Date issuedDate) {
+
+        setISBN(isbn);
+        setTitle(title);
+        setAuthor(author);
+        setIssuedDate(issuedDate);
+    }
+
+    public String getISBN() { return ISBN; }
+
+    public void setISBN(String ISBN) { this.ISBN = ISBN; }
+
+    public String getTitle() { return Title; }
+
+    public void setTitle(String title) { this.Title = title; }
+
+    public String getAuthor() { return Author; }
+
+    public void setAuthor(String author) { this.Author = author; }
+
+    public Date getIssuedDate() { return IssuedDate; }
+
+    public void setIssuedDate(Date issuedDate) { this.IssuedDate = issuedDate; }
 
 }

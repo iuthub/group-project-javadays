@@ -3,6 +3,8 @@ package dao;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Book;
+import model.BookStudentView;
+
 import java.sql.*;
 
 public class BooksRepository {
@@ -51,7 +53,33 @@ public class BooksRepository {
         }
         return results;
     }
-
+//    public ObservableList<BookStudentView> BookWithBorrowedSt() throws SQLException {
+//        ResultSet rs = getAllStmt.executeQuery();
+//        ObservableList<BookStudentView> selectedBook = FXCollections.observableArrayList();
+//        Connection conn = ConnectionManager.getConnection();
+//        PreparedStatement copiesOfBook;
+//        ResultSet copiesOfOneBook;
+//        PreparedStatement copiesOfBookIssued;
+//        ResultSet copiesOfOneBookIssued;
+//        while (rs.next()) {
+//            copiesOfBook=conn.prepareStatement("SELECT COUNT(*) FROM Books WHERE ISBN=?");
+//            copiesOfBook.setString(1, rs.getString(2));
+//            copiesOfOneBook=copiesOfBook.executeQuery();
+//            copiesOfBookIssued=conn.prepareStatement("SELECT COUNT(*) FROM Books WHERE ISBN=?");
+//            copiesOfBookIssued.setString(1, rs.getString(2));
+//            selectedBook.add(new BookStudentView(
+//                            rs.getString("ISBN"),
+//                            rs.getString("Title"),
+//                            rs.getString("Author"),
+//                            rs.getString("Subject"),
+//                            rs.getDate  ("PublishDate"),
+//                            rs.getString("Description")
+//                    )
+//            );
+//        }
+//
+//        return selectedBook;
+//    }
     public Book getById(int bookId) throws SQLException {
         Book selectedBook = null;
 

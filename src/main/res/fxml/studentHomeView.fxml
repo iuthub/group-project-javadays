@@ -2,11 +2,12 @@
 
 <?import javafx.geometry.*?>
 <?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.*?>
 <?import javafx.scene.image.*?>
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane prefHeight="600.0" prefWidth="800.0" stylesheets="@../css/main.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.StudentHomeController">
+<AnchorPane prefHeight="600.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.StudentHomeController">
             <children>
                 <GridPane layoutX="39.0" layoutY="47.0" prefHeight="507.0" prefWidth="722.0">
                     <columnConstraints>
@@ -18,12 +19,28 @@
                         <RowConstraints maxHeight="116.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
-                        <TableView fx:id="studentTblIssuedBooks" prefHeight="263.0" prefWidth="769.0" style="" GridPane.rowIndex="1">
+                        <TableView fx:id="studentTblIssuedBooks" prefHeight="263.0" prefWidth="769.0" style="-fx-background-color: #D6EAF8" GridPane.rowIndex="1">
                             <columns>
-                                <TableColumn prefWidth="75.0" style="-fx-background-color: #D6EAF8" text="ISBN" />
-                                <TableColumn prefWidth="265.0" style="-fx-background-color: #D6EAF8" text="TITLE" />
-                                <TableColumn prefWidth="269.0" style="-fx-background-color: #D6EAF8" text="Author" />
-                                <TableColumn prefWidth="112.0" style="-fx-background-color: #D6EAF8" text="Due date" />
+                                <TableColumn prefWidth="75.0" style="-fx-text-fill: black" text="ISBN">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="ISBN" />
+                                    </cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="265.0" style="-fx-text-fill: black" text="TITLE">
+                                <cellValueFactory>
+                                    <PropertyValueFactory property="Title" />
+                                </cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="269.0" style="-fx-text-fill: black" text="Author">
+                                <cellValueFactory>
+                                    <PropertyValueFactory property="Author" />
+                                </cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="112.0" style="-fx-text-fill: black" text="Issued date">
+                                <cellValueFactory>
+                                    <PropertyValueFactory property="IssuedDate" />
+                                </cellValueFactory>
+                                </TableColumn>
                             </columns>
                         </TableView>
                   <HBox prefHeight="100.0" prefWidth="200.0">
@@ -121,7 +138,7 @@
                                         <Insets right="5.0" />
                                     </padding>
                                 </Label>
-                                <Label fx:id="labelFineStudent" prefHeight="72.0" prefWidth="685.0" text="Label" GridPane.columnIndex="1">
+                                <Label fx:id="labelFineStudent" prefHeight="72.0" prefWidth="685.0" text="NONE" GridPane.columnIndex="1">
                                     <font>
                                         <Font size="14.0" />
                                     </font>
@@ -134,7 +151,7 @@
                         <Font size="14.0" />
                      </font>
                   </Label>
-                  <Label fx:id="labelStatusStudent" prefHeight="134.0" prefWidth="669.0" text="Label" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                  <Label fx:id="labelStatusStudent" prefHeight="134.0" prefWidth="669.0" text="ACTIVE" GridPane.columnIndex="1" GridPane.rowIndex="1">
                      <font>
                         <Font size="14.0" />
                      </font>
