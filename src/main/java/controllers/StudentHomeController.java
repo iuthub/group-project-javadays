@@ -1,20 +1,25 @@
 package controllers;
 import dao.*;
 import dao.IssuedBook;
+import javafx.beans.value.ChangeListener;
+import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import model.Book;
+import model.BookStudentView;
 
 import java.io.IOException;
 import java.sql.*;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Calendar;
+import java.util.Comparator;
 
 import static java.lang.System.currentTimeMillis;
 
@@ -32,17 +37,20 @@ public class StudentHomeController {
     public Label labelIDStudent;
     @FXML
     private ChoiceBox<String> filterBooks;
-
     @FXML
-    private TableView<issuedBooksRow> studentTblIssuedBooks;
+    private TableView<BookStudentView> studentTblBooksTable;
     @FXML
     private Label labelFineStudent;
     @FXML
     private Label labelStatusStudent;
+    @FXML
+    private Label labelDescription;
+    @FXML
+    private Button btnReserve;
     private static String userID;
     private BooksRepository booksRepository;
     private IssuedBookRepository issuedBookRepository;
-    ObservableList<Book> Books;
+    ObservableList<BookStudentView> Books;
     private final Connection connection;
     public StudentHomeController() throws SQLException {
         connection = ConnectionManager.getConnection();
@@ -53,8 +61,59 @@ public class StudentHomeController {
         setInfo();
         //setIssuedBooksByStudent();
         //setCurrentFine();
-        //populateStudentBookView();
+        //filterBooks();
+        //controlClick();
+
     }
+//    public void filterBooks() throws SQLException {
+//        String filterChoice;
+//        String[] ch = {"ISBN","Title","Author","Subject","Publish date","Borrowed status"};
+//        if(filterBooks!=null)
+//        {
+//            filterBooks.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
+//
+//                @Override
+//                public void changed(ObservableValue ov, Number value, Number new_value)
+//                {
+//                    filterChoice = ch[new_value.intValue()];
+//                }
+//            });
+//            //filterChoice=filterBooks.getValue();
+//            populateStudentBookView(filterChoice);
+//        }
+//    }
+//    public void getDescription(String ISBN) throws SQLException
+//    {
+//        ResultSet result;
+//        PreparedStatement preparedStatement;
+//        preparedStatement=connection.prepareStatement("SELECT * FROM Books WHERE ISBN=?");
+//        preparedStatement.setString(1,ISBN);
+//        result=preparedStatement.executeQuery();
+//        labelDescription.setText(result.getString(7));
+//    }
+//    public void controlClick() throws SQLException {
+//
+//        studentTblBooksTable.setRowFactory(tv -> {
+//            TableRow<BookStudentView> row = new TableRow<>();
+//            row.setOnMouseClicked(event -> {
+//                if (event.getClickCount() == 2 && (!row.isEmpty())) {
+//                    BookStudentView chooseBook = row.getItem();
+//                    try {
+//                        getDescription(chooseBook.getISBN());
+//                    } catch (SQLException throwables) {
+//                        throwables.printStackTrace();
+//                    }
+//                    if(chooseBook.getBorrowedStatus()=="Available")
+//                    {
+//                        btnReserve.setDisable(false);
+//                        // reserveBook(Student student);
+//                        //reserve option is not ready
+//                    }
+//                }
+//            });
+//            return row;
+//        });
+//    }
     public void setInfo() throws SQLException {
         ResultSet result;
         PreparedStatement preparedStatement;
@@ -68,9 +127,21 @@ public class StudentHomeController {
         }
     }
 
-//    public void populateStudentBookView() throws SQLException
+//    public void populateStudentBookView(String filterChoice) throws SQLException
 //    {
-//        Books=booksRepository.getAll();
+//
+//        Books=booksRepository.getBookWithBorrowedSt();
+//        switch (filterChoice) {
+//            case "ISBN": Books.stream().sorted(Comparator.comparing(BookStudentView::getISBN));break;
+//            case "Title":Books.stream().sorted(Comparator.comparing(BookStudentView::getTitle));break;
+//            case "Author":Books.stream().sorted(Comparator.comparing(BookStudentView::getAuthor));break;
+//            case "Borrowed status":Books.stream().sorted(Comparator.comparing(BookStudentView::getBorrowedStatus));break;
+//            case "Publish date":Books.stream().sorted(Comparator.comparing(BookStudentView::getPublishDate));break;
+//            case "Subject":Books.stream().sorted(Comparator.comparing(BookStudentView::getSubject));break;
+//            default:Books.stream().sorted(Comparator.comparing(BookStudentView::getISBN));break;
+//        }
+//        studentTblBooksTable.setItems(Books);
+//          controlClick();
 //    }
 
 
@@ -116,7 +187,7 @@ public class StudentHomeController {
 //        long currentFine=0;
 //        int lateMonths=0;
 //        int numberOfBooks=0;
-//        issuedBooks = issuedBookRepository.getByUser(userID);
+//        ObservableList<IssuedBook> issuedBooks = issuedBookRepository.getByUser(userID);
 //       for (int i=0;i < issuedBooks.size();i++) {
 //           issuedDate = issuedBooks.get(i).getIssuedDate();
 //

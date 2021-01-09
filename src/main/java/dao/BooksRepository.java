@@ -53,27 +53,49 @@ public class BooksRepository {
         }
         return results;
     }
-//    public ObservableList<BookStudentView> BookWithBorrowedSt() throws SQLException {
-//        ResultSet rs = getAllStmt.executeQuery();
-//        ObservableList<BookStudentView> selectedBook = FXCollections.observableArrayList();
+    //students book view with borrowed status S@iD
+//    public ObservableList<BookStudentView> getBookWithBorrowedSt() throws SQLException {
+//        ResultSet rs = getAllStmt.executeQuery(); //all books
+//        ObservableList<BookStudentView> selectedBook = FXCollections.observableArrayList(); //books with Borrowed status
 //        Connection conn = ConnectionManager.getConnection();
 //        PreparedStatement copiesOfBook;
 //        ResultSet copiesOfOneBook;
-//        PreparedStatement copiesOfBookIssued;
+//
+//        PreparedStatement copiesOfOneBookIssuedStm;
 //        ResultSet copiesOfOneBookIssued;
+//        boolean key=true;
 //        while (rs.next()) {
-//            copiesOfBook=conn.prepareStatement("SELECT COUNT(*) FROM Books WHERE ISBN=?");
+//            int issuedCopies=0; // issuedCopies of one book
+//            int copies=0; //copies of one book
+//            //get rows with same ISBN
+//            String borrowedStatus = "Available";
+//            copiesOfBook=conn.prepareStatement("SELECT * FROM Books WHERE ISBN=?");
 //            copiesOfBook.setString(1, rs.getString(2));
 //            copiesOfOneBook=copiesOfBook.executeQuery();
-//            copiesOfBookIssued=conn.prepareStatement("SELECT COUNT(*) FROM Books WHERE ISBN=?");
-//            copiesOfBookIssued.setString(1, rs.getString(2));
+//
+//
+//            while(copiesOfOneBook.next()) //to identify borrowed status of book
+//            {
+//                copiesOfOneBookIssuedStm=conn.prepareStatement("SELECT UserID FROM IssuedBooks WHERE BookID=?");
+//                copiesOfOneBookIssuedStm.setInt(1,copiesOfOneBook.getInt(1));
+//                copiesOfOneBookIssued=copiesOfOneBookIssuedStm.executeQuery();
+//                if(copiesOfOneBookIssued!=null)
+//                {
+//                    issuedCopies++;
+//                }
+//
+//            }
+//            copiesOfBook=conn.prepareStatement("SELECT COUNT(*) FROM Books WHERE ISBN=?");
+//            copies=copiesOfBook.executeUpdate();
+//
+//            if(copies==issuedCopies){borrowedStatus="Unavailable";}
 //            selectedBook.add(new BookStudentView(
 //                            rs.getString("ISBN"),
 //                            rs.getString("Title"),
 //                            rs.getString("Author"),
 //                            rs.getString("Subject"),
 //                            rs.getDate  ("PublishDate"),
-//                            rs.getString("Description")
+//                            borrowedStatus
 //                    )
 //            );
 //        }
