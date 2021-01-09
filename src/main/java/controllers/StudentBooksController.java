@@ -51,6 +51,10 @@ public class StudentBooksController {
                         // reserveBook(Student student);
                         // reserve option is not ready
                     }
+                    else
+                        {
+                            btnReserve.setDisable(true);
+                        }
                 }
             });
             return row;
