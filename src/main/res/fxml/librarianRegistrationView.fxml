@@ -104,7 +104,7 @@
                                         <PropertyValueFactory property="Title" />
                                     </cellValueFactory>
                                 </TableColumn>
-                                <TableColumn minWidth="67.0" prefWidth="188.0" text="Author">
+                                <TableColumn minWidth="67.0" prefWidth="174.0" text="Author">
                                     <cellValueFactory>
                                         <PropertyValueFactory property="Author" />
                                     </cellValueFactory>

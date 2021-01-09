@@ -2,7 +2,6 @@ package controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
@@ -33,7 +32,7 @@ public class LibrarianWindowController {
 
     public void handleRegistrationPanel(ActionEvent actionEvent) {
         try {
-            HandleChangeView.handleChangeScene(getClass(), mainBorderPane, "/res/fxml/registrationView.fxml");
+            HandleChangeView.handleChangeScene(getClass(), mainBorderPane, "/res/fxml/librarianRegistrationView.fxml");
         } catch (IOException e) {
             e.printStackTrace();
         }
