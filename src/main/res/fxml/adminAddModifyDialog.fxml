@@ -9,7 +9,7 @@
 
 <GridPane prefHeight="382.0" prefWidth="511.0"
           fx:controller="controllers.AdminAddModifyDialogController"
-          xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1">
+          xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" styleClass="modal-style.css">
    <columnConstraints>
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="295.0" minWidth="10.0" prefWidth="85.0"/>
       <ColumnConstraints hgrow="SOMETIMES" maxWidth="472.0" minWidth="10.0" prefWidth="386.0"/>
@@ -28,13 +28,13 @@
    <padding>
       <Insets bottom="5.0" left="5.0" right="5.0" top="5.0"/>
    </padding>
-   <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="101.0" text="*ID:"
+   <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="101.0" text="* ID:"
           GridPane.halignment="RIGHT" GridPane.rowIndex="1" GridPane.valignment="CENTER"/>
-   <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="115.0" text="*First name:"
+   <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="115.0" text="* First name:"
           GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER"/>
-   <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="184.0" text="*Last name:"
+   <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="184.0" text="* Last name:"
           GridPane.halignment="RIGHT" GridPane.rowIndex="3" GridPane.valignment="CENTER"/>
-   <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="147.0" text="*Password:"
+   <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="147.0" text="* Password:"
           GridPane.halignment="RIGHT" GridPane.rowIndex="4" GridPane.valignment="CENTER"/>
    <Label alignment="CENTER_RIGHT" contentDisplay="RIGHT" prefHeight="17.0" prefWidth="172.0" text="Email:"
           GridPane.halignment="RIGHT" GridPane.rowIndex="5" GridPane.valignment="CENTER"/>
