@@ -10,7 +10,7 @@
             fx:controller="controllers.LibrarianEditBooksController"
             fx:id="mainAnchorPane"
             stylesheets="@../css/student_view.css">
-    <VBox fx:id="mainVbox" spacing="20.0"
+    <VBox spacing="20.0"
             AnchorPane.bottomAnchor="10.0"
             AnchorPane.topAnchor="10.0"
             AnchorPane.leftAnchor="10.0"
@@ -41,8 +41,5 @@
                 </TableColumn>
             </columns>
         </TableView>
-<!--
-        <Pagination fx:id="pagination" layoutX="21.0" layoutY="658.0" maxPageIndicatorCount="5" pageCount="10" prefHeight="50.0" prefWidth="602.0" />
--->
     </VBox>
 </AnchorPane>
