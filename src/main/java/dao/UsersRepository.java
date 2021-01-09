@@ -1,6 +1,7 @@
 package dao;
 
 import javafx.collections.FXCollections;
+import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
 import model.AdminWindowStudent;
 import model.User;
@@ -18,6 +19,7 @@ public class UsersRepository {
     private final PreparedStatement updUserStmt;
     private final PreparedStatement remUserStmt;
     private final PreparedStatement getForAdminStmt;
+    private final PreparedStatement getAllUserStmt;
 
     private final String DISPLAY = "SELECT UserID, FirstName || ' ' || LastName AS Name FROM Users WHERE Role = ? ";
 
@@ -30,6 +32,7 @@ public class UsersRepository {
         String ADD   = "INSERT INTO Users VALUES(?, ?, ?, ?, ?)";
         String UPD   = "UPDATE Users SET UserID=?, FirstName=?, LastName=?, Password=? WHERE UserID=?";
         String DEL   = "DELETE FROM Users WHERE UserID =?";
+        String GET_ALL = "SELECT * FROM Users WHERE Role=?";
 
         Connection conn = ConnectionManager.getConnection();
         this.getLoginStmt = conn.prepareStatement(LOGIN);
@@ -39,6 +42,7 @@ public class UsersRepository {
         this.addUserStmt  = conn.prepareStatement(ADD);
         this.remUserStmt  = conn.prepareStatement(DEL);
         this.updUserStmt  = conn.prepareStatement(UPD);
+        this.getAllUserStmt = conn.prepareStatement(GET_ALL);
         this.getForAdminStmt = conn.prepareStatement(DISPLAY + "OFFSET ? ROWS FETCH NEXT 100 ROWS ONLY");
     }
 
@@ -140,6 +144,25 @@ public class UsersRepository {
                     result.getString("UserID"),
                     result.getString("Name")
                 )
+            );
+        }
+        return list;
+    }
+
+    public ObservableList<User> getAll(Role role) throws SQLException {
+        ObservableList<User> list = FXCollections.observableArrayList();
+        getAllUserStmt.setInt(1, role.getValue());
+        ResultSet result = getAllUserStmt.executeQuery();
+
+        while (result.next()){
+            list.add(
+                    new User(
+                            result.getString("userID"),
+                            result.getString("Password"),
+                            result.getString("FirstName"),
+                            result.getString("LastName"),
+                            intToRole(result.getInt("Role"))
+                    )
             );
         }
         return list;
