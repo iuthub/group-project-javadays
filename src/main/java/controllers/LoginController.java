@@ -34,7 +34,6 @@ public class LoginController {
         String password = txtPassword.getText();
         boolean status = false;
 
-
         if (!userID.equals("") && !password.equals("")){
             if (userID.matches("U[\\d]{7}")){
                 try {
@@ -66,20 +65,15 @@ public class LoginController {
 
             assert currentUser != null;
             int roleType = currentUser.getRole().getValue();
-            
+
             switch (roleType) {
-                case 0:
-                    root = FXMLLoader.load(getClass().getResource("/res/fxml/adminWindow.fxml"));
+                case 0 -> {
                     AdminWindowController.setCurrentUser(currentUser);
-                    break;
-                case 1:
-                    root = FXMLLoader.load(getClass().getResource("/res/fxml/librarianWindow.fxml"));
-                    break;
-                case 2:
-                    root = FXMLLoader.load(getClass().getResource("/res/fxml/studentWindow.fxml"));
-                    break;
-                default:
-                    throw new IllegalStateException("Unexpected value: " + roleType);
+                    root = FXMLLoader.load(getClass().getResource("/res/fxml/adminWindow.fxml"));
+                }
+                case 1 -> root = FXMLLoader.load(getClass().getResource("/res/fxml/librarianWindow.fxml"));
+                case 2 -> root = FXMLLoader.load(getClass().getResource("/res/fxml/studentWindow.fxml"));
+                default -> throw new IllegalStateException("Unexpected value: " + roleType);
             }
             
             Scene mainAppScene = new Scene(root, 1280, 720);

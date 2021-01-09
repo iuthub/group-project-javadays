@@ -9,7 +9,7 @@
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="controllers.LibrarianEditBooksController"
             fx:id="mainAnchorPane"
-            stylesheets="@../css/main.css">
+            stylesheets="@../css/student_view.css">
     <VBox fx:id="mainVbox" spacing="20.0"
             AnchorPane.bottomAnchor="10.0"
             AnchorPane.topAnchor="10.0"

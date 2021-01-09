@@ -9,8 +9,7 @@ import javafx.scene.layout.GridPane;
 import model.User;
 
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.Arrays;
+import java.sql.SQLException;
 
 public class AdminWindowController {
     private static User currentUser;
@@ -25,53 +24,51 @@ public class AdminWindowController {
         return currentUser;
     }
 
-    @FXML
-    public void initialize() {
-    }
-
     public static void setCurrentUser(User currentUser) {
         AdminWindowController.currentUser = currentUser;
-        System.out.println(currentUser.getFirstName());
     }
 
-    public void handleHomeView(ActionEvent actionEvent) {
+    public void initialize() {
+        handleHomeView();
+    }
 
+    public void handleHomeView() {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/res/fxml/adminHomeView.fxml"));
+        mainBorderPane.getChildren().remove(mainBorderPane.getCenter());
         try {
-            HandleChangeView.handleChangeScene(getClass(), mainBorderPane, "/res/fxml/adminStudentView.fxml");
+            mainBorderPane.setCenter(fxmlLoader.load());
         } catch (IOException e) {
             e.printStackTrace();
         }
+        AdminHomeViewController controller = fxmlLoader.getController();
+        controller.setAdminId(getCurrentUser().getUserId());
 
+        try {
+            controller.init();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     public void handleStudentView(ActionEvent actionEvent) {
-
         try {
             HandleChangeView.handleChangeScene(getClass(), mainBorderPane, "/res/fxml/adminStudentView.fxml");
         } catch (IOException e) {
             e.printStackTrace();
         }
-
     }
 
     public void handleLibrarianView(ActionEvent actionEvent) {
-        try {
+       try {
             HandleChangeView.handleChangeScene(getClass(), mainBorderPane, "/res/fxml/adminLibrarianView.fxml");
         } catch (IOException e) {
             e.printStackTrace();
         }
-//        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/res/fxml/adminLibrarianView.fxml"));
-//        mainBorderPane.getChildren().remove(mainBorderPane.getCenter());
-//        try {
-//            mainBorderPane.setCenter(fxmlLoader.load());
-//        } catch (IOException e) {
-//            e.printStackTrace();
-//        }
     }
 
     public void handleBookView(ActionEvent actionEvent) {
         try {
-            HandleChangeView.handleChangeScene(getClass(), mainBorderPane, "/res/fxml/adminLibrarianView.fxml");
+            HandleChangeView.handleChangeScene(getClass(), mainBorderPane, "/res/fxml/librarianEditBooksView.fxml");
         } catch (IOException e) {
             e.printStackTrace();
         }
