@@ -1,28 +1,15 @@
 package controllers;
 import dao.*;
 import dao.IssuedBook;
-import javafx.beans.value.ChangeListener;
-import javafx.beans.value.ObservableValue;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
-import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
-import model.Book;
-import model.BookStudentView;
 import model.IssuedBookRow;
-
 import java.io.IOException;
 import java.sql.*;
-import java.time.LocalDateTime;
-import java.time.format.DateTimeFormatter;
-import java.util.Calendar;
-import java.util.Comparator;
-
-import static java.lang.System.currentTimeMillis;
 
 public class StudentHomeController {
 
@@ -37,24 +24,14 @@ public class StudentHomeController {
     @FXML
     public Label labelIDStudent;
     @FXML
-    private ChoiceBox<String> filterBooks;
-
-    @FXML
     private TableView<IssuedBookRow> studentTblIssuedBooks;
-
-
     @FXML
     private Label labelFineStudent;
     @FXML
     private Label labelStatusStudent;
-    @FXML
-    private Label labelDescription;
-    @FXML
-    private Button btnReserve;
+
     private static String userID;
     private BooksRepository booksRepository;
-    private IssuedBookRepository issuedBookRepository;
-    ObservableList<BookStudentView> Books;
     private final Connection connection;
 
 
@@ -67,10 +44,7 @@ public class StudentHomeController {
     public void initialize() throws SQLException {
         setInfo();
         setIssuedBooksByStudent();
-
-        //setCurrentFine();
     }
-
 
     public void setInfo() throws SQLException {
         ResultSet result;
@@ -85,7 +59,6 @@ public class StudentHomeController {
         }
     }
 
-
     public void setIssuedBooksByStudent() throws SQLException {
         ObservableList<IssuedBookRow> issuedBooksRows = FXCollections.observableArrayList();
         ObservableList<IssuedBook> issuedBooks= FXCollections.observableArrayList();
@@ -97,9 +70,7 @@ public class StudentHomeController {
             PreparedStatement preparedStatementForID;
 
             issuedBooks = IssuedBookRepository.getInstance().getByUser(userID);
-
             for (int i = 0; i < issuedBooks.size(); i++) {
-
                 issuedBookId = issuedBooks.get(i).getIssueBookId();
                 //taking data from Books database
                 preparedStatement = connection.prepareStatement("Select * FROM Books Where BookID = ?");
@@ -123,38 +94,10 @@ public class StudentHomeController {
     }
 
 
-//    public void setCurrentFine() throws SQLException
-//    {
-//        Date issuedDate;
-//        DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd-MM-yyyy");
-//        LocalDateTime currentDate = LocalDateTime.now();
-//        long currentFine=0;
-//        int lateMonths=0;
-//        int numberOfBooks=0;
-//        ObservableList<IssuedBook> issuedBooks = issuedBookRepository.getByUser(userID);
-//       for (int i=0;i < issuedBooks.size();i++) {
-//           issuedDate = issuedBooks.get(i).getIssuedDate();
-//
-//           if(((currentTimeMillis()-issuedDate.getTime())/100000)>26298)
-//           {
-//               lateMonths=Math.round((((currentTimeMillis()-issuedDate.getTime())/100000)-26298)/(26298*100000));
-//                currentFine+=lateMonths*5;
-//
-//           }
-//
-//       }
-//       if(currentFine!=0){
-//           if(labelFineStudent!=null&&labelStatusStudent!=null)
-//           {
-//               labelFineStudent.setText(currentFine+"$ for late return of "+numberOfBooks+" books (5$ for each month)!");
-//               labelStatusStudent.setText("BANNED");
-//           }
-//       }
-//
-//    }
 
 
-    public void handleStudentBooks(ActionEvent actionEvent){
+
+    public void handleStudentBooks(){
 
         FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource("/res/fxml/studentBooksView.fxml"));
         mainBorderPane.getChildren().remove(mainBorderPane.getCenter());
@@ -165,10 +108,10 @@ public class StudentHomeController {
         catch (IOException e){e.printStackTrace();}
 
     }
-    public void handleLogOut(ActionEvent actionEvent) throws IOException {
+    public void handleLogOut() throws IOException {
         HandleLogOut.logOut(getClass(), btnLogOut);
     }
-    public void handleStudentHome(ActionEvent actionEvent) throws SQLException{
+    public void handleStudentHome() throws SQLException{
         StudentRepository.getInstance();
         FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource("/res/fxml/studentHomeView.fxml"));
         mainBorderPane.getChildren().remove(mainBorderPane.getCenter());

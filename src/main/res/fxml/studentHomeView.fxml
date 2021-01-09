@@ -132,7 +132,7 @@
                <children>
                                 <Label alignment="CENTER" prefHeight="81.0" prefWidth="152.0" style="-fx-background-color: #D6EAF8;" text="Current fine:" textFill="#0a0a0a">
                                     <font>
-                                        <Font size="14.0" />
+                                        <Font name="System Bold" size="14.0" />
                                     </font>
                                     <padding>
                                         <Insets right="5.0" />
@@ -148,7 +148,7 @@
                                 </Label>
                   <Label alignment="CENTER" prefHeight="120.0" prefWidth="158.0" style="-fx-background-color: #D6EAF8;" text="Status:" GridPane.rowIndex="1">
                      <font>
-                        <Font size="14.0" />
+                        <Font name="System Bold" size="14.0" />
                      </font>
                   </Label>
                   <Label fx:id="labelStatusStudent" prefHeight="134.0" prefWidth="669.0" text="ACTIVE" GridPane.columnIndex="1" GridPane.rowIndex="1">
