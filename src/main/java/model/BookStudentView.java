@@ -3,16 +3,16 @@ package model;
 import java.sql.Date;
 
 public class BookStudentView {
-        private String ISBN;
+    private String ISBN;
     private String Title;
-    private String Subject;
     private String Author;
+    private String Subject;
     private Date PublishDate;
     private String BorrowedStatus;
 
     public BookStudentView(){}
 
-    public BookStudentView( String isbn, String title, String subject, String author, Date publishData, String borrowedStatus) {
+    public BookStudentView( String isbn, String title, String author, String subject, Date publishData, String borrowedStatus) {
 
         setISBN(isbn);
         setTitle(title);

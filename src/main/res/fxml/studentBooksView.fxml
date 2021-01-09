@@ -7,7 +7,8 @@
 <?import javafx.scene.layout.*?>
 <?import javafx.scene.text.*?>
 
-<AnchorPane fx:id="studentMainAnchorPane" prefHeight="531.0" prefWidth="771.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.StudentBooksController">
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<AnchorPane fx:id="studentMainAnchorPane" prefHeight="531.0" prefWidth="771.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.StudentBooksController" stylesheets="@../css/student_view.css">
             <children>
                 <GridPane alignment="CENTER" layoutX="-1.0" prefHeight="700.0" prefWidth="1000.0">
                     <columnConstraints>
@@ -21,12 +22,36 @@
                     <children>
                         <TableView fx:id="studentTblBooksTable" prefHeight="291.0" prefWidth="771.0" GridPane.rowIndex="1">
                             <columns>
-                                <TableColumn prefWidth="75.0" style="-fx-background-color: #D6EAF8" text="ISBN" />
-                                <TableColumn prefWidth="341.0" style="-fx-background-color: #D6EAF8" text="Title" />
-                                <TableColumn prefWidth="243.0" style="-fx-background-color: #D6EAF8" text="Author" />
-                                <TableColumn prefWidth="105.0" style="-fx-background-color: #D6EAF8" text="Subject" />
-                                <TableColumn prefWidth="108.0" style="-fx-background-color: #D6EAF8" text="Publish Date" />
-                                <TableColumn prefWidth="127.0" style="-fx-background-color: #D6EAF8" text="Borred status" />
+                                <TableColumn prefWidth="120.0" text="ISBN">
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="ISBN" />
+                                    </cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="341.0" text="Title" >
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="Title" />
+                                    </cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="243.0" text="Author" >
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="Author" />
+                                    </cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="60.0" text="Subject" >
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="Subject" />
+                                    </cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="108.0" text="Publish Date" >
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="PublishDate" />
+                                    </cellValueFactory>
+                                </TableColumn>
+                                <TableColumn prefWidth="127.0" text="Borrowed status" >
+                                    <cellValueFactory>
+                                        <PropertyValueFactory property="BorrowedStatus" />
+                                    </cellValueFactory>
+                                </TableColumn>
                             </columns>
                         </TableView>
                         <HBox prefHeight="100.0" prefWidth="200.0">

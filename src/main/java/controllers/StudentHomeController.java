@@ -13,6 +13,7 @@ import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import model.Book;
 import model.BookStudentView;
+import model.IssuedBookRow;
 
 import java.io.IOException;
 import java.sql.*;
@@ -37,8 +38,11 @@ public class StudentHomeController {
     public Label labelIDStudent;
     @FXML
     private ChoiceBox<String> filterBooks;
+
     @FXML
-    private TableView<BookStudentView> studentTblBooksTable;
+    private TableView<IssuedBookRow> studentTblIssuedBooks;
+
+
     @FXML
     private Label labelFineStudent;
     @FXML
@@ -52,68 +56,22 @@ public class StudentHomeController {
     private IssuedBookRepository issuedBookRepository;
     ObservableList<BookStudentView> Books;
     private final Connection connection;
+
+
+
     public StudentHomeController() throws SQLException {
         connection = ConnectionManager.getConnection();
-        booksRepository=BooksRepository.getInstance();
+        booksRepository = BooksRepository.getInstance();
         userID=LoginController.getUserID();
     }
     public void initialize() throws SQLException {
         setInfo();
-        //setIssuedBooksByStudent();
-        //setCurrentFine();
-        //filterBooks();
-        //controlClick();
+        setIssuedBooksByStudent();
 
+        //setCurrentFine();
     }
-//    public void filterBooks() throws SQLException {
-//        String filterChoice;
-//        String[] ch = {"ISBN","Title","Author","Subject","Publish date","Borrowed status"};
-//        if(filterBooks!=null)
-//        {
-//            filterBooks.getSelectionModel().selectedIndexProperty().addListener(new ChangeListener<Number>() {
-//
-//                @Override
-//                public void changed(ObservableValue ov, Number value, Number new_value)
-//                {
-//                    filterChoice = ch[new_value.intValue()];
-//                }
-//            });
-//            //filterChoice=filterBooks.getValue();
-//            populateStudentBookView(filterChoice);
-//        }
-//    }
-//    public void getDescription(String ISBN) throws SQLException
-//    {
-//        ResultSet result;
-//        PreparedStatement preparedStatement;
-//        preparedStatement=connection.prepareStatement("SELECT * FROM Books WHERE ISBN=?");
-//        preparedStatement.setString(1,ISBN);
-//        result=preparedStatement.executeQuery();
-//        labelDescription.setText(result.getString(7));
-//    }
-//    public void controlClick() throws SQLException {
-//
-//        studentTblBooksTable.setRowFactory(tv -> {
-//            TableRow<BookStudentView> row = new TableRow<>();
-//            row.setOnMouseClicked(event -> {
-//                if (event.getClickCount() == 2 && (!row.isEmpty())) {
-//                    BookStudentView chooseBook = row.getItem();
-//                    try {
-//                        getDescription(chooseBook.getISBN());
-//                    } catch (SQLException throwables) {
-//                        throwables.printStackTrace();
-//                    }
-//                    if(chooseBook.getBorrowedStatus()=="Available")
-//                    {
-//                        btnReserve.setDisable(false);
-//                        // reserveBook(Student student);
-//                        //reserve option is not ready
-//                    }
-//                }
-//            });
-//            return row;
-//        });
-//    }
+
+
     public void setInfo() throws SQLException {
         ResultSet result;
         PreparedStatement preparedStatement;
@@ -127,56 +85,42 @@ public class StudentHomeController {
         }
     }
 
-//    public void populateStudentBookView(String filterChoice) throws SQLException
-//    {
-//
-//        Books=booksRepository.getBookWithBorrowedSt();
-//        switch (filterChoice) {
-//            case "ISBN": Books.stream().sorted(Comparator.comparing(BookStudentView::getISBN));break;
-//            case "Title":Books.stream().sorted(Comparator.comparing(BookStudentView::getTitle));break;
-//            case "Author":Books.stream().sorted(Comparator.comparing(BookStudentView::getAuthor));break;
-//            case "Borrowed status":Books.stream().sorted(Comparator.comparing(BookStudentView::getBorrowedStatus));break;
-//            case "Publish date":Books.stream().sorted(Comparator.comparing(BookStudentView::getPublishDate));break;
-//            case "Subject":Books.stream().sorted(Comparator.comparing(BookStudentView::getSubject));break;
-//            default:Books.stream().sorted(Comparator.comparing(BookStudentView::getISBN));break;
-//        }
-//        studentTblBooksTable.setItems(Books);
-//          controlClick();
-//    }
 
+    public void setIssuedBooksByStudent() throws SQLException {
+        ObservableList<IssuedBookRow> issuedBooksRows = FXCollections.observableArrayList();
+        ObservableList<IssuedBook> issuedBooks= FXCollections.observableArrayList();
 
-//    public void setIssuedBooksByStudent() throws SQLException {
-//        ObservableList<issuedBooksRow> issuedBooksRows= FXCollections.observableArrayList();
-//        ObservableList<IssuedBook> issuedBooks= FXCollections.observableArrayList();
-//            int issuedBookId;
-//            ResultSet result;
-//            PreparedStatement preparedStatement;
-//            ResultSet resultForID;
-//            PreparedStatement preparedStatementForID;
-//            issuedBooks = issuedBookRepository.getByUser(userID);
-//            for (int i = 0; i < issuedBooks.size(); i++) {
-//
-//                issuedBookId = issuedBooks.get(i).getIssueBookId();
-//                //taking data from Books database
-//                preparedStatement = connection.prepareStatement("Select * FROM Books Where BookID = ?");
-//                preparedStatement.setInt(1, issuedBookId);
-//                result = preparedStatement.executeQuery();
-//                if(result.next()) {
-//                    //taking data from IssuedBooks database
-//                    preparedStatementForID = connection.prepareStatement("Select * FROM IssuedBooks Where BookID = ?");
-//                    preparedStatementForID.setInt(1, issuedBookId);
-//                    resultForID = preparedStatementForID.executeQuery();
-//                    //setting them to columns
-//                    if(resultForID.next()) {
-//                        issuedBooksRows.add(new issuedBooksRow(result.getString(2), result.getString(3), result.getString(5), resultForID.getDate(3)));
-//                    }
-//            }
-//               if(studentTblIssuedBooks!=null) {
-//                    studentTblIssuedBooks.setItems(issuedBooksRows);
-//                }
-//        }
-//
-//    }
+            int issuedBookId;
+            ResultSet result;
+            PreparedStatement preparedStatement;
+            ResultSet resultForID;
+            PreparedStatement preparedStatementForID;
+
+            issuedBooks = IssuedBookRepository.getInstance().getByUser(userID);
+
+            for (int i = 0; i < issuedBooks.size(); i++) {
+
+                issuedBookId = issuedBooks.get(i).getIssueBookId();
+                //taking data from Books database
+                preparedStatement = connection.prepareStatement("Select * FROM Books Where BookID = ?");
+                preparedStatement.setInt(1, issuedBookId);
+                result = preparedStatement.executeQuery();
+                if(result.next()) {
+                    //taking data from IssuedBooks database
+                    preparedStatementForID = connection.prepareStatement("Select * FROM IssuedBooks Where BookID = ?");
+                    preparedStatementForID.setInt(1, issuedBookId);
+                    resultForID = preparedStatementForID.executeQuery();
+                    //setting them to columns
+                    if(resultForID.next()) {
+                        issuedBooksRows.add(new IssuedBookRow(result.getString(2), result.getString(3), result.getString(5), resultForID.getDate(3)));
+                    }
+            }
+               if(studentTblIssuedBooks!=null) {
+                    studentTblIssuedBooks.setItems(issuedBooksRows);
+                }
+        }
+
+    }
 
 
 //    public void setCurrentFine() throws SQLException
@@ -235,41 +179,4 @@ public class StudentHomeController {
         catch (IOException e){e.printStackTrace();}
 
     }
-
-}
-// class for adding rows of issued books in student's information
-class issuedBooksRow
-{
-
-    private String ISBN;
-    private String Title;
-    private String Author;
-    private Date IssuedDate;
-
-    public issuedBooksRow(){}
-
-    public issuedBooksRow(String isbn, String title, String author, Date issuedDate) {
-
-        setISBN(isbn);
-        setTitle(title);
-        setAuthor(author);
-        setIssuedDate(issuedDate);
-    }
-
-    public String getISBN() { return ISBN; }
-
-    public void setISBN(String ISBN) { this.ISBN = ISBN; }
-
-    public String getTitle() { return Title; }
-
-    public void setTitle(String title) { this.Title = title; }
-
-    public String getAuthor() { return Author; }
-
-    public void setAuthor(String author) { this.Author = author; }
-
-    public Date getIssuedDate() { return IssuedDate; }
-
-    public void setIssuedDate(Date issuedDate) { this.IssuedDate = issuedDate; }
-
 }
