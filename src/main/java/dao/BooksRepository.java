@@ -12,18 +12,21 @@ public class BooksRepository {
     private final PreparedStatement getAllStmt;
     private final PreparedStatement updateStmt;
     private final PreparedStatement getById;
+    private final PreparedStatement deleteStmt;
 
     private BooksRepository() throws SQLException {
         String GET_ALL =   "SELECT * FROM Books";
         String GET_BY_ID = "SELECT * FROM Books WHERE bookID= ?";
         String CREATE_QUERY = "INSERT INTO Books(BookID, ISBN, Title, Subject, Author, PublishDate) VALUES (?, '?', '?', '?', '?', '?')";
         String UPDATE_QUERY = "UPDATE Books SET BookID = ?, ISBN = ?, Title = ?, Subject = ? , Author = ?, PublishDate = ? WHERE BookID = ?";
+        String DELETE_QUERY = "DELETE FROM Books WHERE BookID=?";
 
         Connection conn = ConnectionManager.getConnection();
         this.createStmt = conn.prepareStatement(CREATE_QUERY);
         this.getAllStmt = conn.prepareStatement(GET_ALL);
         this.updateStmt = conn.prepareStatement(UPDATE_QUERY);
         this.getById    = conn.prepareStatement(GET_BY_ID);
+        this.deleteStmt = conn.prepareStatement(DELETE_QUERY);
     }
 
     public static BooksRepository getInstance() throws SQLException {
@@ -92,7 +95,11 @@ public class BooksRepository {
         updateStmt.setString(5, author);
         updateStmt.setDate  (6, date);
         updateStmt.setInt   (7, oldBookId);
-
         updateStmt.executeUpdate();
+    }
+
+    public void deleteBook(int bookId) throws SQLException {
+        deleteStmt.setInt(1, bookId);
+        deleteStmt.executeUpdate();
     }
 }

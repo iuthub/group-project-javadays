@@ -66,11 +66,11 @@ public class LoginController {
 
             assert currentUser != null;
             int roleType = currentUser.getRole().getValue();
-            System.out.println(roleType);
             
             switch (roleType) {
                 case 0:
                     root = FXMLLoader.load(getClass().getResource("/res/fxml/adminWindow.fxml"));
+                    AdminWindowController.setCurrentUser(currentUser);
                     break;
                 case 1:
                     root = FXMLLoader.load(getClass().getResource("/res/fxml/librarianWindow.fxml"));

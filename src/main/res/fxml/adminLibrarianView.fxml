@@ -30,9 +30,9 @@
     </Label>
     <ChoiceBox fx:id="choiceBoxSearchType" layoutX="109.0" layoutY="33.0" prefHeight="36.0" prefWidth="112.0" />
     <TextField fx:id="searchField" layoutX="235.0" layoutY="32.0" prefHeight="25.0" prefWidth="340.0" />
-    <Button onAction="#search" defaultButton="true" layoutX="592.0" layoutY="29.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="48.0">
+    <Button onAction="#search" defaultButton="true" layoutX="592.0" styleClass="submit-button" layoutY="29.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="48.0" style="-fx-background-radius: 30px;">
         <graphic>
-            <FontAwesomeIconView glyphName="SEARCH" glyphSize="20" />
+            <FontAwesomeIconView glyphName="SEARCH" glyphSize="20" styleClass="white-glyph" />
         </graphic>
     </Button>
 
@@ -63,9 +63,9 @@
     </TableView>
     <Pagination fx:id="pagination" layoutX="21.0" layoutY="658.0" maxPageIndicatorCount="5" pageCount="10" prefHeight="50.0" prefWidth="602.0" />
 
-    <Button fx:id="btnAdd" onAction="#createLibrarian" layoutX="756.0" layoutY="31.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="180.0" text="Add new librarian">
+    <Button fx:id="btnAdd" onAction="#createLibrarian" styleClass="submit-button" layoutX="756.0" layoutY="31.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="180.0" text="Add new librarian">
         <graphic>
-            <FontAwesomeIconView glyphName="USER_PLUS" glyphSize="20" />
+            <FontAwesomeIconView glyphName="USER_PLUS" glyphSize="20" styleClass="white-glyph" />
         </graphic>
     </Button>
 
@@ -73,7 +73,7 @@
         <Image url="@../img/profile_male.png" />
     </ImageView>
 
-    <Button fx:id="btnBookHistory" disable="true" layoutX="683.0" layoutY="601.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="307.0" text="View book history" />
+    <Button fx:id="btnBookHistory" styleClass="submit-button" disable="true" layoutX="683.0" layoutY="601.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="307.0" text="View book history" />
     <Button fx:id="btnModify" onAction="#modifyLibrarian" styleClass="secondary-button" disable="true" layoutX="684.0" layoutY="658.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="171.0" text="Modify" />
     <Button fx:id="btnDelete" onAction="#deleteLibrarian" styleClass="delete-button" disable="true" layoutX="878.0" layoutY="658.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="112.0" text="Delete" />
 

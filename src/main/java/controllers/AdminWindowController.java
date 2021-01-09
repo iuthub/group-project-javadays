@@ -24,6 +24,7 @@ public class AdminWindowController {
 
     public static void setCurrentUser(User currentUser) {
         AdminWindowController.currentUser = currentUser;
+        System.out.println(currentUser.getFirstName());
     }
 
     public void handleStudentView(ActionEvent actionEvent) {

@@ -26,9 +26,14 @@ public class LibrarianEditBooksController {
     @FXML public TableView<Book> tblBooksTable;
     @FXML public VBox mainVBox;
     @FXML public Pagination pagination;
+    @FXML public BooksRepository booksRepository;
 
     private ObservableList<Book> tableData;
-    public static Book selectedBook;
+    public Book selectedBook;
+
+    public LibrarianEditBooksController() throws SQLException {
+        booksRepository = BooksRepository.getInstance();
+    }
 
     void handleTableItemSelection(Book book) {
         if (book != null) {
@@ -88,10 +93,11 @@ public class LibrarianEditBooksController {
 
     @FXML
     void handleDeleteButton(Event e) throws SQLException {
-        var query = String.format("DELETE FROM Books WHERE BookID=%d", selectedBook.getBookID());
-        ConnectionManager.getConnection().prepareStatement(query).executeUpdate();
-        populateTable();
+        if (selectedBook != null) {
+            booksRepository.deleteBook(selectedBook.getBookID());
+        }
         selectedBook = null;
+        populateTable();
     }
 
     void populateTable() throws SQLException  {
