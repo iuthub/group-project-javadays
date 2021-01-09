@@ -2,18 +2,17 @@ package controllers;
 
 import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Optional;
 
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Pagination;
-import javafx.scene.control.TabPane;
-import javafx.scene.control.TableView;
+import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
-import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
 import model.Book;
@@ -22,14 +21,11 @@ import dao.ConnectionManager;
 
 public class LibrarianEditBooksController {
     @FXML public AnchorPane mainAnchorPane;
-    @FXML public TabPane booksTabPane;
     @FXML public TableView<Book> tblBooksTable;
-    @FXML public VBox mainVBox;
-    @FXML public Pagination pagination;
     @FXML public BooksRepository booksRepository;
 
     private ObservableList<Book> tableData;
-    public Book selectedBook;
+    private Book selectedBook;
 
     public LibrarianEditBooksController() throws SQLException {
         booksRepository = BooksRepository.getInstance();
@@ -92,9 +88,42 @@ public class LibrarianEditBooksController {
     }
 
     @FXML
-    void handleDeleteButton(Event e) throws SQLException {
+    void handleDeleteButton(Event event) throws SQLException {
         if (selectedBook != null) {
-            booksRepository.deleteBook(selectedBook.getBookID());
+            try {
+                var dialog = new Dialog<ButtonType>();
+                dialog.initOwner(tblBooksTable.getScene().getWindow());
+                dialog.setTitle("Delete Book");
+                dialog.setResizable(true);
+
+                var fxmlLoader = new FXMLLoader(getClass().getResource("/res/fxml/librarianDeleteBookDialog.fxml"));
+
+                try {
+                    dialog.getDialogPane().setContent(fxmlLoader.load());
+
+                    var controller = fxmlLoader.<LibrarianDeleteBookDialogController>getController();
+                    controller.setBook(selectedBook);
+                } catch (IOException ioException) {
+                    System.err.println(ioException.getMessage());
+                }
+
+                dialog.getDialogPane().getButtonTypes().add(ButtonType.YES);
+                dialog.getDialogPane().getButtonTypes().add(ButtonType.NO);
+
+                Optional<ButtonType> result = dialog.showAndWait();
+
+                if (result.isPresent() && result.get() == ButtonType.YES) {
+                    booksRepository.deleteBook(selectedBook.getBookID());
+                } else if (result.isPresent() && result.get() == ButtonType.NO) {
+                    dialog.close();
+                }
+            } catch(SQLException sqlException) {
+                Alert alert = new Alert(Alert.AlertType.ERROR);
+                alert.setTitle("Error Deleting Book");
+                alert.setHeaderText(String.format("Error while deleting the selected book with Book ID: %d", selectedBook.getBookID()));
+                alert.setContentText("This might occur because the book is currently on loan.");
+                alert.showAndWait();
+            }
         }
         selectedBook = null;
         populateTable();
