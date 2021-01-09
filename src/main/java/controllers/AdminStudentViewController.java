@@ -190,7 +190,7 @@ public class AdminStudentViewController {
             dialog.setResizable(false);
 
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("/fxml/adminAddModifyDialog.fxml"));
+            fxmlLoader.setLocation(getClass().getResource("/res/fxml/adminAddModifyDialog.fxml"));
 
             try {
                 dialog.getDialogPane().setContent(fxmlLoader.load());

@@ -19,42 +19,50 @@ public class LibrarianWindowController {
     @FXML public GridPane studentsGridPane;
     @FXML public GridPane registrationPanelGridPane;
     @FXML public GridPane journalGridPane;
+    @FXML public BorderPane mainBorderPane;
 
     @FXML Button btnLogOut;
 
     public void handleHome(ActionEvent actionEvent) {
-        studentsGridPane.setVisible(false);
-        editBooksGridPane.setVisible(false);
-        registrationPanelGridPane.setVisible(false);
-        journalGridPane.setVisible(false);
+        try {
+            HandleChangeView.handleChangeScene(getClass(), mainBorderPane, "/res/fxml/journalView.fxml");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void handleRegistrationPanel(ActionEvent actionEvent) {
-        studentsGridPane.setVisible(false);
-        editBooksGridPane.setVisible(false);
-        registrationPanelGridPane.setVisible(true);
-        journalGridPane.setVisible(false);
+        try {
+            HandleChangeView.handleChangeScene(getClass(), mainBorderPane, "/res/fxml/registrationView.fxml");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void handleJournal(ActionEvent actionEvent) {
-        studentsGridPane.setVisible(false);
-        editBooksGridPane.setVisible(false);
-        registrationPanelGridPane.setVisible(false);
-        journalGridPane.setVisible(true);
+
+        try {
+            HandleChangeView.handleChangeScene(getClass(), mainBorderPane, "/res/fxml/journalView.fxml");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void handleEditBooks(ActionEvent actionEvent) {
-        studentsGridPane.setVisible(false);
-        editBooksGridPane.setVisible(true);
-        registrationPanelGridPane.setVisible(false);
-        journalGridPane.setVisible(false);
+        try {
+            HandleChangeView.handleChangeScene(getClass(), mainBorderPane, "/res/fxml/librarianEditBooksView.fxml");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void handleStudents(ActionEvent actionEvent) {
-        studentsGridPane.setVisible(true);
-        editBooksGridPane.setVisible(false);
-        registrationPanelGridPane.setVisible(false);
-        journalGridPane.setVisible(false);
+
+        try {
+            HandleChangeView.handleChangeScene(getClass(), mainBorderPane, "/res/fxml/adminStudentView.fxml");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void handleLogOut(ActionEvent actionEvent) throws IOException {

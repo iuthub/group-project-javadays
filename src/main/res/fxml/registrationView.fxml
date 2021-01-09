@@ -72,18 +72,37 @@
                         <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
-                        <Label text="ID:" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                        <TextArea fx:id="IdField" prefHeight="200.0" prefWidth="200.0" GridPane.columnIndex="1">
-                            <GridPane.margin>
-                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                            </GridPane.margin>
-                        </TextArea>
-                        <Label text="Due date:" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
-                        <Label text="Choosen books" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="2">
-                            <GridPane.margin>
-                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                            </GridPane.margin>
-                        </Label>
+                        <GridPane hgap="5" vgap="10" alignment="CENTER" GridPane.hgrow="ALWAYS">
+                            <columnConstraints>
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                                <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
+                            </columnConstraints>
+                            <Label text="ID:" GridPane.columnIndex="0" GridPane.rowIndex="0" />
+                            <TextField fx:id="IdField" GridPane.columnIndex="1" GridPane.rowIndex="0">
+    <!--                            <GridPane.margin>-->
+    <!--                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />-->
+    <!--                            </GridPane.margin>-->
+                            </TextField>
+                            <Label text="Due date:" GridPane.columnIndex="0" GridPane.rowIndex="1" />
+                            <DatePicker fx:id="dueDatePicker" prefHeight="26.0" prefWidth="174.0" GridPane.columnIndex="1" GridPane.rowIndex="1">
+    <!--                            <GridPane.margin>-->
+    <!--                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />-->
+    <!--                            </GridPane.margin>-->
+                            </DatePicker>
+
+
+                            <Label text="Chosen books" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="2">
+                                <GridPane.margin>
+                                    <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
+                                </GridPane.margin>
+                            </Label>
+                     <rowConstraints>
+                        <RowConstraints />
+                        <RowConstraints />
+                        <RowConstraints />
+                     </rowConstraints>
+                        </GridPane>
+
                         <TableView fx:id="choosedBooksTable" prefHeight="200.0" prefWidth="200.0" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER">
                             <columns>
                                 <TableColumn minWidth="53.0" prefWidth="63.0" text="BookID">
@@ -106,12 +125,8 @@
                                 <Insets bottom="10.0" left="10.0" right="10.0" top="10.0" />
                             </GridPane.margin>
                         </TableView>
-                        <DatePicker fx:id="dueDatePicker" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="1">
-                            <GridPane.margin>
-                                <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
-                            </GridPane.margin>
-                        </DatePicker>
-                        <Button mnemonicParsing="false" onAction="#issueHandler" text="Issue" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
+
+                        <Button mnemonicParsing="false" onAction="#issueHandler" text="Issue" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" styleClass="submit-button" />
                     </children>
                     <GridPane.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />

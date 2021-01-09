@@ -25,7 +25,7 @@ public class LibrarianRegistrationController
     @FXML
     public TableView<Book> choosedBooksTable;
     @FXML
-    public TextArea IdField;
+    public TextField IdField;
     @FXML
     public DatePicker dueDatePicker;
     @FXML

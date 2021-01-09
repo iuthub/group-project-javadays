@@ -5,9 +5,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import model.User;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 public class AdminWindowController {
     private static User currentUser;
@@ -22,32 +25,56 @@ public class AdminWindowController {
         return currentUser;
     }
 
+    @FXML
+    public void initialize() {
+    }
+
     public static void setCurrentUser(User currentUser) {
         AdminWindowController.currentUser = currentUser;
         System.out.println(currentUser.getFirstName());
     }
 
-    public void handleStudentView(ActionEvent actionEvent) {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/res/fxml/adminStudentView.fxml"));
-        mainBorderPane.getChildren().remove(mainBorderPane.getCenter());
+    public void handleHomeView(ActionEvent actionEvent) {
+
         try {
-            mainBorderPane.setCenter(fxmlLoader.load());
+            HandleChangeView.handleChangeScene(getClass(), mainBorderPane, "/res/fxml/adminStudentView.fxml");
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+    }
+
+    public void handleStudentView(ActionEvent actionEvent) {
+
+        try {
+            HandleChangeView.handleChangeScene(getClass(), mainBorderPane, "/res/fxml/adminStudentView.fxml");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
     }
 
     public void handleLibrarianView(ActionEvent actionEvent) {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/res/fxml/adminLibrarianView.fxml"));
-        mainBorderPane.getChildren().remove(mainBorderPane.getCenter());
         try {
-            mainBorderPane.setCenter(fxmlLoader.load());
+            HandleChangeView.handleChangeScene(getClass(), mainBorderPane, "/res/fxml/adminLibrarianView.fxml");
         } catch (IOException e) {
             e.printStackTrace();
         }
+//        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/res/fxml/adminLibrarianView.fxml"));
+//        mainBorderPane.getChildren().remove(mainBorderPane.getCenter());
+//        try {
+//            mainBorderPane.setCenter(fxmlLoader.load());
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
     }
 
     public void handleBookView(ActionEvent actionEvent) {
+        try {
+            HandleChangeView.handleChangeScene(getClass(), mainBorderPane, "/res/fxml/adminLibrarianView.fxml");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void handleLogOut(ActionEvent actionEvent) throws IOException {
