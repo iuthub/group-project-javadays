@@ -97,6 +97,7 @@
     </left>
 
     <center>
+        <fx:include source="adminHomeView.fxml"/>
 <!--        <GridPane fx:id="adminStudentViewGridPane" visible="false">-->
 <!--            <fx:include source="adminStudentView.fxml" GridPane.rowIndex="0" GridPane.columnIndex="0"/>-->
 <!--        </GridPane>-->

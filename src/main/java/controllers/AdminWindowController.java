@@ -26,31 +26,36 @@ public class AdminWindowController {
 
     public static void setCurrentUser(User currentUser) {
         AdminWindowController.currentUser = currentUser;
-        System.out.println(currentUser.getFirstName());
     }
 
-    public void handleHomeView(ActionEvent actionEvent) {
+    public void initialize() {
+        handleHomeView();
+    }
 
+    public void handleHomeView() {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/res/fxml/adminHomeView.fxml"));
+        mainBorderPane.getChildren().remove(mainBorderPane.getCenter());
         try {
-            HandleChangeView.handleChangeScene(getClass(), mainBorderPane, "/res/fxml/adminStudentView.fxml");
+            mainBorderPane.setCenter(fxmlLoader.load());
         } catch (IOException e) {
             e.printStackTrace();
         }
+        AdminHomeViewController controller = fxmlLoader.getController();
+        controller.setAdminId(getCurrentUser().getUserId());
 
+        try {
+            controller.init();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
+        }
     }
 
     public void handleStudentView(ActionEvent actionEvent) {
-
         try {
             HandleChangeView.handleChangeScene(getClass(), mainBorderPane, "/res/fxml/adminStudentView.fxml");
         } catch (IOException e) {
             e.printStackTrace();
         }
-
-        AdminHomeViewController controller = fxmlLoader.getController();
-        controller.setAdminId("U1410000");
-        controller.init();
-
     }
 
     public void handleLibrarianView(ActionEvent actionEvent) {
@@ -63,7 +68,7 @@ public class AdminWindowController {
 
     public void handleBookView(ActionEvent actionEvent) {
         try {
-            HandleChangeView.handleChangeScene(getClass(), mainBorderPane, "/res/fxml/adminLibrarianView.fxml");
+            HandleChangeView.handleChangeScene(getClass(), mainBorderPane, "/res/fxml/librarianEditBooksView.fxml");
         } catch (IOException e) {
             e.printStackTrace();
         }
