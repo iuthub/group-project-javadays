@@ -67,13 +67,18 @@ public class LoginController {
             int roleType = currentUser.getRole().getValue();
 
             switch (roleType) {
-                case 0 -> {
+                case 0:
                     AdminWindowController.setCurrentUser(currentUser);
                     root = FXMLLoader.load(getClass().getResource("/res/fxml/adminWindow.fxml"));
-                }
-                case 1 -> root = FXMLLoader.load(getClass().getResource("/res/fxml/librarianWindow.fxml"));
-                case 2 -> root = FXMLLoader.load(getClass().getResource("/res/fxml/studentWindow.fxml"));
-                default -> throw new IllegalStateException("Unexpected value: " + roleType);
+                    break;
+                case 1:
+                    root = FXMLLoader.load(getClass().getResource("/res/fxml/librarianWindow.fxml"));
+                    break;
+                case 2:
+                    root = FXMLLoader.load(getClass().getResource("/res/fxml/studentWindow.fxml"));
+                    break;
+                default:
+                    throw new IllegalStateException("Unexpected value: " + roleType);
             }
             
             Scene mainAppScene = new Scene(root, 1280, 720);
