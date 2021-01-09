@@ -22,7 +22,7 @@
             <VBox styleClass="img-logo">
                 <ImageView fitWidth="200" preserveRatio="true"><Image url="@../img/logo.png"/></ImageView>
             </VBox>
-            <Button text="Home">
+            <Button text="Home" onAction="#handleHomeView">
                 <graphic>
                     <GridPane styleClass="menuGridPane">
                         <columnConstraints>

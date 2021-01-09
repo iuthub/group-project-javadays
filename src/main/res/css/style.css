@@ -42,7 +42,6 @@
 .button {
     -fx-background-color: #0b67b2;
     -fx-text-fill: white;
-    -fx-background-radius: 22px 22px 22px 22px;
 }
 
 .button: hover {

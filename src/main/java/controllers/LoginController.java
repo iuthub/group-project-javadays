@@ -34,7 +34,6 @@ public class LoginController {
         String password = txtPassword.getText();
         boolean status = false;
 
-
         if (!userID.equals("") && !password.equals("")){
             if (userID.matches("U[\\d]{7}")){
                 try {
