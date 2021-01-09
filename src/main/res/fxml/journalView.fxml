@@ -85,9 +85,9 @@
                 </GridPane.margin>
             </TableView>
         </GridPane>
-        <Button mnemonicParsing="false" onAction="#refreshHandle" text="Refresh List" GridPane.halignment="CENTER"
+        <Button mnemonicParsing="false" styleClass="secondary-button" onAction="#refreshHandle" text="Refresh List" GridPane.halignment="CENTER"
                 GridPane.rowIndex="1"/>
-        <Button mnemonicParsing="false" text="Return" onAction="#returnIssuedBook" GridPane.columnIndex="1"
+        <Button mnemonicParsing="false" styleClass="submit-button" text="Return" onAction="#returnIssuedBook" GridPane.columnIndex="1"
                 GridPane.halignment="CENTER" GridPane.rowIndex="1"/>
     </GridPane>
 </AnchorPane>

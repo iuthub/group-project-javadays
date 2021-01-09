@@ -17,9 +17,9 @@
             AnchorPane.rightAnchor="10.0">
 
         <HBox VBox.vgrow="NEVER" spacing="15.0">
-            <Button text="Create" onAction="#handleCreateButton"/>
-            <Button text="Update" onAction="#handleUpdateButton"/>
-            <Button text="Delete" onAction="#handleDeleteButton"/>
+            <Button text="Create" onAction="#handleCreateButton" styleClass="submit-button"/>
+            <Button text="Update" onAction="#handleUpdateButton" styleClass="secondary-button"/>
+            <Button text="Delete" onAction="#handleDeleteButton" styleClass="delete-button"/>
         </HBox>
 
         <TableView fx:id="tblBooksTable" VBox.vgrow="ALWAYS">

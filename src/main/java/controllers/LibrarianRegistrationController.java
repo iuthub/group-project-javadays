@@ -25,9 +25,11 @@ public class LibrarianRegistrationController
     @FXML
     public TableView<Book> choosedBooksTable;
     @FXML
-    public TextArea IdField;
+    public TextField IdField;
     @FXML
     public DatePicker dueDatePicker;
+    @FXML
+    public Label resultLabel;
 
     private final BooksRepository bookRepository;
     private final IssuedBookRepository issuedBookRepository;
@@ -83,7 +85,18 @@ public class LibrarianRegistrationController
     private void issueHandler() throws SQLException {
         ObservableList<Book> choosedBooks = choosedBooksTable.getItems();
 
-
+        if(IdField.getText()==null){
+            resultLabel.setText("Operation canceled. Please set user ID");
+            return;
+        }
+        else if(dueDatePicker.getValue()==null){
+            resultLabel.setText("Operation canceled. Please set due date");
+            return;
+        }
+        else if(choosedBooksTable.getItems().stream().count()==0) {
+            resultLabel.setText("Operation canceled. You didn't choose books");
+            return;
+        }
 
         for (Book choosedBook:choosedBooks)
         {
@@ -93,11 +106,20 @@ public class LibrarianRegistrationController
 
             IssuedBook issuedBook = new IssuedBook(choosedBook.getBookID(), IdField.getText(), Date.valueOf(issuedDate), Date.valueOf(returnDate));
 
-            issuedBookRepository.addIssuedBook(issuedBook);
+            try {
+                issuedBookRepository.addIssuedBook(issuedBook);
+            }
+            catch (SQLException e){
+                resultLabel.setText("This user already taken this book! Operation canceled");
+                return;
+            }
         }
 
-        IdField.setText(" ");
+        resultLabel.setText("Book(s) were successfully registered by student");
+
+        IdField.setText(null);
         choosedBooksTable.getItems().clear();
+        dueDatePicker.setValue(null);
     }
     // endregion
 

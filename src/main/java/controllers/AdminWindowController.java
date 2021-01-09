@@ -5,6 +5,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
+import javafx.scene.layout.GridPane;
 import model.User;
 
 import java.io.IOException;
@@ -25,42 +26,47 @@ public class AdminWindowController {
 
     public static void setCurrentUser(User currentUser) {
         AdminWindowController.currentUser = currentUser;
+        System.out.println(currentUser.getFirstName());
     }
 
-    public void handleHomeView() throws SQLException {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/res/fxml/adminHomeView.fxml"));
-        mainBorderPane.getChildren().remove(mainBorderPane.getCenter());
+    public void handleHomeView(ActionEvent actionEvent) {
+
         try {
-            mainBorderPane.setCenter(fxmlLoader.load());
+            HandleChangeView.handleChangeScene(getClass(), mainBorderPane, "/res/fxml/adminStudentView.fxml");
         } catch (IOException e) {
             e.printStackTrace();
         }
-        AdminHomeViewController controller = fxmlLoader.getController();
-        controller.setAdminId("U1410000");
-        controller.init();
+
     }
 
     public void handleStudentView(ActionEvent actionEvent) {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/res/fxml/adminStudentView.fxml"));
-        mainBorderPane.getChildren().remove(mainBorderPane.getCenter());
+
         try {
-            mainBorderPane.setCenter(fxmlLoader.load());
+            HandleChangeView.handleChangeScene(getClass(), mainBorderPane, "/res/fxml/adminStudentView.fxml");
         } catch (IOException e) {
             e.printStackTrace();
         }
+
+        AdminHomeViewController controller = fxmlLoader.getController();
+        controller.setAdminId("U1410000");
+        controller.init();
+
     }
 
     public void handleLibrarianView(ActionEvent actionEvent) {
-        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/res/fxml/adminLibrarianView.fxml"));
-        mainBorderPane.getChildren().remove(mainBorderPane.getCenter());
-        try {
-            mainBorderPane.setCenter(fxmlLoader.load());
+       try {
+            HandleChangeView.handleChangeScene(getClass(), mainBorderPane, "/res/fxml/adminLibrarianView.fxml");
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
     public void handleBookView(ActionEvent actionEvent) {
+        try {
+            HandleChangeView.handleChangeScene(getClass(), mainBorderPane, "/res/fxml/adminLibrarianView.fxml");
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
     }
 
     public void handleLogOut(ActionEvent actionEvent) throws IOException {
