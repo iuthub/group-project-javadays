@@ -68,7 +68,7 @@
                     </GridPane>
                 </graphic>
             </Button>
-            <Button text="Settings">
+            <Button text="Settings" onAction="#handleSettingsView">
                 <graphic>
                     <GridPane styleClass="menuGridPane">
                         <columnConstraints>
