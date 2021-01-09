@@ -7,7 +7,7 @@ import javafx.scene.control.*;
 import model.User;
 import java.sql.SQLException;
 
-public class AdminStudentAddModifyController {
+public class AdminAddModifyDialogController {
     @FXML private TextField txtID;
     @FXML private TextField txtFirstName;
     @FXML private TextField txtLastName;

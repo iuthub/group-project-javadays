@@ -3,6 +3,8 @@ package dao;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Book;
+
+import javax.xml.transform.Result;
 import java.sql.*;
 
 public class BooksRepository {
@@ -12,10 +14,12 @@ public class BooksRepository {
     private final PreparedStatement getAllStmt;
     private final PreparedStatement updateStmt;
     private final PreparedStatement getById;
+    private final PreparedStatement getCountStmt;
 
     private BooksRepository() throws SQLException {
         String GET_ALL =   "SELECT * FROM Books";
         String GET_BY_ID = "SELECT * FROM Books WHERE bookID= ?";
+        String COUNT = "SELECT COUNT(*) FROM Books";
         String CREATE_QUERY = "INSERT INTO Books(BookID, ISBN, Title, Subject, Author, PublishDate) VALUES (?, '?', '?', '?', '?', '?')";
         String UPDATE_QUERY = "UPDATE Books SET BookID = ?, ISBN = ?, Title = ?, Subject = ? , Author = ?, PublishDate = ? WHERE BookID = ?";
 
@@ -24,6 +28,7 @@ public class BooksRepository {
         this.getAllStmt = conn.prepareStatement(GET_ALL);
         this.updateStmt = conn.prepareStatement(UPDATE_QUERY);
         this.getById    = conn.prepareStatement(GET_BY_ID);
+        this.getCountStmt = conn.prepareStatement(COUNT);
     }
 
     public static BooksRepository getInstance() throws SQLException {
@@ -31,6 +36,12 @@ public class BooksRepository {
             instance = new BooksRepository();
         }
         return instance;
+    }
+
+    public int getTotalCount() throws SQLException{
+        ResultSet r = getCountStmt.executeQuery();
+        r.next();
+        return r.getInt(1);
     }
 
     public ObservableList<Book> getAll() throws SQLException {
