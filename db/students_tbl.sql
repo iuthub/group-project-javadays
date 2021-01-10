@@ -1,3 +1,4 @@
+DROP TABLE Students;
 
 CREATE TABLE Students (
     UserID VARCHAR(8) NOT NULL REFERENCES Users(UserID),
@@ -7,3 +8,4 @@ CREATE TABLE Students (
     PRIMARY KEY (UserID)
 );
 
+INSERT INTO Students(UserID) SELECT UserID FROM Users WHERE Role = 2;

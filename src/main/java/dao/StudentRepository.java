@@ -5,10 +5,7 @@ import javafx.collections.ObservableList;
 import model.Student;
 import model.User;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class StudentRepository {
     private static StudentRepository instance;
@@ -39,10 +36,21 @@ public class StudentRepository {
                     result.getInt("status") == 1
             );
         }
-
         return null;
     }
 
+//    public void updateStudents() throws SQLException {
+//
+//        ObservableList<User> users;
+//        PreparedStatement updateStudentsStmt = this.connection.prepareStatement("INSERT INTO Students(UserID) VALUES(?)");
+//
+//        users = UsersRepository.getInstance().getAll(Role.STUDENT);
+//
+//        for (User user : users) {
+//            updateStudentsStmt.setString(1, user.getUserId());
+//            updateStudentsStmt.executeUpdate();
+//        }
+//    }
 
 
     //Returns student who borrowed book

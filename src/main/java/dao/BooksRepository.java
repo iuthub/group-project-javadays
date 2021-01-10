@@ -52,6 +52,12 @@ public class BooksRepository {
         return instance;
     }
 
+    public int getTotalCount() throws SQLException{
+        ResultSet r = getCountStmt.executeQuery();
+        r.next();
+        return r.getInt(1);
+    }
+
     public ObservableList<Book> getAll() throws SQLException {
         ResultSet rs = getAllStmt.executeQuery();
         ObservableList<Book> results = FXCollections.observableArrayList();

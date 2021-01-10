@@ -8,6 +8,9 @@ import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.layout.BorderPane;
 import model.IssuedBookRow;
+import model.Student;
+import model.User;
+
 import java.io.IOException;
 import java.sql.*;
 
@@ -34,28 +37,29 @@ public class StudentHomeController {
     private BooksRepository booksRepository;
     private final Connection connection;
 
-
-
     public StudentHomeController() throws SQLException {
         connection = ConnectionManager.getConnection();
         booksRepository = BooksRepository.getInstance();
         userID=LoginController.getUserID();
     }
     public void initialize() throws SQLException {
+//        StudentRepository.getInstance().updateStudents();
         setInfo();
         setIssuedBooksByStudent();
     }
 
     public void setInfo() throws SQLException {
-        ResultSet result;
-        PreparedStatement preparedStatement;
-        preparedStatement = connection.prepareStatement("Select * FROM Users Where UserId = ?");
-        preparedStatement.setString(1, userID);
-        result=preparedStatement.executeQuery();
-        if (result.next()&&labelNameStudent!=null) {
-            labelNameStudent.setText(result.getString("FirstName"));
-            labelSurnameStudent.setText(result.getString("LastName"));
+        User user = UsersRepository.getInstance().get(userID);
+        if (user != null && labelNameStudent != null) {
+            labelNameStudent.setText(user.getFirstName());
+            labelSurnameStudent.setText(user.getLastName());
             labelIDStudent.setText(userID);
+        }
+
+        Student student = StudentRepository.getInstance().getStudent(userID);
+        if (student != null && labelFineStudent != null) {
+            labelFineStudent.setText(String.valueOf(student.getFine()));
+            labelStatusStudent.setText(student.isStatus() ? "Blocked" : "Active");
         }
     }
 
@@ -94,9 +98,6 @@ public class StudentHomeController {
     }
 
 
-
-
-
     public void handleStudentBooks(){
 
         FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource("/res/fxml/studentBooksView.fxml"));
@@ -111,12 +112,12 @@ public class StudentHomeController {
     public void handleLogOut() throws IOException {
         HandleLogOut.logOut(getClass(), btnLogOut);
     }
+
     public void handleStudentHome() throws SQLException{
         StudentRepository.getInstance();
         FXMLLoader fxmlLoader= new FXMLLoader(getClass().getResource("/res/fxml/studentHomeView.fxml"));
         mainBorderPane.getChildren().remove(mainBorderPane.getCenter());
-        try
-        {
+        try {
             mainBorderPane.setCenter(fxmlLoader.load());
         }
         catch (IOException e){e.printStackTrace();}
