@@ -130,7 +130,7 @@
 <!--            <rowConstraints>-->
 <!--                <RowConstraints vgrow="ALWAYS"/>-->
 <!--            </rowConstraints>-->
-<!--            <fx:include source="registrationView.fxml" GridPane.rowIndex="0" GridPane.columnIndex="0"/>-->
+<!--            <fx:include source="librarianRegistrationView.fxml" GridPane.rowIndex="0" GridPane.columnIndex="0"/>-->
 <!--        </GridPane>-->
 
 <!--        <GridPane visible="false" fx:id="editBooksGridPane"-->

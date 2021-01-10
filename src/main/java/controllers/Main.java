@@ -1,5 +1,6 @@
 package controllers;
 
+import dao.StudentRepository;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
@@ -19,6 +20,9 @@ public class Main extends Application {
         scene.getStylesheets().add(getClass().getResource("/res/css/style.css").toExternalForm());
         primaryStage.setScene(scene);
         primaryStage.show();
+
+//        TestClass test = new TestClass();
+        System.out.println(StudentRepository.getInstance().getStudent("U1001606").getFine());
     }
 
 

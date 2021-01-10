@@ -1,13 +1,19 @@
 package controllers;
 
 import dao.BooksRepository;
+import dao.ConnectionManager;
 import dao.IssuedBook;
 import dao.IssuedBookRepository;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
+import javafx.stage.Stage;
 import model.Book;
 
+import java.io.IOException;
 import java.sql.Date;
 import java.sql.SQLException;
 import java.time.LocalDate;
@@ -82,19 +88,33 @@ public class LibrarianRegistrationController
 
     // region <Event handlers>
     @FXML
-    private void issueHandler() throws SQLException {
+    private void issueHandler() throws SQLException, IOException {
         ObservableList<Book> choosedBooks = choosedBooksTable.getItems();
 
-        if(IdField.getText()==null){
-            resultLabel.setText("Operation canceled. Please set user ID");
+        FXMLLoader loader = new FXMLLoader(getClass().getResource("/res/fxml/librarianStatusDialogView.fxml"));
+        Parent root = loader.load();
+
+        var messageController = loader.<LibrarianStatusDialogViewController>getController();
+
+        Stage newStage = new Stage();
+        newStage.setScene(new Scene(root));
+
+        if(IdField.getText()==""){
+            newStage.setTitle("Error");
+            messageController.setMessage("Operation canceled. Please set user ID");
+            newStage.showAndWait();
             return;
         }
         else if(dueDatePicker.getValue()==null){
-            resultLabel.setText("Operation canceled. Please set due date");
+            newStage.setTitle("Error");
+            messageController.setMessage("Operation canceled. Please set due date");
+            newStage.showAndWait();
             return;
         }
         else if(choosedBooksTable.getItems().stream().count()==0) {
-            resultLabel.setText("Operation canceled. You didn't choose books");
+            newStage.setTitle("Error");
+            messageController.setMessage("Operation canceled. You didn't choose books");
+            newStage.showAndWait();
             return;
         }
 
@@ -110,14 +130,18 @@ public class LibrarianRegistrationController
                 issuedBookRepository.addIssuedBook(issuedBook);
             }
             catch (SQLException e){
-                resultLabel.setText("This user already taken this book! Operation canceled");
+                newStage.setTitle("Error");
+                messageController.setMessage("This user already taken this book! Operation canceled");
+                newStage.showAndWait();
                 return;
             }
         }
 
-        resultLabel.setText("Book(s) were successfully registered by student");
+        newStage.setTitle("Success");
+        messageController.setMessage("Book(s) were successfully registered by student");
+        newStage.showAndWait();
 
-        IdField.setText(null);
+        IdField.setText("");
         choosedBooksTable.getItems().clear();
         dueDatePicker.setValue(null);
     }

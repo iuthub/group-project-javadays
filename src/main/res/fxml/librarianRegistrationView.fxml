@@ -14,42 +14,32 @@
             </columnConstraints>
             <rowConstraints>
                 <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
-            <RowConstraints maxHeight="43.0" minHeight="10.0" prefHeight="43.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="600.0" minHeight="10.0" prefHeight="566.0" vgrow="SOMETIMES" />
-                <RowConstraints maxHeight="37.0" minHeight="10.0" prefHeight="37.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="77.0" minHeight="10.0" prefHeight="55.0" vgrow="SOMETIMES" />
+                <RowConstraints maxHeight="696.0" minHeight="10.0" prefHeight="637.0" vgrow="SOMETIMES" />
+            <RowConstraints maxHeight="600.0" minHeight="0.0" prefHeight="0.0" vgrow="SOMETIMES" />
             </rowConstraints>
             <children>
                 <Label text="Books" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
                 <TableView fx:id="booksTable" prefHeight="200.0" prefWidth="200.0" GridPane.rowIndex="2">
                     <columns>
-                        <TableColumn minWidth="53.0" prefWidth="53.0" text="BookID">
+                        <TableColumn minWidth="53.0" prefWidth="78.0" text="BookID">
                             <cellValueFactory>
                                 <PropertyValueFactory property="BookID" />
                             </cellValueFactory>
                         </TableColumn>
-                        <TableColumn minWidth="90.0" prefWidth="90.0" text="ISBN">
+                        <TableColumn minWidth="89.0" prefWidth="109.0" text="ISBN">
                             <cellValueFactory>
                                 <PropertyValueFactory property="ISBN" />
                             </cellValueFactory>
                         </TableColumn>
-                        <TableColumn minWidth="85.0" prefWidth="85.0" text="Title">
+                        <TableColumn minWidth="85.0" prefWidth="115.0" text="Title">
                             <cellValueFactory>
                                 <PropertyValueFactory property="Title" />
                             </cellValueFactory>
                         </TableColumn>
-                        <TableColumn minWidth="67.0" prefWidth="82.0" text="Author">
+                        <TableColumn minWidth="67.0" prefWidth="177.0" text="Author">
                             <cellValueFactory>
                                 <PropertyValueFactory property="Author" />
-                            </cellValueFactory>
-                        </TableColumn>
-                        <TableColumn minWidth="64.0" prefWidth="66.0" text="Subject">
-                            <cellValueFactory>
-                                <PropertyValueFactory property="Subject" />
-                            </cellValueFactory>
-                        </TableColumn>
-                        <TableColumn maxWidth="195.0" minWidth="84.0" prefWidth="119.0" text="Published Date">
-                            <cellValueFactory>
-                                <PropertyValueFactory property="PublishDate" />
                             </cellValueFactory>
                         </TableColumn>
                     </columns>
@@ -58,7 +48,6 @@
                     </GridPane.margin>
                 </TableView>
                 <Label text="Registration panel" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.valignment="CENTER" />
-                <Label text="Operation result message:" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
                 <GridPane GridPane.columnIndex="1" GridPane.rowIndex="2">
                     <columnConstraints>
                         <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -72,7 +61,7 @@
                         <RowConstraints maxHeight="-Infinity" minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
                     </rowConstraints>
                     <children>
-                        <GridPane hgap="5" vgap="10" alignment="CENTER" GridPane.hgrow="ALWAYS">
+                        <GridPane alignment="CENTER" hgap="5" vgap="10" GridPane.hgrow="ALWAYS">
                             <columnConstraints>
                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
                                 <ColumnConstraints hgrow="SOMETIMES" minWidth="10.0" prefWidth="100.0" />
@@ -115,7 +104,7 @@
                                         <PropertyValueFactory property="Title" />
                                     </cellValueFactory>
                                 </TableColumn>
-                                <TableColumn minWidth="67.0" prefWidth="188.0" text="Author">
+                                <TableColumn minWidth="67.0" prefWidth="174.0" text="Author">
                                     <cellValueFactory>
                                         <PropertyValueFactory property="Author" />
                                     </cellValueFactory>
@@ -126,13 +115,12 @@
                             </GridPane.margin>
                         </TableView>
 
-                        <Button mnemonicParsing="false" onAction="#issueHandler" text="Issue" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" styleClass="submit-button" />
+                        <Button mnemonicParsing="false" onAction="#issueHandler" styleClass="submit-button" text="Issue" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowIndex="4" />
                     </children>
                     <GridPane.margin>
                   <Insets bottom="5.0" left="5.0" right="5.0" top="5.0" />
                     </GridPane.margin>
                 </GridPane>
-                <Label fx:id="resultLabel" text="" GridPane.columnIndex="1" GridPane.halignment="CENTER" GridPane.rowIndex="3" />
             <GridPane GridPane.rowIndex="1">
               <columnConstraints>
                 <ColumnConstraints hgrow="SOMETIMES" maxWidth="-Infinity" minWidth="10.0" prefWidth="100.0" />

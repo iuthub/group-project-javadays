@@ -3,10 +3,7 @@ package dao;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class IssuedBookRepository
 {
@@ -69,10 +66,9 @@ public class IssuedBookRepository
     //endregion
 
     //region <Delete>
-    public void removeIssuedBook(int bookId,String userId) throws SQLException
-    {
+    public void removeIssuedBook(int bookId,String userId) throws SQLException {
         PreparedStatement addIssuedBookStat =
-                connection.prepareStatement("Delete From IssuedBooks Where IssuedBooks.BookId = ? And IssuedBooks.UserId = ? ");
+                connection.prepareStatement("Delete From IssuedBooks Where BookId = ? And UserId = ? ");
 
         addIssuedBookStat.setInt(1,bookId);
         addIssuedBookStat.setString(2,userId);
@@ -80,6 +76,20 @@ public class IssuedBookRepository
         addIssuedBookStat.execute();
     }
     //endregion
+
+
+    public void calculateDifference(int bookId, String userId) throws SQLException {
+        PreparedStatement calculateDifferenceStmt = connection.prepareStatement("SELECT {fn TIMESTAMPDIFF(SQL_TSI_DAY, IssueDate, ReturnDate)} AS difference FROM IssuedBooks ");
+
+        ResultSet result = calculateDifferenceStmt.executeQuery();
+
+        if (result.next()) {
+            System.out.println(result.getInt("difference"));
+        }
+
+
+
+    }
 
 
     //region <Utilities>
