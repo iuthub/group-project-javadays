@@ -78,17 +78,17 @@
                                               <Insets right="5.0" />
                                           </GridPane.margin>
                                       </Label>
-                                      <Label fx:id="labelNameStudent" prefHeight="40.0" prefWidth="433.0" text="NONE" GridPane.columnIndex="1" style="-fx-font-weight: bold;">
+                                      <Label fx:id="labelNameStudent" prefHeight="40.0" prefWidth="433.0" text="NONE" GridPane.columnIndex="1" styleClass="important-label">
                                           <GridPane.margin>
                                               <Insets left="5.0" />
                                           </GridPane.margin>
                                       </Label>
-                                      <Label fx:id="labelSurnameStudent" prefHeight="215.0" prefWidth="609.0" text="NONE" GridPane.columnIndex="1" GridPane.rowIndex="1">
+                                      <Label fx:id="labelSurnameStudent" prefHeight="215.0" prefWidth="609.0" text="NONE" GridPane.columnIndex="1" GridPane.rowIndex="1" styleClass="important-label">
                                           <GridPane.margin>
                                               <Insets left="5.0" />
                                           </GridPane.margin>
                                       </Label>
-                                      <Label fx:id="labelIDStudent" prefHeight="78.0" prefWidth="441.0" text="NONE" GridPane.columnIndex="1" GridPane.rowIndex="2">
+                                      <Label fx:id="labelIDStudent" prefHeight="78.0" prefWidth="441.0" text="NONE" GridPane.columnIndex="1" GridPane.rowIndex="2" styleClass="important-label">
                                           <GridPane.margin>
                                               <Insets left="5.0" />
                                           </GridPane.margin>

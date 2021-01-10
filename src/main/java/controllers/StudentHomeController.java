@@ -59,7 +59,14 @@ public class StudentHomeController {
         Student student = StudentRepository.getInstance().getStudent(userID);
         if (student != null && labelFineStudent != null) {
             labelFineStudent.setText(String.valueOf(student.getFine()));
-            labelStatusStudent.setText(student.isStatus() ? "Blocked" : "Active");
+
+            if (student.isStatus()) {
+                labelStatusStudent.setText("Blocked");
+                labelStatusStudent.setStyle("-fx-text-fill: red;");
+            } else {
+                labelStatusStudent.setText("Active");
+                labelStatusStudent.setStyle("-fx-text-fill: green;");
+            }
         }
     }
 
