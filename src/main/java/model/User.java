@@ -10,16 +10,16 @@ public class User {
     private Role role;
 
     public User(String userId, String password, String firstName, String lastName, Role role) {
-        setUserId(userId);
+        setUserID(userId);
         setPassword(password);
         setFirstName(firstName);
         setLastName(lastName);
         setRole(role);
     }
 
-    public String getUserId() { return userId; }
+    public String getUserID() { return userId; }
 
-    public void setUserId(String userId) { this.userId = userId; }
+    public void setUserID(String userId) { this.userId = userId; }
 
     public String getPassword() { return password; }
 

@@ -1,11 +1,9 @@
 package controllers;
 
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.layout.BorderPane;
-import javafx.scene.layout.GridPane;
 import model.User;
 
 import java.io.IOException;
@@ -41,7 +39,7 @@ public class AdminWindowController {
             e.printStackTrace();
         }
         AdminHomeViewController controller = fxmlLoader.getController();
-        controller.setAdminId(getCurrentUser().getUserId());
+        controller.setAdminId(getCurrentUser().getUserID());
 
         try {
             controller.init();
@@ -83,7 +81,7 @@ public class AdminWindowController {
             e.printStackTrace();
         }
         AdminSettingsController controller = fxmlLoader.getController();
-        controller.setAdminId(getCurrentUser().getUserId());
+        controller.setAdminId(getCurrentUser().getUserID());
         controller.setPassword(getCurrentUser().getPassword());
     }
 

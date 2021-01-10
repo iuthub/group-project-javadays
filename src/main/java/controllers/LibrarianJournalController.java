@@ -6,14 +6,11 @@ import dao.IssuedBookRepository;
 import dao.StudentRepository;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import model.Book;
 import model.User;
 
-import java.io.IOException;
 import java.sql.SQLException;
-import java.util.Optional;
 
 public class LibrarianJournalController
 {
@@ -48,7 +45,7 @@ public class LibrarianJournalController
                     User student = row.getItem();
                     try
                     {
-                        ObservableList<IssuedBook> issuedBooks = issuedBookRepository.getByUser(student.getUserId());
+                        ObservableList<IssuedBook> issuedBooks = issuedBookRepository.getByUser(student.getUserID());
 
                         for (IssuedBook issuedBook:issuedBooks)
                         {
@@ -86,7 +83,7 @@ public class LibrarianJournalController
         Book selectedBook = chosenBooksTable.getSelectionModel().getSelectedItem();
 
 
-        int fine = IssuedBookRepository.getInstance().calculateFine(selectedBook.getBookID(), selectedStudent.getUserId());
+        int fine = IssuedBookRepository.getInstance().calculateFine(selectedBook.getBookID(), selectedStudent.getUserID());
 
         if (fine == 0) {
             informationDialogController.setLabel("Successfully returned");
@@ -96,7 +93,7 @@ public class LibrarianJournalController
 
         dialog.showAndWait();
 
-        issuedBookRepository.removeIssuedBook(selectedBook.getBookID(),selectedStudent.getUserId());
+        issuedBookRepository.removeIssuedBook(selectedBook.getBookID(),selectedStudent.getUserID());
 
         chosenBooksTable.getItems().remove(selectedBook);
     }

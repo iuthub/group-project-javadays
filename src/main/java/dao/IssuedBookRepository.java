@@ -4,6 +4,7 @@ import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Book;
 import model.Student;
+import model.User;
 
 import java.sql.*;
 import java.time.Duration;
@@ -169,4 +170,3 @@ public class IssuedBookRepository
     //endregion
 
 }
-

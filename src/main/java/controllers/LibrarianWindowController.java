@@ -77,10 +77,17 @@ public class LibrarianWindowController {
     }
 
     public void handleStudents(ActionEvent actionEvent) {
-
         try {
             HandleChangeView.handleChangeScene(getClass(), mainBorderPane, "/res/fxml/adminStudentView.fxml");
         } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public void handleOverdue(ActionEvent actionEvent) {
+        try {
+            HandleChangeView.handleChangeScene(getClass(), mainBorderPane, "/res/fxml/librarianOverdueView.fxml");
+        } catch(IOException e) {
             e.printStackTrace();
         }
     }

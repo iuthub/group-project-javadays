@@ -1,0 +1,63 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import javafx.scene.text.Font?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controllers.LibrarianOverdueController"
+            prefHeight="400.0" prefWidth="600.0"
+            stylesheets="@../css/student_view.css">
+    <VBox spacing="20.0"
+          AnchorPane.bottomAnchor="10.0"
+          AnchorPane.topAnchor="10.0"
+          AnchorPane.leftAnchor="10.0"
+          AnchorPane.rightAnchor="10.0">
+
+        <HBox VBox.vgrow="NEVER" spacing="15.0" alignment="CENTER">
+            <Label layoutX="28.0" layoutY="41.0" prefHeight="21.0" prefWidth="83.0" text="Search by: ">
+                <font>
+                    <Font size="15.0" />
+                </font>
+            </Label>
+            <ChoiceBox fx:id="choiceBoxSearchType" layoutX="109.0" layoutY="33.0" prefHeight="36.0" prefWidth="112.0" />
+            <TextField fx:id="searchField" layoutX="235.0" layoutY="32.0" prefHeight="25.0" prefWidth="340.0" />
+            <Button onAction="#search" defaultButton="true" styleClass="submit-button" layoutX="592.0" layoutY="29.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="48.0" style="-fx-background-radius: 50px">
+                <graphic>
+                    <FontAwesomeIconView glyphName="SEARCH" glyphSize="20" styleClass="white-glyph"/>
+                </graphic>
+            </Button>
+            <Button onAction="#refresh" defaultButton="true" styleClass="submit-button" layoutX="592.0" layoutY="29.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="48.0" style="-fx-background-radius: 50px">
+                <graphic>
+                    <FontAwesomeIconView glyphName="REFRESH" glyphSize="20" styleClass="white-glyph"/>
+                </graphic>
+            </Button>
+        </HBox>
+
+        <TableView fx:id="tblStudentsWithOverdue" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn minWidth="60.0" text="User ID">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="UserID" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn minWidth="200.0" text="First Name">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="FirstName" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn minWidth="200.0" text="Last Name">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="LastName" />
+                    </cellValueFactory>
+                </TableColumn>
+            </columns>
+        </TableView>
+    </VBox>
+</AnchorPane>

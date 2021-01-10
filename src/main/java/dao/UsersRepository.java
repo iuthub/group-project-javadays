@@ -219,6 +219,64 @@ public class UsersRepository {
         return list;
     }
 
+    public ObservableList<User> getAllStudentsWithOverdue() throws SQLException {
+        var query = new StringBuilder()
+                .append("SELECT * FROM Users AS u\n")
+                .append("WHERE EXISTS\n")
+                .append("(SELECT * FROM IssuedBooks AS ib\n")
+                .append("WHERE ib.UserID=u.UserID AND ib.ReturnDate < CURRENT_DATE)")
+                .toString();
+        var allWithOverdue = ConnectionManager.getConnection().prepareStatement(query);
+        var result = allWithOverdue.executeQuery();
+        ObservableList<User> list = FXCollections.observableArrayList();
+
+        while (result.next()) {
+            list.add(new User(
+                    result.getString("UserID"),
+                    result.getString("Password"),
+                    result.getString("FirstName"),
+                    result.getString("LastName"),
+                    intToRole(result.getInt("Role"))
+            ));
+        }
+        return list;
+    }
+
+    public ObservableList<User> searchStudentsWithOverdue(String searchBy, String compareTo) throws SQLException {
+        var query = new StringBuilder()
+                .append("SELECT * FROM Users AS u\n")
+                .append("WHERE EXISTS\n")
+                .append("(SELECT * FROM IssuedBooks AS ib\n")
+                .append("WHERE ib.UserID=u.UserID AND ib.ReturnDate < CURRENT_DATE AND\n")
+                .toString();
+
+        switch(searchBy) {
+            case "User ID":
+                query += String.format("UserID LIKE '%s%%')", compareTo);
+                break;
+            case "First Name":
+                query += String.format("FirstName LIKE '%s%%')", compareTo);
+                break;
+            case "Last Name":
+                query += String.format("LastName LIKE '%s%%')", compareTo);
+        }
+
+        var search = ConnectionManager.getConnection().prepareStatement(query);
+        var result = search.executeQuery();
+        ObservableList<User> list = FXCollections.observableArrayList();
+
+        while (result.next()) {
+            list.add(new User(
+                    result.getString("UserID"),
+                    result.getString("Password"),
+                    result.getString("FirstName"),
+                    result.getString("LastName"),
+                    intToRole(result.getInt("Role"))
+            ));
+        }
+        return list;
+    }
+
     public void changePassword(String userId, String oldPassword, String newPassword) throws SQLException {
         changePasswordStmt.setString(1, newPassword);
         changePasswordStmt.setString(2, userId);
