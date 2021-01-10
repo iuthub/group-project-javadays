@@ -44,9 +44,9 @@ public class LoginController {
                     throwables.printStackTrace();
                     lblAlert.setText(String.format("Database Error: %d", throwables.getErrorCode()));
                 }
-            } else {lblAlert.setText("Login pattern violation!");}
+            } else lblAlert.setText("Login pattern violation!");
 
-        } else {lblAlert.setText("Not all fields are filled!"); }
+        } else lblAlert.setText("Not all fields are filled!");
 
         // If user is authenticated
         if (status){

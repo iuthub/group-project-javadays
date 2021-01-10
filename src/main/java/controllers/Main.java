@@ -8,15 +8,12 @@ import javafx.scene.Scene;
 import javafx.scene.image.Image;
 import javafx.stage.Stage;
 
-
 public class Main extends Application {
 
     @Override
     public void start(Stage primaryStage) throws Exception{
         Parent root = FXMLLoader.load(getClass().getResource("/res/fxml/loginDialog.fxml"));
-//        Parent root = FXMLLoader.load(getClass().getResource("/main/res/fxml/adminWindow.fxml"));
         primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/res/img/favicon.png")));
-//        primaryStage.initStyle(StageStyle.DECORATED);
         primaryStage.setTitle("Inha Library");
         primaryStage.setResizable(true);
         Scene scene = new Scene(root, 1280, 720);

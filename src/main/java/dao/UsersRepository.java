@@ -19,6 +19,7 @@ public class UsersRepository {
     private final PreparedStatement updUserStmt;
     private final PreparedStatement remUserStmt;
     private final PreparedStatement getForAdminStmt;
+    private final PreparedStatement changePasswordStmt;
     private final PreparedStatement getAllUserStmt;
 
     private final String DISPLAY = "SELECT UserID, FirstName || ' ' || LastName AS Name FROM Users WHERE Role = ? ";
@@ -44,6 +45,7 @@ public class UsersRepository {
         this.updUserStmt  = conn.prepareStatement(UPD);
         this.getAllUserStmt = conn.prepareStatement(GET_ALL);
         this.getForAdminStmt = conn.prepareStatement(DISPLAY + "OFFSET ? ROWS FETCH NEXT 100 ROWS ONLY");
+        this.changePasswordStmt = conn.prepareStatement("UPDATE Users SET Password=? WHERE UserID=? AND Password=?");
     }
 
     // Singleton object getInstance() method
@@ -205,6 +207,13 @@ public class UsersRepository {
         }
         searchByParamStmt.close();
         return list;
+    }
+
+    public void changePassword(String userId, String oldPassword, String newPassword) throws SQLException {
+        changePasswordStmt.setString(1, newPassword);
+        changePasswordStmt.setString(2, userId);
+        changePasswordStmt.setString(3, oldPassword);
+        changePasswordStmt.executeUpdate();
     }
 
     private Role intToRole(int i) {

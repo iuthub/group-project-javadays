@@ -50,7 +50,7 @@ public class AdminWindowController {
         }
     }
 
-    public void handleStudentView(ActionEvent actionEvent) {
+    public void handleStudentView() {
         try {
             HandleChangeView.handleChangeScene(getClass(), mainBorderPane, "/res/fxml/adminStudentView.fxml");
         } catch (IOException e) {
@@ -58,7 +58,7 @@ public class AdminWindowController {
         }
     }
 
-    public void handleLibrarianView(ActionEvent actionEvent) {
+    public void handleLibrarianView() {
        try {
             HandleChangeView.handleChangeScene(getClass(), mainBorderPane, "/res/fxml/adminLibrarianView.fxml");
         } catch (IOException e) {
@@ -66,7 +66,7 @@ public class AdminWindowController {
         }
     }
 
-    public void handleBookView(ActionEvent actionEvent) {
+    public void handleBookView() {
         try {
             HandleChangeView.handleChangeScene(getClass(), mainBorderPane, "/res/fxml/librarianEditBooksView.fxml");
         } catch (IOException e) {
@@ -74,7 +74,20 @@ public class AdminWindowController {
         }
     }
 
-    public void handleLogOut(ActionEvent actionEvent) throws IOException {
+    public void handleSettingsView() {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/res/fxml/adminSettingsView.fxml"));
+        mainBorderPane.getChildren().remove(mainBorderPane.getCenter());
+        try {
+            mainBorderPane.setCenter(fxmlLoader.load());
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        AdminSettingsController controller = fxmlLoader.getController();
+        controller.setAdminId(getCurrentUser().getUserId());
+        controller.setPassword(getCurrentUser().getPassword());
+    }
+
+    public void handleLogOut() throws IOException {
         HandleLogOut.logOut(getClass(), btnLogOut);
     }
 }

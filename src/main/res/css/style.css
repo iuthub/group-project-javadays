@@ -44,6 +44,7 @@
     -fx-text-fill: #ffffff;
     -fx-background-color: #0066b2;
     -fx-background-radius: 0 0 0 0;
+
 }
 
 .submit-button:hover {
@@ -52,10 +53,8 @@
 
 .submit-button:pressed, .submit-button:focused {
     -fx-border-style: solid outside;
-    -fx-border-width: 3px;
     -fx-border-color: #a9b5fc;
     -fx-background-color: #004d85;
-    -fx-border-radius: 3px;
 }
 
 .text-field {
@@ -90,7 +89,11 @@
     -fx-background-color: #bb2d3b;
 }
 
-
+.label-title {
+    -fx-font-size: 20pt;
+    -fx-font-weight: bold;
+    -fx-text-fill: #0b67b2;
+}
 /*.footer {*/
 
 /*    -fx-background-color: #000000;*/

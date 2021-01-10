@@ -70,7 +70,7 @@ public class AdminAddModifyDialogController {
             }
 
         } else{
-            lblStatus.setText("Not all (*)required fields are filled!");
+            lblStatus.setText("Not all (*) required fields are filled!");
             return true;
         }
         return false;
