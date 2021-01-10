@@ -1,6 +1,5 @@
 package controllers;
 
-import dao.StudentRepository;
 import javafx.application.Application;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;

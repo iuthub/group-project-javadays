@@ -22,7 +22,7 @@ public class LibrarianEditBooksController {
     @FXML public AnchorPane mainAnchorPane;
     @FXML public TableView<Book> tblBooksTable;
     @FXML public BooksRepository booksRepository;
-    @FXML public ChoiceBox choiceBoxSearchType;
+    @FXML public ChoiceBox<String> choiceBoxSearchType;
     @FXML public TextField searchField;
 
     private ObservableList<Book> tableData;

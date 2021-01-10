@@ -7,7 +7,7 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
 import javafx.scene.image.ImageView;
-import model.AdminWindowStudent;
+import model.AdminWindowDisplay;
 
 import java.io.IOException;
 import java.sql.SQLException;
@@ -21,7 +21,7 @@ public class AdminStudentViewController {
     @FXML private TextField searchField;
 
     @FXML private Label lblTotalCount;
-    @FXML private TableView<AdminWindowStudent> tblStudentsDisplay;
+    @FXML private TableView<AdminWindowDisplay> tblStudentsDisplay;
     @FXML private Pagination pagination;
 
     @FXML private Button btnAdd;
@@ -109,7 +109,7 @@ public class AdminStudentViewController {
         return String.format("%d", 2014 + new Random().nextInt(7));
     }
 
-    void handleTableItemSelection(AdminWindowStudent student){
+    void handleTableItemSelection(AdminWindowDisplay student){
         if (student != null){
             selectedStudentId = student.getUserId();
 

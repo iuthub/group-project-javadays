@@ -29,19 +29,14 @@
     </Label>
     <TableView fx:id="tblLibrariansDisplay" layoutX="22.0" layoutY="122.0" prefHeight="532.0" prefWidth="633.0">
         <columns>
-            <TableColumn prefWidth="145" text="ID">
+            <TableColumn prefWidth="257.0" text="ID">
                 <cellValueFactory>
                     <PropertyValueFactory property="userId" />
                 </cellValueFactory>
             </TableColumn>
-            <TableColumn prefWidth="290.0" text="Name">
+            <TableColumn prefWidth="375.0" text="Name">
                 <cellValueFactory>
                     <PropertyValueFactory property="name" />
-                </cellValueFactory>
-            </TableColumn>
-            <TableColumn prefWidth="197.0" text="Issued Books">
-                <cellValueFactory>
-                    <PropertyValueFactory property="count" />
                 </cellValueFactory>
             </TableColumn>
         </columns>
@@ -54,11 +49,9 @@
         </graphic>
     </Button>
 
-    <ImageView fx:id="imgUserPhoto" fitHeight="191.0" fitWidth="171.0" layoutX="761.0" layoutY="103.0" pickOnBounds="true" preserveRatio="true">
-        <Image url="@../img/profile_male.png" />
+    <ImageView fx:id="imgUserPhoto" fitHeight="191.0" fitWidth="171.0" layoutX="761.0" layoutY="103.0" preserveRatio="true">
+        <Image url="@../img/librarian-profile-woman.png" />
     </ImageView>
-
-    <Button fx:id="btnBookHistory" disable="true" layoutX="683.0" layoutY="601.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="307.0" styleClass="submit-button" text="View issued books" />
     <Button fx:id="btnModify" disable="true" layoutX="684.0" layoutY="658.0" mnemonicParsing="false" onAction="#modifyLibrarian" prefHeight="25.0" prefWidth="171.0" styleClass="secondary-button" text="Modify" />
     <Button fx:id="btnDelete" disable="true" layoutX="878.0" layoutY="658.0" mnemonicParsing="false" onAction="#deleteLibrarian" prefHeight="25.0" prefWidth="112.0" styleClass="delete-button" text="Delete" />
 

@@ -3,7 +3,6 @@ package controllers;
 import dao.StudentRepository;
 import javafx.fxml.FXML;
 import javafx.scene.control.Label;
-import javafx.scene.paint.Color;
 import model.Student;
 
 import java.sql.SQLException;

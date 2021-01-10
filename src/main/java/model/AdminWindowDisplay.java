@@ -1,17 +1,17 @@
 package model;
 
-public class AdminWindowStudent {
+public class AdminWindowDisplay {
     private String userId;
     private String name;
     private int count;
 
-    public AdminWindowStudent(String userId, String name){
+    public AdminWindowDisplay(String userId, String name){
         this.userId = userId;
         this.name = name;
         this.count = 3;
     }
 
-    public AdminWindowStudent(String userId, String name, int count){
+    public AdminWindowDisplay(String userId, String name, int count){
         this.userId = userId;
         this.name = name;
         this.count = count;
