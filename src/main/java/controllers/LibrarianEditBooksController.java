@@ -142,6 +142,11 @@ public class LibrarianEditBooksController {
         }
         selectedBook = null;
         populateTable();
+
+        // by default, the first row is selected
+        if (tableData.size() > 0) {
+            tblBooksTable.getSelectionModel().select(0);
+        }
     }
 
     @FXML
