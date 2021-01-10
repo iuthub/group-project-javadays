@@ -1,27 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ChoiceBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Pagination?>
-<?import javafx.scene.control.TableColumn?>
-<?import javafx.scene.control.TableView?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.control.cell.PropertyValueFactory?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.AnchorPane?>
-<?import javafx.scene.layout.ColumnConstraints?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.layout.RowConstraints?>
-<?import javafx.scene.text.Font?>
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.control.cell.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
-<AnchorPane prefHeight="716.0" prefWidth="1011.0"
-            xmlns="http://javafx.com/javafx/11.0.1"
-            xmlns:fx="http://javafx.com/fxml/1"
-            stylesheets="@../css/student_view.css"
-            fx:controller="controllers.AdminLibrarianViewController">
+<AnchorPane prefHeight="716.0" prefWidth="1011.0" stylesheets="@../css/student_view.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AdminLibrarianViewController">
 
     <Label layoutX="28.0" layoutY="41.0" prefHeight="21.0" prefWidth="83.0" text="Search by: ">
         <font>
@@ -30,7 +16,7 @@
     </Label>
     <ChoiceBox fx:id="choiceBoxSearchType" layoutX="109.0" layoutY="33.0" prefHeight="36.0" prefWidth="112.0" />
     <TextField fx:id="searchField" layoutX="235.0" layoutY="32.0" prefHeight="25.0" prefWidth="340.0" />
-    <Button onAction="#search" defaultButton="true" layoutX="592.0" styleClass="submit-button" layoutY="29.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="48.0" style="-fx-background-radius: 30px;">
+    <Button defaultButton="true" layoutX="592.0" layoutY="29.0" mnemonicParsing="false" onAction="#search" prefHeight="44.0" prefWidth="48.0" style="-fx-background-radius: 30px;" styleClass="submit-button">
         <graphic>
             <FontAwesomeIconView glyphName="SEARCH" glyphSize="20" styleClass="white-glyph" />
         </graphic>
@@ -43,27 +29,26 @@
     </Label>
     <TableView fx:id="tblLibrariansDisplay" layoutX="22.0" layoutY="122.0" prefHeight="532.0" prefWidth="633.0">
         <columns>
-            <TableColumn prefWidth="148.0" text="ID">
+            <TableColumn prefWidth="145" text="ID">
                 <cellValueFactory>
                     <PropertyValueFactory property="userId" />
                 </cellValueFactory>
             </TableColumn>
-            <TableColumn prefWidth="236.0" text="Name">
+            <TableColumn prefWidth="290.0" text="Name">
                 <cellValueFactory>
                     <PropertyValueFactory property="name" />
                 </cellValueFactory>
             </TableColumn>
-            <TableColumn prefWidth="217.0" text="Issued Books">
+            <TableColumn prefWidth="197.0" text="Issued Books">
                 <cellValueFactory>
                     <PropertyValueFactory property="count" />
                 </cellValueFactory>
             </TableColumn>
-            <TableColumn prefWidth="75.0" />
         </columns>
     </TableView>
     <Pagination fx:id="pagination" layoutX="21.0" layoutY="658.0" maxPageIndicatorCount="5" pageCount="10" prefHeight="50.0" prefWidth="602.0" />
 
-    <Button fx:id="btnAdd" onAction="#createLibrarian" styleClass="submit-button" layoutX="756.0" layoutY="31.0" mnemonicParsing="false" prefHeight="28.0" prefWidth="180.0" text="Add new librarian">
+    <Button fx:id="btnAdd" layoutX="729.0" layoutY="31.0" mnemonicParsing="false" onAction="#createLibrarian" prefHeight="28.0" prefWidth="230.0" styleClass="submit-button" text="Add new librarian">
         <graphic>
             <FontAwesomeIconView glyphName="USER_PLUS" glyphSize="20" styleClass="white-glyph" />
         </graphic>
@@ -73,32 +58,32 @@
         <Image url="@../img/profile_male.png" />
     </ImageView>
 
-    <Button fx:id="btnBookHistory" styleClass="submit-button" disable="true" layoutX="683.0" layoutY="601.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="307.0" text="View book history" />
-    <Button fx:id="btnModify" onAction="#modifyLibrarian" styleClass="secondary-button" disable="true" layoutX="684.0" layoutY="658.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="171.0" text="Modify" />
-    <Button fx:id="btnDelete" onAction="#deleteLibrarian" styleClass="delete-button" disable="true" layoutX="878.0" layoutY="658.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="112.0" text="Delete" />
+    <Button fx:id="btnBookHistory" disable="true" layoutX="683.0" layoutY="601.0" mnemonicParsing="false" prefHeight="25.0" prefWidth="307.0" styleClass="submit-button" text="View issued books" />
+    <Button fx:id="btnModify" disable="true" layoutX="684.0" layoutY="658.0" mnemonicParsing="false" onAction="#modifyLibrarian" prefHeight="25.0" prefWidth="171.0" styleClass="secondary-button" text="Modify" />
+    <Button fx:id="btnDelete" disable="true" layoutX="878.0" layoutY="658.0" mnemonicParsing="false" onAction="#deleteLibrarian" prefHeight="25.0" prefWidth="112.0" styleClass="delete-button" text="Delete" />
 
     <GridPane layoutX="683.0" layoutY="299.0" prefHeight="259.0" prefWidth="307.0">
         <columnConstraints>
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="149.0" minWidth="10.0" prefWidth="102.0"/>
-            <ColumnConstraints hgrow="SOMETIMES" maxWidth="211.0" minWidth="10.0" prefWidth="205.0"/>
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="149.0" minWidth="10.0" prefWidth="102.0" />
+            <ColumnConstraints hgrow="SOMETIMES" maxWidth="211.0" minWidth="10.0" prefWidth="205.0" />
         </columnConstraints>
         <rowConstraints>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
-            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES"/>
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
+            <RowConstraints minHeight="10.0" prefHeight="30.0" vgrow="SOMETIMES" />
         </rowConstraints>
-        <Label text="Name:"/>
-        <Label text="Email:" GridPane.rowIndex="1"/>
-        <Label text="Phone:" GridPane.rowIndex="2"/>
-        <Label text="Building:" GridPane.rowIndex="3"/>
-        <Label text="Working since:" GridPane.rowIndex="4"/>
-        <Label fx:id="lblName" GridPane.columnIndex="1"/>
-        <Label fx:id="lblEmail" GridPane.columnIndex="1" GridPane.rowIndex="1"/>
-        <Label fx:id="lblPhone" GridPane.columnIndex="1" GridPane.rowIndex="2"/>
-        <Label fx:id="lblDepartment" GridPane.columnIndex="1" GridPane.rowIndex="3"/>
-        <Label fx:id="lblWorkingYear" GridPane.columnIndex="1" GridPane.rowIndex="4"/>
+        <Label text="Name:" />
+        <Label text="Email:" GridPane.rowIndex="1" />
+        <Label text="Phone:" GridPane.rowIndex="2" />
+        <Label text="Building:" GridPane.rowIndex="3" />
+        <Label text="Working since:" GridPane.rowIndex="4" />
+        <Label fx:id="lblName" GridPane.columnIndex="1" />
+        <Label fx:id="lblEmail" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+        <Label fx:id="lblPhone" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+        <Label fx:id="lblDepartment" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+        <Label fx:id="lblWorkingYear" GridPane.columnIndex="1" GridPane.rowIndex="4" />
     </GridPane>
 
 </AnchorPane>
