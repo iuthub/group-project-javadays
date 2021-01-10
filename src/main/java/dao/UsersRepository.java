@@ -141,10 +141,12 @@ public class UsersRepository {
         ResultSet result = getForAdminStmt.executeQuery();
 
         while (result.next()){
+            int count = IssuedBookRepository.getInstance().getCount(result.getString("UserID"));
             list.add(
                 new AdminWindowStudent(
                     result.getString("UserID"),
-                    result.getString("Name")
+                    result.getString("Name"),
+                    count
                 )
             );
         }

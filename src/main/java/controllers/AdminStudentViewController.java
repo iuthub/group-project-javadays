@@ -33,7 +33,7 @@ public class AdminStudentViewController {
     @FXML private Label lblDepartment;
     @FXML private Label lblAcademicYear;
 
-    @FXML private Button btnBookHistory;
+    @FXML private Button btnViewStatus;
     @FXML private Button btnModify;
     @FXML private Button btnDelete;
 
@@ -85,25 +85,28 @@ public class AdminStudentViewController {
         return String.format("%s.%s@student.inha.uz", n[0].substring(0, 1).toLowerCase(), n[1].toLowerCase());
     }
 
-    String generatePhone(String userId){
+    String generatePhone(){
         Random r = new Random();
-        String seq = userId.substring(5);
-        int a = r.nextInt(8) + 1;
-        int b = r.nextInt(9);
+        String seq = selectedStudentId.substring(5);
+        int a = r.nextInt(9) + 1;
+        int b = r.nextInt(10);
         int c = a * 10 + b;
-        return String.format("+998 %d %s %d %d", 90 + r.nextInt(3), seq, c, Math.abs(c - a*b));
+        return String.format("+998 %d %s %d %d", 90 + r.nextInt(5), seq, c, Math.abs(c - a*b));
     }
 
     String generateDepartment(){
-        return new String[]{"SOL", "SOCIE"}[new Random().nextInt(1)];
+        String[] d = {"SOCIE", "SOL"};
+        int department = Integer.parseInt(selectedStudentId.substring(3, 5)) - 10;
+        if (department > -1) return d[department];
+        return d[new Random().nextInt(2)];
     }
 
-    String generateAcademicYear(String userId){
-        int year = Integer.parseInt(userId.substring(1, 3));
+    String generateAcademicYear(){
+        int year = Integer.parseInt(selectedStudentId.substring(1, 3));
         if (year <= 20 && year >= 14){
             return String.format("20%d", year);
         }
-        return String.format("%d", 2014 + new Random().nextInt(6));
+        return String.format("%d", 2014 + new Random().nextInt(7));
     }
 
     void handleTableItemSelection(AdminWindowStudent student){
@@ -112,11 +115,11 @@ public class AdminStudentViewController {
 
             lblName.setText(student.getName());
             lblEmail.setText(generateEmail(student.getName()));
-            lblPhone.setText(generatePhone(student.getUserId()));
+            lblPhone.setText(generatePhone());
             lblDepartment.setText(generateDepartment());
-            lblAcademicYear.setText(generateAcademicYear(student.getUserId()));
+            lblAcademicYear.setText(generateAcademicYear());
 
-            btnBookHistory.setDisable(false);
+            btnViewStatus.setDisable(false);
             btnModify.setDisable(false);
             btnDelete.setDisable(false);
         } else{
@@ -137,6 +140,32 @@ public class AdminStudentViewController {
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
+    }
+
+    public void viewStatus() throws SQLException{
+        Dialog<ButtonType> dialog = new Dialog<>();
+        dialog.initOwner(btnViewStatus.getScene().getWindow());
+        dialog.setTitle("Status");
+        dialog.setResizable(false);
+
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("/res/fxml/studentStatusDialog.fxml"));
+
+        try {
+            dialog.getDialogPane().setContent(fxmlLoader.load());
+        } catch (IOException ex){
+            System.out.println(ex.getMessage());
+        }
+
+        dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
+
+        Button okBtn = (Button) dialog.getDialogPane().lookupButton(dialog.getDialogPane().getButtonTypes().get(0));
+        okBtn.getStyleClass().add("submit-button");
+
+        StudentStatusController controller = fxmlLoader.getController();
+        controller.init(selectedStudentId);
+
+        dialog.showAndWait();
     }
 
     public void createStudent() throws SQLException {
@@ -234,10 +263,10 @@ public class AdminStudentViewController {
 
     void unselect() throws SQLException{
         selectedStudentId = null;
-        btnBookHistory.setDisable(true);
+        btnViewStatus.setDisable(true);
         btnDelete.setDisable(true);
         btnModify.setDisable(true);
-        lblName.setText("");
+        lblName.setText(null);
         lblEmail.setText(null);
         lblPhone.setText(null);
         initTableView();

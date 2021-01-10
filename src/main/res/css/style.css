@@ -94,6 +94,20 @@
     -fx-font-weight: bold;
     -fx-text-fill: #0b67b2;
 }
+
+.label-status-active {
+    -fx-font-size: 20pt;
+    -fx-font-weight: bold;
+    -fx-text-fill: GREEN;
+}
+
+.label-status-blocked {
+    -fx-font-size: 20pt;
+    -fx-font-weight: bold;
+    -fx-text-fill: RED;
+}
+
+
 /*.footer {*/
 
 /*    -fx-background-color: #000000;*/

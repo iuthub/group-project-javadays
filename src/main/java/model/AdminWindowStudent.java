@@ -11,6 +11,12 @@ public class AdminWindowStudent {
         this.count = 3;
     }
 
+    public AdminWindowStudent(String userId, String name, int count){
+        this.userId = userId;
+        this.name = name;
+        this.count = count;
+    }
+
     public String getUserId() {
         return userId;
     }

@@ -7,3 +7,4 @@ CREATE TABLE Students (
     PRIMARY KEY (UserID)
 );
 
+INSERT INTO Students(UserID) SELECT UserID FROM Users WHERE Role = 2;
