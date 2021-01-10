@@ -17,8 +17,8 @@ public class AdminAddModifyDialogController {
 
     public void initializeFields(String userId) throws SQLException {
         User u = UsersRepository.getInstance().get(userId);
-        this.userId = u.getUserId();
-        txtID.setText(u.getUserId());
+        this.userId = u.getUserID();
+        txtID.setText(u.getUserID());
         txtFirstName.setText(u.getFirstName());
         txtLastName.setText(u.getLastName());
         txtPassword.setText(u.getPassword());

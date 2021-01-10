@@ -32,7 +32,7 @@ public class AdminHomeViewController {
         lblBooksCount.setText(Integer.toString(books));
 
         User u = ur.get(adminId);
-        lblUserID.setText(u.getUserId());
+        lblUserID.setText(u.getUserID());
         lblUserName.setText(String.format("%s %s", u.getFirstName(), u.getLastName()));
     }
 }
