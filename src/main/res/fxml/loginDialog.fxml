@@ -42,7 +42,7 @@
             </VBox>
          <Label fx:id="lblAlert" styleClass="alert" />
 
-            <Button defaultButton="true" onAction="#handleSubmit" prefWidth="Infinity" styleClass="submit-button" text="Sign in" fx:id="btnSubmit"/>
+            <Button defaultButton="true" onAction="#handleSubmit" prefWidth="Infinity" styleClass="submit-button" text="Sign in" fx:id="btnSubmit" style="-fx-min-height: 40px;"/>
         </VBox>
     </center>
 

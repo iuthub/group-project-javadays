@@ -16,12 +16,12 @@ import java.util.Random;
 
 // Originally written by Jasur Yusupov
 
-public class AdminStudentViewController {
+public class AdminLibrarianViewController {
     @FXML private ChoiceBox<String> choiceBoxSearchType;
     @FXML private TextField searchField;
 
     @FXML private Label lblTotalCount;
-    @FXML private TableView<AdminWindowStudent> tblStudentsDisplay;
+    @FXML private TableView<AdminWindowStudent> tblLibrariansDisplay;
     @FXML private Pagination pagination;
 
     @FXML private Button btnAdd;
@@ -31,16 +31,16 @@ public class AdminStudentViewController {
     @FXML private Label lblEmail;
     @FXML private Label lblPhone;
     @FXML private Label lblDepartment;
-    @FXML private Label lblAcademicYear;
+    @FXML private Label lblWorkingYear;
 
     @FXML private Button btnBookHistory;
     @FXML private Button btnModify;
     @FXML private Button btnDelete;
 
     private final UsersRepository ur;
-    private String selectedStudentId;
+    private String selectedLibrarianId;
 
-    public AdminStudentViewController() throws SQLException{
+    public AdminLibrarianViewController() throws SQLException{
         ur = UsersRepository.getInstance();
     }
 
@@ -54,7 +54,7 @@ public class AdminStudentViewController {
             pagination.currentPageIndexProperty().addListener(
                     (obs, oldIndex, newIndex) -> updateTable(newIndex.intValue())
             );
-            tblStudentsDisplay.getSelectionModel().selectedItemProperty().addListener(
+            tblLibrariansDisplay.getSelectionModel().selectedItemProperty().addListener(
                     (obs, oldSelection, newSelection) -> handleTableItemSelection(newSelection)
             );
             initTableView();
@@ -66,23 +66,23 @@ public class AdminStudentViewController {
 
     public void updateTable(int page){
         try {
-            this.tblStudentsDisplay.setItems(ur.getForAdmin(Role.STUDENT, page));
+            this.tblLibrariansDisplay.setItems(ur.getForAdmin(Role.LIBRARIAN, page));
         } catch (SQLException throwables) {
             throwables.printStackTrace();
         }
     }
 
     void initTableView() throws SQLException {
-        int total = ur.getTotalCount(Role.STUDENT);
-        this.lblTotalCount.setText(String.format("Students count: %d", total));
-        this.tblStudentsDisplay.setItems(ur.getForAdmin(Role.STUDENT, pagination.getCurrentPageIndex()));
+        int total = ur.getTotalCount(Role.LIBRARIAN);
+        this.lblTotalCount.setText(String.format("Librarians count: %d", total));
+        this.tblLibrariansDisplay.setItems(ur.getForAdmin(Role.LIBRARIAN, pagination.getCurrentPageIndex()));
         pagination.setVisible(true);
         pagination.setPageCount((int) Math.ceil(total / 100.0));
     }
 
     String generateEmail(String name){
         String[] n = name.split(" ");
-        return String.format("%s.%s@student.inha.uz", n[0].substring(0, 1).toLowerCase(), n[1].toLowerCase());
+        return String.format("%s.%s@librarian.inha.uz", n[0].substring(0, 1).toLowerCase(), n[1].toLowerCase());
     }
 
     String generatePhone(String userId){
@@ -95,10 +95,10 @@ public class AdminStudentViewController {
     }
 
     String generateDepartment(){
-        return new String[]{"SOL", "SOCIE"}[new Random().nextInt(1)];
+        return new String[]{"A301", "B206"}[new Random().nextInt(1)];
     }
 
-    String generateAcademicYear(String userId){
+    String generateWorkingYear(String userId){
         int year = Integer.parseInt(userId.substring(1, 3));
         if (year <= 20 && year >= 14){
             return String.format("20%d", year);
@@ -106,21 +106,22 @@ public class AdminStudentViewController {
         return String.format("%d", 2014 + new Random().nextInt(6));
     }
 
-    void handleTableItemSelection(AdminWindowStudent student){
-        if (student != null){
-            selectedStudentId = student.getUserId();
+    void handleTableItemSelection(AdminWindowStudent librarian){
+        if (librarian != null){
+            selectedLibrarianId = librarian.getUserId();
 
-            lblName.setText(student.getName());
-            lblEmail.setText(generateEmail(student.getName()));
-            lblPhone.setText(generatePhone(student.getUserId()));
+            lblName.setText(librarian.getName());
+            lblEmail.setText(generateEmail(librarian.getName()));
+            lblPhone.setText(generatePhone(librarian.getUserId()));
             lblDepartment.setText(generateDepartment());
-            lblAcademicYear.setText(generateAcademicYear(student.getUserId()));
+            lblWorkingYear.setText(generateWorkingYear(librarian.getUserId()));
+
 
             btnBookHistory.setDisable(false);
             btnModify.setDisable(false);
             btnDelete.setDisable(false);
         } else{
-            selectedStudentId = null;
+            selectedLibrarianId = null;
         }
     }
 
@@ -128,8 +129,8 @@ public class AdminStudentViewController {
         try {
             if (!searchField.getText().equals("")){
                 String search_by = choiceBoxSearchType.getValue();
-                this.tblStudentsDisplay.setItems(ur.searchForAdmin(Role.STUDENT, search_by, searchField.getText()));
-                this.lblTotalCount.setText(String.format("Search results: %d", this.tblStudentsDisplay.getItems().size()));
+                this.tblLibrariansDisplay.setItems(ur.searchForAdmin(Role.LIBRARIAN, search_by, searchField.getText()));
+                this.lblTotalCount.setText(String.format("Search results: %d", this.tblLibrariansDisplay.getItems().size()));
                 this.pagination.setVisible(false);
             } else{
                 initTableView();
@@ -139,10 +140,10 @@ public class AdminStudentViewController {
         }
     }
 
-    public void createStudent() throws SQLException {
+    public void createLibrarian() throws SQLException {
         Dialog<ButtonType> dialog = new Dialog<>();
         dialog.initOwner(btnAdd.getScene().getWindow());
-        dialog.setTitle("Add Student");
+        dialog.setTitle("Add Librarian");
         dialog.setResizable(false);
 
         FXMLLoader fxmlLoader = new FXMLLoader();
@@ -169,28 +170,28 @@ public class AdminStudentViewController {
         Optional<ButtonType> result = dialog.showAndWait();
 
         if(result.isPresent() && result.get() == ButtonType.OK) {
-            controller.addStudent(Role.STUDENT);
+            controller.addStudent(Role.LIBRARIAN);
         }
 
         initTableView();
     }
 
-    public void deleteStudent() throws SQLException {
-        if (selectedStudentId != null){
-            ur.delete(selectedStudentId);
+    public void deleteLibrarian() throws SQLException {
+        if (selectedLibrarianId != null){
+            ur.delete(selectedLibrarianId);
             unselect();
         }
     }
 
-    public void modifyStudent() throws SQLException{
-        if (selectedStudentId != null) {
+    public void modifyLibrarian() throws SQLException{
+        if (selectedLibrarianId != null) {
             Dialog<ButtonType> dialog = new Dialog<>();
             dialog.initOwner(btnModify.getScene().getWindow());
-            dialog.setTitle("Modify Student");
+            dialog.setTitle("Modify Librarian");
             dialog.setResizable(false);
 
             FXMLLoader fxmlLoader = new FXMLLoader();
-            fxmlLoader.setLocation(getClass().getResource("/res/fxml/adminAddModifyDialog.fxml"));
+            fxmlLoader.setLocation(getClass().getResource("/fxml/adminAddModifyDialog.fxml"));
 
             try {
                 dialog.getDialogPane().setContent(fxmlLoader.load());
@@ -202,7 +203,7 @@ public class AdminStudentViewController {
             dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
 
             AdminAddModifyDialogController controller = fxmlLoader.getController();
-            controller.initializeFields(selectedStudentId);
+            controller.initializeFields(selectedLibrarianId);
 
             final Button okButton = (Button) dialog.getDialogPane().lookupButton(ButtonType.OK);
             okButton.addEventFilter(ActionEvent.ACTION, ae -> {
@@ -222,7 +223,7 @@ public class AdminStudentViewController {
     }
 
     void unselect() throws SQLException{
-        selectedStudentId = null;
+        selectedLibrarianId = null;
         btnBookHistory.setDisable(true);
         btnDelete.setDisable(true);
         btnModify.setDisable(true);

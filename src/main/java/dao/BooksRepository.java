@@ -5,6 +5,8 @@ import javafx.collections.ObservableList;
 import model.Book;
 import model.BookStudentView;
 
+
+import javax.xml.transform.Result;
 import java.sql.*;
 
 public class BooksRepository {
@@ -14,6 +16,8 @@ public class BooksRepository {
     private final PreparedStatement getAllStmt;
     private final PreparedStatement updateStmt;
     private final PreparedStatement getById;
+    private final PreparedStatement getCountStmt;
+    private final PreparedStatement deleteStmt;
 
     private final PreparedStatement getAllByISBTStmt;
     private final PreparedStatement getCopiesNumByISBTStmt;
@@ -21,11 +25,14 @@ public class BooksRepository {
     private BooksRepository() throws SQLException {
         String GET_ALL =   "SELECT * FROM Books";
         String GET_BY_ID = "SELECT * FROM Books WHERE bookID= ?";
+        String COUNT = "SELECT COUNT(*) FROM Books";
         String CREATE_QUERY = "INSERT INTO Books(BookID, ISBN, Title, Subject, Author, PublishDate) VALUES (?, '?', '?', '?', '?', '?')";
         String UPDATE_QUERY = "UPDATE Books SET BookID = ?, ISBN = ?, Title = ?, Subject = ? , Author = ?, PublishDate = ? WHERE BookID = ?";
         String GET_ALl_BY_ISBN = "SELECT * FROM Books WHERE ISBN=?";
-
+        String DELETE_QUERY = "DELETE FROM Books WHERE BookID=?";
         String GET_NUM_COPIES="SELECT COUNT(*) FROM Books WHERE ISBN=?";
+
+
         Connection conn = ConnectionManager.getConnection();
         this.getCopiesNumByISBTStmt=conn.prepareStatement(GET_NUM_COPIES);
         this.createStmt = conn.prepareStatement(CREATE_QUERY);
@@ -33,6 +40,9 @@ public class BooksRepository {
         this.updateStmt = conn.prepareStatement(UPDATE_QUERY);
         this.getById    = conn.prepareStatement(GET_BY_ID);
         this.getAllByISBTStmt = conn.prepareStatement(GET_ALl_BY_ISBN);
+        this.getCountStmt = conn.prepareStatement(COUNT);
+        this.deleteStmt = conn.prepareStatement(DELETE_QUERY);
+
     }
 
     public static BooksRepository getInstance() throws SQLException {
@@ -162,5 +172,10 @@ public class BooksRepository {
         updateStmt.setDate  (6, date);
         updateStmt.setInt   (7, oldBookId);
         updateStmt.executeUpdate();
+    }
+
+    public void deleteBook(int bookId) throws SQLException {
+        deleteStmt.setInt(1, bookId);
+        deleteStmt.executeUpdate();
     }
 }

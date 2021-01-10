@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.Font?>
+
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controllers.LibrarianDeleteBookDialogController"
+            prefHeight="350.0" prefWidth="400.0">
+
+    <GridPane
+            AnchorPane.bottomAnchor="10.0"
+            AnchorPane.topAnchor="10.0"
+            AnchorPane.leftAnchor="10.0"
+            AnchorPane.rightAnchor="10.0">
+
+        <columnConstraints>
+            <ColumnConstraints minWidth="130.0" hgrow="NEVER"/>
+            <ColumnConstraints hgrow="ALWAYS"/>
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints vgrow="ALWAYS"/>
+            <RowConstraints vgrow="ALWAYS"/>
+            <RowConstraints vgrow="ALWAYS"/>
+            <RowConstraints vgrow="ALWAYS"/>
+            <RowConstraints vgrow="ALWAYS"/>
+            <RowConstraints vgrow="ALWAYS"/>
+            <RowConstraints vgrow="ALWAYS"/>
+        </rowConstraints>
+
+        <Label text="Book ID:" GridPane.rowIndex="1" GridPane.columnIndex="0">
+            <font>
+                <Font size="17"/>
+            </font>
+        </Label>
+        <Label fx:id="bookId" GridPane.rowIndex="1" GridPane.columnIndex="1">
+            <font>
+                <Font size="17"/>
+            </font>
+        </Label>
+
+        <Label text="ISBN:" GridPane.rowIndex="2" GridPane.columnIndex="0">
+            <font>
+                <Font size="17"/>
+            </font>
+        </Label>
+        <Label fx:id="isbn" GridPane.rowIndex="2" GridPane.columnIndex="1">
+            <font>
+                <Font size="17"/>
+            </font>
+        </Label>
+
+        <Label text="Title:" GridPane.rowIndex="3" GridPane.columnIndex="0">
+            <font>
+                <Font size="17"/>
+            </font>
+        </Label>
+        <Label fx:id="title" GridPane.rowIndex="3" GridPane.columnIndex="1">
+            <font>
+                <Font size="17"/>
+            </font>
+        </Label>
+
+        <Label text="Subject:" GridPane.rowIndex="4" GridPane.columnIndex="0">
+            <font>
+                <Font size="17"/>
+            </font>
+        </Label>
+        <Label fx:id="subject" GridPane.rowIndex="4" GridPane.columnIndex="1">
+            <font>
+                <Font size="17"/>
+            </font>
+        </Label>
+
+        <Label text="Author:" GridPane.rowIndex="5" GridPane.columnIndex="0">
+            <font>
+                <Font size="17"/>
+            </font>
+        </Label>
+        <Label fx:id="author" GridPane.rowIndex="5" GridPane.columnIndex="1">
+            <font>
+                <Font size="17"/>
+            </font>
+        </Label>
+
+        <Label text="Publish Date:" GridPane.rowIndex="6" GridPane.columnIndex="0">
+            <font>
+                <Font size="17"/>
+            </font>
+        </Label>
+        <Label fx:id="publishDate" GridPane.rowIndex="6" GridPane.columnIndex="1">
+            <font>
+                <Font size="17"/>
+            </font>
+        </Label>
+
+        <Label style="-fx-font-weight: bold;" text="Do you really want to delete this book?"
+               GridPane.rowIndex="0"
+               GridPane.columnSpan="2"
+               GridPane.halignment="CENTER">
+            <font>
+                <Font size="50"/>
+            </font>
+        </Label>
+    </GridPane>
+</AnchorPane>

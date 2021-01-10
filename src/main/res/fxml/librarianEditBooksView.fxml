@@ -9,17 +9,17 @@
             xmlns:fx="http://javafx.com/fxml"
             fx:controller="controllers.LibrarianEditBooksController"
             fx:id="mainAnchorPane"
-            stylesheets="@../css/main.css">
-    <VBox fx:id="mainVbox" spacing="20.0"
+            stylesheets="@../css/student_view.css">
+    <VBox spacing="20.0"
             AnchorPane.bottomAnchor="10.0"
             AnchorPane.topAnchor="10.0"
             AnchorPane.leftAnchor="10.0"
             AnchorPane.rightAnchor="10.0">
 
         <HBox VBox.vgrow="NEVER" spacing="15.0">
-            <Button text="Create" onAction="#handleCreateButton"/>
-            <Button text="Update" onAction="#handleUpdateButton"/>
-            <Button text="Delete" onAction="#handleDeleteButton"/>
+            <Button text="Create" onAction="#handleCreateButton" styleClass="submit-button"/>
+            <Button text="Update" onAction="#handleUpdateButton" styleClass="secondary-button"/>
+            <Button text="Delete" onAction="#handleDeleteButton" styleClass="delete-button"/>
         </HBox>
 
         <TableView fx:id="tblBooksTable" VBox.vgrow="ALWAYS">
@@ -41,8 +41,5 @@
                 </TableColumn>
             </columns>
         </TableView>
-<!--
-        <Pagination fx:id="pagination" layoutX="21.0" layoutY="658.0" maxPageIndicatorCount="5" pageCount="10" prefHeight="50.0" prefWidth="602.0" />
--->
     </VBox>
 </AnchorPane>

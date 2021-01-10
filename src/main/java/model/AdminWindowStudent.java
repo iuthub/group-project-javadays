@@ -1,11 +1,11 @@
 package model;
 
-public class StudentBorrowedBooks {
+public class AdminWindowStudent {
     private String userId;
     private String name;
     private int count;
 
-    public StudentBorrowedBooks(String userId, String name){
+    public AdminWindowStudent(String userId, String name){
         this.userId = userId;
         this.name = name;
         this.count = 3;

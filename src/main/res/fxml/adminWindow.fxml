@@ -22,7 +22,7 @@
             <VBox styleClass="img-logo">
                 <ImageView fitWidth="200" preserveRatio="true"><Image url="@../img/logo.png"/></ImageView>
             </VBox>
-            <Button text="Home">
+            <Button text="Home" onAction="#handleHomeView">
                 <graphic>
                     <GridPane styleClass="menuGridPane">
                         <columnConstraints>
@@ -97,7 +97,15 @@
     </left>
 
     <center>
-        <fx:include source="adminStudentView.fxml"/>
+        <fx:include source="adminHomeView.fxml"/>
+<!--        <GridPane fx:id="adminStudentViewGridPane" visible="false">-->
+<!--            <fx:include source="adminStudentView.fxml" GridPane.rowIndex="0" GridPane.columnIndex="0"/>-->
+<!--        </GridPane>-->
+
+<!--        <GridPane fx:id="adminLibrarianViewGridPane" visible="false">-->
+<!--            <fx:include source="adminLibrarianView.fxml" GridPane.rowIndex="0" GridPane.columnIndex="0" />-->
+<!--        </GridPane>-->
+
     </center>
 
     <bottom>

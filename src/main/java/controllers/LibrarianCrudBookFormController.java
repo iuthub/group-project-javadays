@@ -2,17 +2,13 @@ package controllers;
 
 import javafx.event.Event;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.DatePicker;
-import javafx.scene.control.TextArea;
-import javafx.scene.control.TextField;
+import javafx.scene.control.*;
 import javafx.stage.Stage;
 import model.Book;
 
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.SQLException;
-import java.util.Date;
 
 public class LibrarianCrudBookFormController {
     @FXML TextField bookId;
@@ -43,6 +39,14 @@ public class LibrarianCrudBookFormController {
 
     @FXML
     void handleButton(Event event) throws SQLException {
+        if (checkIfAnyFieldIsEmpty()) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText("One of the fields is blank.");
+            alert.showAndWait();
+            return;
+        }
+
         PreparedStatement stmt;
 
         if (getState().equals("CREATE")) {
@@ -64,8 +68,30 @@ public class LibrarianCrudBookFormController {
         stmt.setDate(6, book.getPublishDate());
         stmt.setString(7, book.getDescription());
 
-        stmt.executeUpdate();
+        try {
+            stmt.executeUpdate();
+        } catch (SQLException sqlException) {
+            Alert alert = new Alert(Alert.AlertType.ERROR);
+            alert.setTitle("Error");
+            alert.setHeaderText(String.format("Book with ID = %d already exists.", book.getBookID()));
+            alert.showAndWait();
+        }
         closeWindow();
+    }
+
+    private boolean checkIfAnyFieldIsEmpty() {
+        return bookId.getText() == null || bookId.getText().trim().isEmpty() ||
+                isbn.getText() == null || isbn.getText().trim().isEmpty() ||
+                title.getText() == null || title.getText().trim().isEmpty() ||
+                subject.getText() == null || subject.getText().trim().isEmpty() ||
+                author.getText() == null || author.getText().trim().isEmpty() ||
+                publishDate.getValue() == null ||
+                description.getText() == null || description.getText().trim().isEmpty();
+    }
+
+    @FXML
+    void handleCancel(Event event) {
+        this.closeWindow();
     }
 
     private void closeWindow() {

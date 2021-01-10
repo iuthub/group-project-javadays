@@ -1,0 +1,23 @@
+.label {
+    -fx-font-size: 16pt;
+    -fx-font-weight: bold;
+    -fx-text-fill: #278ee3;
+}
+
+.label-result: hover {
+    -fx-background-color: white;
+    -fx-background-radius: 30px;
+    -fx-effect: dropshadow(gaussian, rgba(0, 0, 0, 0.3), 10, 0.2, 3.0, 3.0);
+}
+
+.label-title {
+    -fx-font-size: 20pt;
+    -fx-font-weight: bold;
+    -fx-text-fill: #0b67b2;
+}
+
+.glyph-icon {
+    -fx-size: 25pt;
+    -fx-font-family: Arial, sans-serif;
+    -fx-fill: #278ee3;
+}
