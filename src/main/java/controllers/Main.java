@@ -15,7 +15,7 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("/res/fxml/loginDialog.fxml"));
         primaryStage.getIcons().add(new Image(getClass().getResourceAsStream("/res/img/favicon.png")));
         primaryStage.setTitle("Inha Library");
-        primaryStage.setResizable(true);
+        primaryStage.setResizable(false);
         Scene scene = new Scene(root, 1280, 720);
         scene.getStylesheets().add(getClass().getResource("/res/css/style.css").toExternalForm());
         primaryStage.setScene(scene);

@@ -1,29 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.control.Button?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.PasswordField?>
-<?import javafx.scene.control.TextField?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
-<?import javafx.scene.layout.BorderPane?>
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.text.Font?>
-<?import javafx.scene.text.Text?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
 
-<?import javafx.scene.layout.HBox?>
-<?import javafx.scene.layout.GridPane?>
-<?import javafx.scene.text.TextFlow?>
-<?import javafx.scene.control.Separator?>
-<?import javafx.geometry.Insets?>
-<BorderPane fx:id="loginBorderPane"
-            prefHeight="538.0" prefWidth="921.0" stylesheets="@../css/login.css"
-            xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginController">
+<BorderPane fx:id="loginBorderPane" prefHeight="538.0" prefWidth="921.0" stylesheets="@../css/login.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginController">
 
     <center>
-        <VBox maxWidth="441.0" prefHeight="477.0" prefWidth="441.0" styleClass="vboxMain">
-            <ImageView fitWidth="230" pickOnBounds="true" preserveRatio="true">
-                <Image url="@../img/logo.png" />
+        <VBox maxHeight="380.0" maxWidth="441.0" prefWidth="441.0" styleClass="vboxMain">
+            <ImageView fitWidth="350" pickOnBounds="true" preserveRatio="true">
+                <Image url="@../img/logo-lms.png" />
             </ImageView>
 
             <VBox styleClass="vbox">
@@ -42,31 +30,41 @@
             </VBox>
          <Label fx:id="lblAlert" styleClass="alert" />
 
-            <Button defaultButton="true" onAction="#handleSubmit" prefWidth="Infinity" styleClass="submit-button" text="Sign in" fx:id="btnSubmit" style="-fx-min-height: 40px;"/>
+            <Button fx:id="btnSubmit" defaultButton="true" onAction="#handleSubmit" prefWidth="Infinity" style="-fx-min-height: 40px;" styleClass="submit-button" text="Sign in" />
         </VBox>
     </center>
 
-<!--    <right>-->
-<!--        <ImageView fitWidth="400" pickOnBounds="true" preserveRatio="true" BorderPane.alignment="CENTER">-->
-<!--            <Image url="@../img/loginBackground.png" />-->
-<!--        </ImageView>-->
-<!--    </right>-->
+    <bottom>
+        <GridPane alignment="CENTER" styleClass="footer">
+            <HBox alignment="CENTER" minHeight="60" prefWidth="574.0">
+                <ImageView fitWidth="220" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@../img/logo-lms-dark.png" />
+                </ImageView>
 
-<!--    <bottom>-->
-<!--        <HBox styleClass="footer" minHeight="100">-->
-<!--            <BorderPane.margin>-->
-<!--                <Insets top="20"/>-->
-<!--            </BorderPane.margin>-->
-<!--            <ImageView fitWidth="200" pickOnBounds="true" preserveRatio="true">-->
-<!--                <Image url="@../img/logo.png" />-->
-<!--            </ImageView>-->
-
-<!--            <VBox>-->
-<!--                <TextFlow maxWidth="400" lineSpacing="10">-->
-<!--                    <Text text="Copyright © 2021 Inha University in Tashkent JavaDays Team"/>-->
-<!--                    <Text text="Library Management System is provided under MIT License."/>-->
-<!--                </TextFlow>-->
-<!--            </VBox>-->
-<!--        </HBox>-->
-<!--    </bottom>-->
+                <VBox spacing="10">
+                    <TextFlow lineSpacing="10" maxWidth="500" styleClass="text-flow-footer">
+                        <Text text="Copyright © 2021 Inha University in Tashkent JavaDays Team" />
+                  <padding>
+                     <Insets top="10.0" />
+                  </padding>
+                  <VBox.margin>
+                     <Insets top="10.0" />
+                  </VBox.margin>
+                    </TextFlow>
+                </VBox>
+            </HBox>
+         <columnConstraints>
+            <ColumnConstraints />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints />
+         </rowConstraints>
+         <BorderPane.margin>
+            <Insets top="15.0" />
+         </BorderPane.margin>
+         <padding>
+            <Insets left="20.0" />
+         </padding>
+        </GridPane>
+    </bottom>
 </BorderPane>

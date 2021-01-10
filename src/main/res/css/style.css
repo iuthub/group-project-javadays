@@ -1,8 +1,6 @@
 .root {
     -fx-font-size: 12pt;
     -fx-font-family: "Lato", sans-serif;
-    -fx-padding: 40px;
-    /*-fx-background-image: url(../img/loginBackground.png);*/
 }
 
 .h1 {
@@ -27,6 +25,12 @@
    -fx-font-family: "Lato Medium", sans-serif;
 
 }
+
+.text-flow-footer > Text {
+    -fx-fill: #b2b2b2;
+    -fx-font-size: 9pt;
+}
+
 
 .error-label {
     -fx-text-fill: RED;

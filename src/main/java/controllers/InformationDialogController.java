@@ -17,14 +17,14 @@ public class InformationDialogController {
         lblMessage.setText(text);
     }
 
-    public static InformationDialogController getDialog(Class root, Dialog<ButtonType> dialog, Button btnSubmit, String text, String file) {
+    public static InformationDialogController getDialog(Class root, Dialog<ButtonType> dialog, Button btnSubmit, String text) {
 
         dialog.initOwner(btnSubmit.getScene().getWindow());
         dialog.setTitle("Information");
         dialog.setResizable(false);
 
         FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(root.getResource(file));
+        fxmlLoader.setLocation(root.getResource("/res/fxml/informationDialog.fxml"));
 
         try {
             dialog.getDialogPane().setContent(fxmlLoader.load());

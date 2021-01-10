@@ -80,7 +80,7 @@ public class LibrarianJournalController
 
         Dialog<ButtonType> dialog = new Dialog<>();
 
-        InformationDialogController informationDialogController = InformationDialogController.getDialog(getClass(),dialog, btnReturn, "", "/res/fxml/informationDialog.fxml");
+        InformationDialogController informationDialogController = InformationDialogController.getDialog(getClass(),dialog, btnReturn, "");
 
         User selectedStudent = studentsTableView.getSelectionModel().getSelectedItem();
         Book selectedBook = chosenBooksTable.getSelectionModel().getSelectedItem();
