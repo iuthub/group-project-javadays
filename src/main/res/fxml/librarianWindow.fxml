@@ -51,7 +51,7 @@
                         <columnConstraints>
                             <ColumnConstraints prefWidth="40" />
                         </columnConstraints>
-                        <FontAwesomeIconView glyphName="BOOK" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                        <FontAwesomeIconView glyphName="CLIPBOARD" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
                         <Label text="Journal" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
                     </GridPane>
                 </graphic>
