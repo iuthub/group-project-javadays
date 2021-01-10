@@ -32,7 +32,6 @@ public class BooksRepository {
         String DELETE_QUERY = "DELETE FROM Books WHERE BookID=?";
         String GET_NUM_COPIES="SELECT COUNT(*) FROM Books WHERE ISBN=?";
 
-
         Connection conn = ConnectionManager.getConnection();
         this.getCopiesNumByISBTStmt=conn.prepareStatement(GET_NUM_COPIES);
         this.createStmt = conn.prepareStatement(CREATE_QUERY);
@@ -42,7 +41,6 @@ public class BooksRepository {
         this.getAllByISBTStmt = conn.prepareStatement(GET_ALl_BY_ISBN);
         this.getCountStmt = conn.prepareStatement(COUNT);
         this.deleteStmt = conn.prepareStatement(DELETE_QUERY);
-
     }
 
     public static BooksRepository getInstance() throws SQLException {
@@ -183,5 +181,36 @@ public class BooksRepository {
     public void deleteBook(int bookId) throws SQLException {
         deleteStmt.setInt(1, bookId);
         deleteStmt.executeUpdate();
+    }
+
+    public ObservableList<Book> search(String searchBy, String searchByValue) throws SQLException {
+        var searchQuery = String.format("SELECT * FROM Books WHERE %s=?", searchBy);
+        var stmt = ConnectionManager.getConnection().prepareStatement(searchQuery);
+
+        if (searchBy.equals("BookID")) {
+            try {
+                stmt.setInt(1, Integer.parseInt(searchByValue));
+            } catch(NumberFormatException ignored) {
+                System.err.printf("Error while parsing '%s' to integer.", searchByValue);
+            }
+        } else {
+            stmt.setString(1, searchByValue);
+        }
+        ObservableList<Book> list = FXCollections.observableArrayList();
+        ResultSet result = stmt.executeQuery();
+
+        while (result.next()) {
+            list.add(new Book(
+                    result.getInt("BookID"),
+                    result.getString("ISBN"),
+                    result.getString("Title"),
+                    result.getString("Subject"),
+                    result.getString("Author"),
+                    result.getDate("PublishDate"),
+                    result.getString("Description")
+            ));
+        }
+        stmt.close();
+        return list;
     }
 }
