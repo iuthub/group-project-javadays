@@ -21,16 +21,21 @@ public class LoginController {
     @FXML private TextField txtUserID;
     @FXML private PasswordField txtPassword;
     public static String userID="";
+
+    private LoginContext loginContext;
+
     /**
      * This method verifies if user submitted correct login and password.
      * If UserID is not of the form "UXXXXXXX" where X is a digit, it asks user to re-submit
      * credits to Jasur Yusupov
      */
 
-    public void handleSubmit() throws IOException {
-        Stage mainAppStage;
-        Parent root;
+    @FXML
+    public void initialize() {
+        loginContext = new LoginContext();
+    }
 
+    public void handleSubmit() throws IOException {
         userID = txtUserID.getText().toUpperCase();
         String password = txtPassword.getText();
         boolean status = false;
@@ -52,40 +57,31 @@ public class LoginController {
         if (status){
             lblAlert.setTextFill(Color.GREEN);
             lblAlert.setText("Success!");
-
             User currentUser = null;
             try {
                 currentUser = UsersRepository.getInstance().get(userID);
             } catch (SQLException throwables) {
                 throwables.printStackTrace();
             }
-
-            // Changing Stage to the main App
-            mainAppStage = (Stage) btnSubmit.getScene().getWindow();
-            mainAppStage.setResizable(false);
-
             assert currentUser != null;
             int roleType = currentUser.getRole().getValue();
 
             switch (roleType) {
                 case 0:
                     AdminWindowController.setCurrentUser(currentUser);
-                    root = FXMLLoader.load(getClass().getResource("/res/fxml/adminWindow.fxml"));
+                    loginContext.setLoginStrategy(new LoginAdminStrategy());
                     break;
                 case 1:
-                    root = FXMLLoader.load(getClass().getResource("/res/fxml/librarianWindow.fxml"));
+                    loginContext.setLoginStrategy(new LoginLibrarianStrategy());
                     break;
                 case 2:
-                    root = FXMLLoader.load(getClass().getResource("/res/fxml/studentWindow.fxml"));
+                    loginContext.setLoginStrategy(new LoginStudentStrategy());
                     break;
                 default:
                     throw new IllegalStateException("Unexpected value: " + roleType);
             }
             
-            Scene mainAppScene = new Scene(root, 1280, 720);
-            mainAppScene.getStylesheets().add(getClass().getResource("/res/css/style.css").toExternalForm());
-            mainAppStage.setScene(mainAppScene);
-            mainAppStage.show();
+            loginContext.executeStrategy(btnSubmit);
         }
         
         

@@ -1,6 +1,6 @@
 .root {
     -fx-background-image: url('../img/loginpage.jpg') ;
-    -fx-padding: 40px 0px 0 0px;
+    -fx-padding: 20px 0px 0 0px;
     -fx-spacing: 15px;
 }
 .vboxMain {
