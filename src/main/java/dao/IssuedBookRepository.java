@@ -29,6 +29,9 @@ public class IssuedBookRepository
         this.getAll=connection.prepareStatement(GET_ALL_ISSUED);
     }
     //endregion
+
+    //region <Get>
+
     public ObservableList<dao.IssuedBook> getAllIssued() throws SQLException {
         ResultSet rs = getAll.executeQuery();
         ObservableList<dao.IssuedBook> results = FXCollections.observableArrayList();
@@ -44,7 +47,6 @@ public class IssuedBookRepository
         }
         return results;
     }
-    //region <Get>
 
     //Returns all books borowed by this user
     public ObservableList<dao.IssuedBook> getByUser(String userId) throws SQLException
@@ -70,6 +72,16 @@ public class IssuedBookRepository
         }
 
         return issuedBooksByUser;
+    }
+
+    public int getCount(String userId) throws SQLException{
+        PreparedStatement getTotalCount = connection.prepareStatement("SELECT COUNT(*) FROM IssuedBooks WHERE UserID = ?");
+        getTotalCount.setString(1, userId);
+        ResultSet rs = getTotalCount.executeQuery();
+        if (rs.next()){
+            return rs.getInt(1);
+        }
+        return 0;
     }
     //endregion
 
@@ -101,6 +113,15 @@ public class IssuedBookRepository
     }
     //endregion
 
+    //region <Utilities>
+    public static IssuedBookRepository getInstance() throws SQLException
+    {
+        if(instance==null)
+        {
+            instance = new IssuedBookRepository();
+        }
+        return instance;
+    }
 
     public int calculateFine(int bookId, String userId) throws SQLException {
         PreparedStatement calculateDifferenceStmt = connection.prepareStatement("SELECT * FROM IssuedBooks WHERE BookId=? AND UserId=?");
@@ -146,26 +167,6 @@ public class IssuedBookRepository
 
         return 0;
     }
-
-
-    //region <Utilities>
-    public static IssuedBookRepository getInstance() throws SQLException
-    {
-        if(instance==null)
-        {
-            instance = new IssuedBookRepository();
-        }
-        return instance;
-    }
     //endregion
 
-    public int getCount(String userId) throws SQLException{
-        PreparedStatement getTotalCount = connection.prepareStatement("SELECT COUNT(*) FROM IssuedBooks WHERE UserID = ?");
-        getTotalCount.setString(1, userId);
-        ResultSet rs = getTotalCount.executeQuery();
-        if (rs.next()){
-            return rs.getInt(1);
-        }
-        return 0;
-    }
 }

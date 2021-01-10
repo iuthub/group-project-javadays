@@ -72,6 +72,8 @@ public class LoginController {
                     loginContext.setLoginStrategy(new LoginAdminStrategy());
                     break;
                 case 1:
+                    LibrarianWindowController.setCurrentUser(currentUser);
+                    root = FXMLLoader.load(getClass().getResource("/res/fxml/librarianWindow.fxml"));
                     loginContext.setLoginStrategy(new LoginLibrarianStrategy());
                     break;
                 case 2:

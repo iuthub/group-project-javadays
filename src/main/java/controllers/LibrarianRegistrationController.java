@@ -28,15 +28,13 @@ public class LibrarianRegistrationController
     @FXML
     public Pagination booksPagination;
     @FXML
-    public ChoiceBox<String> filterChoiceBox;
-    @FXML
     public TableView<Book> choosedBooksTable;
     @FXML
     public TextField IdField;
     @FXML
     public DatePicker dueDatePicker;
     @FXML
-    public Label resultLabel;
+    public Button issueButton;
 
     private final BooksRepository bookRepository;
     private final IssuedBookRepository issuedBookRepository;
@@ -55,14 +53,6 @@ public class LibrarianRegistrationController
     {
         ObservableList<Book> books = bookRepository.getAll();
         booksTable.setItems(books);
-
-        filterChoiceBox.getItems().add("Book Id");
-        filterChoiceBox.getItems().add("ISBN");
-        filterChoiceBox.getItems().add("Title");
-        filterChoiceBox.getItems().add("Author");
-        filterChoiceBox.getItems().add("Subject");
-        filterChoiceBox.getItems().add("Publish date");
-        filterChoiceBox.setValue("Book Id");
 
         booksTable.setRowFactory( tv -> {
             TableRow<Book> row = new TableRow<Book>();
@@ -94,33 +84,38 @@ public class LibrarianRegistrationController
     private void issueHandler() throws SQLException, IOException {
         ObservableList<Book> choosedBooks = choosedBooksTable.getItems();
 
-        //https://code.makery.ch/blog/javafx-dialogs-official/
-        Alert errorAlert = new Alert(Alert.AlertType.ERROR);
-        errorAlert.setTitle("Validation error");
-        errorAlert.setHeaderText("Operation canceled");
+        Dialog<ButtonType> dialog = new Dialog<>();
+
+        InformationDialogController informationDialogController = InformationDialogController.getDialog(getClass(),dialog,issueButton,"");
 
         if(IdField.getText()==""){
-            errorAlert.setContentText("Please set user ID");
-            errorAlert.showAndWait();
+            informationDialogController.setLabel("Operation canceled. Please set user ID");
+            dialog.showAndWait();
             return;
         }
         else if(dueDatePicker.getValue()==null){
-            errorAlert.setContentText("Please set due date");
-            errorAlert.showAndWait();
+            informationDialogController.setLabel("Operation canceled. Please set due date");
+            dialog.showAndWait();
             return;
         }
         else if(choosedBooksTable.getItems().stream().count()==0) {
-            errorAlert.setContentText("You didn't choose books");
-            errorAlert.showAndWait();
+            informationDialogController.setLabel("Operation canceled. Please choose books");
+            dialog.showAndWait();
             return;
         }
 
         User user = usersRepository.get(IdField.getText());
 
-        if(user.getRole().getValue()!=2)
+        if(user==null)
         {
-            errorAlert.setContentText("Entered ID is not student's ID please enter another ID");
-            errorAlert.showAndWait();
+            informationDialogController.setLabel("Entered ID is not valid. Valid pattern:U1234567");
+            dialog.showAndWait();
+            return;
+        }
+        else if(user.getRole().getValue()!=2)
+        {
+            informationDialogController.setLabel("Entered ID is not student's ID please enter another ID");
+            dialog.showAndWait();
             return;
         }
 
@@ -136,18 +131,14 @@ public class LibrarianRegistrationController
                 issuedBookRepository.addIssuedBook(issuedBook);
             }
             catch (SQLException e){
-                errorAlert.setContentText("This user already taken this books! Operation canceled");
-                errorAlert.showAndWait();
+                informationDialogController.setLabel("This user already taken this books! Operation canceled");
+                dialog.showAndWait();
                 return;
             }
         }
 
-        Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
-        successAlert.setTitle("Success");
-        successAlert.setHeaderText("Operation completed.");
-
-        successAlert.setContentText("Book(s) were successfully registered by student");
-        successAlert.showAndWait();
+        informationDialogController.setLabel("Book(s) were successfully registered by student");
+        dialog.showAndWait();
 
         IdField.setText("");
         choosedBooksTable.getItems().clear();
