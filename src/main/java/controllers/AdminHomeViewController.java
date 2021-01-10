@@ -18,12 +18,10 @@ public class AdminHomeViewController {
     private String adminId;
 
     public void setAdminId(String adminId) {
-        System.out.println(adminId);
         this.adminId = adminId;
     }
 
     public void init() throws SQLException {
-        System.out.println(adminId);
         UsersRepository ur = UsersRepository.getInstance();
         int librarians = ur.getTotalCount(Role.LIBRARIAN);
         int students = ur.getTotalCount(Role.STUDENT);
