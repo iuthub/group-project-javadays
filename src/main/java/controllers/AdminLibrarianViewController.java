@@ -6,9 +6,11 @@ import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
-import model.AdminWindowStudent;
+import model.AdminWindowDisplay;
 
+import java.io.File;
 import java.io.IOException;
 import java.sql.SQLException;
 import java.util.Optional;
@@ -21,7 +23,7 @@ public class AdminLibrarianViewController {
     @FXML private TextField searchField;
 
     @FXML private Label lblTotalCount;
-    @FXML private TableView<AdminWindowStudent> tblLibrariansDisplay;
+    @FXML private TableView<AdminWindowDisplay> tblLibrariansDisplay;
     @FXML private Pagination pagination;
 
     @FXML private Button btnAdd;
@@ -33,7 +35,6 @@ public class AdminLibrarianViewController {
     @FXML private Label lblDepartment;
     @FXML private Label lblWorkingYear;
 
-    @FXML private Button btnBookHistory;
     @FXML private Button btnModify;
     @FXML private Button btnDelete;
 
@@ -88,14 +89,14 @@ public class AdminLibrarianViewController {
     String generatePhone(String userId){
         Random r = new Random();
         String seq = userId.substring(5);
-        int a = r.nextInt(8) + 1;
-        int b = r.nextInt(9);
+        int a = r.nextInt(9) + 1;
+        int b = r.nextInt(10);
         int c = a * 10 + b;
-        return String.format("+998 %d %s %d %d", 90 + r.nextInt(3), seq, c, Math.abs(c - a*b));
+        return String.format("+998 %d %s %d %d", 90 + r.nextInt(5), seq, c, Math.abs(c - a*b));
     }
 
     String generateDepartment(){
-        return new String[]{"A301", "B206"}[new Random().nextInt(1)];
+        return new String[]{"A301", "B206"}[new Random().nextInt(2)];
     }
 
     String generateWorkingYear(String userId){
@@ -103,10 +104,10 @@ public class AdminLibrarianViewController {
         if (year <= 20 && year >= 14){
             return String.format("20%d", year);
         }
-        return String.format("%d", 2014 + new Random().nextInt(6));
+        return String.format("%d", 2014 + new Random().nextInt(7));
     }
 
-    void handleTableItemSelection(AdminWindowStudent librarian){
+    void handleTableItemSelection(AdminWindowDisplay librarian){
         if (librarian != null){
             selectedLibrarianId = librarian.getUserId();
 
@@ -116,8 +117,6 @@ public class AdminLibrarianViewController {
             lblDepartment.setText(generateDepartment());
             lblWorkingYear.setText(generateWorkingYear(librarian.getUserId()));
 
-
-            btnBookHistory.setDisable(false);
             btnModify.setDisable(false);
             btnDelete.setDisable(false);
         } else{
@@ -224,7 +223,6 @@ public class AdminLibrarianViewController {
 
     void unselect() throws SQLException{
         selectedLibrarianId = null;
-        btnBookHistory.setDisable(true);
         btnDelete.setDisable(true);
         btnModify.setDisable(true);
         lblName.setText("");
