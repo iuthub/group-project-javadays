@@ -80,6 +80,8 @@ public class LibrarianJournalController
         issuedBookRepository.removeIssuedBook(selectedBook.getBookID(),selectedStudent.getUserId());
 
         chosenBooksTable.getItems().remove(selectedBook);
+
+        IssuedBookRepository.getInstance().calculateDifference(selectedBook.getBookID(), selectedStudent.getUserId());
     }
     //endregion
 

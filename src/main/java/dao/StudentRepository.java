@@ -2,6 +2,7 @@ package dao;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import model.Student;
 import model.User;
 
 import java.sql.Connection;
@@ -25,6 +26,24 @@ public class StudentRepository {
         }
         return instance;
     }
+
+    public Student getStudent(String userId) throws SQLException {
+        PreparedStatement getStudentFineStmt = this.connection.prepareStatement("SELECT * FROM Students WHERE UserId=?");
+        getStudentFineStmt.setString(1, userId);
+
+        ResultSet result = getStudentFineStmt.executeQuery();
+        if (result.next()) {
+            return new Student(
+                    result.getString("userID"),
+                    result.getInt("fine"),
+                    result.getInt("status") == 1
+            );
+        }
+
+        return null;
+    }
+
+
 
     //Returns student who borrowed book
     public ObservableList<User> getStudentsWithBooks() throws SQLException {

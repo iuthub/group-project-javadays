@@ -1,0 +1,9 @@
+
+CREATE TABLE Students (
+    UserID VARCHAR(8) NOT NULL REFERENCES Users(UserID),
+    Fine INT NOT NULL DEFAULT 0,
+    Status INT NOT NULL DEFAULT 0,
+
+    PRIMARY KEY (UserID)
+);
+

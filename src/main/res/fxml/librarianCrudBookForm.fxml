@@ -29,55 +29,58 @@
             <RowConstraints minHeight="40" vgrow="NEVER"/>
         </rowConstraints>
 
-        <Label text="Book ID:" GridPane.rowIndex="0" GridPane.columnIndex="0">
+        <Label text="Book ID: *" GridPane.rowIndex="0" GridPane.columnIndex="0">
             <font>
                 <Font size="17"/>
             </font>
         </Label>
         <TextField fx:id="bookId" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
 
-        <Label text="ISBN:" GridPane.rowIndex="1" GridPane.columnIndex="0">
+        <Label text="ISBN: *" GridPane.rowIndex="1" GridPane.columnIndex="0">
             <font>
                 <Font size="17"/>
             </font>
         </Label>
         <TextField fx:id="isbn" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
 
-        <Label text="Title:" GridPane.rowIndex="2" GridPane.columnIndex="0">
+        <Label text="Title: *" GridPane.rowIndex="2" GridPane.columnIndex="0">
             <font>
                 <Font size="17"/>
             </font>
         </Label>
         <TextField fx:id="title" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
 
-        <Label text="Subject:" GridPane.rowIndex="3" GridPane.columnIndex="0">
+        <Label text="Subject: *" GridPane.rowIndex="3" GridPane.columnIndex="0">
             <font>
                 <Font size="17"/>
             </font>
         </Label>
         <TextField fx:id="subject" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
 
-        <Label text="Author:" GridPane.rowIndex="4" GridPane.columnIndex="0">
+        <Label text="Author: *" GridPane.rowIndex="4" GridPane.columnIndex="0">
             <font>
                 <Font size="17"/>
             </font>
         </Label>
         <TextField fx:id="author" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
 
-        <Label text="Publish Date:" GridPane.rowIndex="5" GridPane.columnIndex="0">
+        <Label text="Publish Date: *" GridPane.rowIndex="5" GridPane.columnIndex="0">
             <font>
                 <Font size="17"/>
             </font>
         </Label>
         <DatePicker fx:id="publishDate" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
 
-        <Label text="Description: " GridPane.rowIndex="6" GridPane.columnIndex="0">
+        <Label text="Description: *" GridPane.rowIndex="6" GridPane.columnIndex="0">
             <font>
                 <Font size="17"/>
             </font>
         </Label>
         <TextArea fx:id="description" GridPane.rowIndex="6" GridPane.columnIndex="1" wrapText="true"/>
 
-        <Button fx:id="button" onAction="#handleButton" GridPane.rowIndex="7" GridPane.columnIndex="1" GridPane.halignment="RIGHT"/>
+        <HBox spacing="10.0" GridPane.rowIndex="7" GridPane.columnIndex="1" GridPane.halignment="RIGHT" alignment="CENTER_RIGHT">
+            <Button fx:id="button" onAction="#handleButton"/>
+            <Button text="Cancel" fx:id="cancel" onAction="#handleCancel"/>
+        </HBox>
     </GridPane>
 </AnchorPane>
