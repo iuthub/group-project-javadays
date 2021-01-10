@@ -2,13 +2,16 @@ package controllers;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
 import javafx.scene.control.Button;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.BorderPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.VBox;
+import model.User;
 
 import java.io.IOException;
+import java.sql.SQLException;
 
 public class LibrarianWindowController {
     @FXML public AnchorPane mainAnchorPane;
@@ -22,11 +25,29 @@ public class LibrarianWindowController {
 
     @FXML Button btnLogOut;
 
-    public void handleHome(ActionEvent actionEvent) {
-        try {
-            HandleChangeView.handleChangeScene(getClass(), mainBorderPane, "/res/fxml/journalView.fxml");
+    private static User librarian;
+
+    public static void setCurrentUser(User librarian) { LibrarianWindowController.librarian = librarian; }
+
+    public void initialize(){ handleHome();}
+
+    public void handleHome() {
+        FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/res/fxml/LibrarianHomeView.fxml"));
+        mainBorderPane.getChildren().remove(mainBorderPane.getCenter());
+
+        try{
+            mainBorderPane.setCenter(fxmlLoader.load());
         } catch (IOException e) {
             e.printStackTrace();
+        }
+
+        LibrarianHomeController controller = fxmlLoader.getController();
+        controller.setLibrarianId(librarian.getUserId());
+
+        try {
+            controller.init();
+        } catch (SQLException throwables) {
+            throwables.printStackTrace();
         }
     }
 
@@ -41,7 +62,7 @@ public class LibrarianWindowController {
     public void handleJournal(ActionEvent actionEvent) {
 
         try {
-            HandleChangeView.handleChangeScene(getClass(), mainBorderPane, "/res/fxml/journalView.fxml");
+            HandleChangeView.handleChangeScene(getClass(), mainBorderPane, "/res/fxml/librarianJournalView.fxml");
         } catch (IOException e) {
             e.printStackTrace();
         }

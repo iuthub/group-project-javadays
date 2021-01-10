@@ -73,6 +73,7 @@ public class LoginController {
                     root = FXMLLoader.load(getClass().getResource("/res/fxml/adminWindow.fxml"));
                     break;
                 case 1:
+                    LibrarianWindowController.setCurrentUser(currentUser);
                     root = FXMLLoader.load(getClass().getResource("/res/fxml/librarianWindow.fxml"));
                     break;
                 case 2:
