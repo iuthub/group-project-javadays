@@ -24,8 +24,6 @@ public class Main extends Application {
         primaryStage.setScene(scene);
         primaryStage.show();
 
-//        TestClass test = new TestClass();
-        System.out.println(StudentRepository.getInstance().getStudent("U1001606").getFine());
     }
 
 

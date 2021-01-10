@@ -14,7 +14,7 @@
 <?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
 <BorderPane xmlns="http://javafx.com/javafx"
             xmlns:fx="http://javafx.com/fxml"
-            fx:controller="controllers.StudentWindowController"
+            fx:controller="controllers.StudentHomeController"
             fx:id="mainBorderPane"
             stylesheets="@../css/main.css">
 
@@ -23,7 +23,7 @@
             <VBox styleClass="img-logo">
                 <ImageView fitWidth="200" preserveRatio="true"><Image url="@../img/logo.png"/></ImageView>
             </VBox>
-            <Button text="Home" onAction="#handleStudentHomeView">
+            <Button text="Home" fx:id="btnStudentHome" onAction="#handleStudentHome">
                 <graphic>
                     <GridPane styleClass="menuGridPane">
                         <columnConstraints>
@@ -35,7 +35,7 @@
 
                 </graphic>
             </Button>
-            <Button text="Books" onAction="#handleStudentBookView" >
+            <Button text="Books" fx:id="btnStudentBooks" onAction="#handleStudentBooks">
                 <graphic>
                     <GridPane styleClass="menuGridPane">
                         <columnConstraints>
@@ -47,17 +47,7 @@
 
                 </graphic>
             </Button>
-            <Button text="Fine" onAction="#handleFineView">
-                <graphic>
-                    <GridPane styleClass="menuGridPane">
-                        <columnConstraints>
-                            <ColumnConstraints prefWidth="40" />
-                        </columnConstraints>
-                        <FontAwesomeIconView glyphName="MONEY" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
-                        <Label text="Current Fine" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
-                    </GridPane>
-                </graphic>
-            </Button>
+
             <Button text="Settings">
                 <graphic>
                     <GridPane styleClass="menuGridPane">
@@ -88,6 +78,7 @@
 
     <center>
 <!--        <fx:include source="adminStudentView.fxml"/>-->
+
     </center>
 
     <bottom>

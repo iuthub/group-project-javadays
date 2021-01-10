@@ -2,6 +2,7 @@ package dao;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import model.Book;
 
 import java.sql.*;
 
@@ -12,14 +13,30 @@ public class IssuedBookRepository
 
     private final Connection connection;
     //endregion
-
+    private final PreparedStatement getAll;
     //region <StartUp>
     private IssuedBookRepository() throws SQLException
     {
+        String GET_ALL_ISSUED="SELECT * FROM IssuedBooks";
         connection = ConnectionManager.getConnection();
+        this.getAll=connection.prepareStatement(GET_ALL_ISSUED);
     }
     //endregion
+    public ObservableList<dao.IssuedBook> getAllIssued() throws SQLException {
+        ResultSet rs = getAll.executeQuery();
+        ObservableList<dao.IssuedBook> results = FXCollections.observableArrayList();
 
+        while (rs.next()) {
+            results.add(new dao.IssuedBook(
+                            rs.getInt   (1),
+                            rs.getString(2),
+                            rs.getDate(3),
+                            rs.getDate(4)
+                    )
+            );
+        }
+        return results;
+    }
     //region <Get>
 
     //Returns all books borowed by this user
