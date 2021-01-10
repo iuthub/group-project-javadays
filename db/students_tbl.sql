@@ -1,3 +1,4 @@
+DROP TABLE Students;
 
 CREATE TABLE Students (
     UserID VARCHAR(8) NOT NULL REFERENCES Users(UserID),

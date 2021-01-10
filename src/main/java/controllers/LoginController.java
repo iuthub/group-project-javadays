@@ -20,17 +20,18 @@ public class LoginController {
     @FXML private BorderPane loginBorderPane;
     @FXML private TextField txtUserID;
     @FXML private PasswordField txtPassword;
-
+    public static String userID="";
     /**
      * This method verifies if user submitted correct login and password.
      * If UserID is not of the form "UXXXXXXX" where X is a digit, it asks user to re-submit
      * credits to Jasur Yusupov
      */
+
     public void handleSubmit() throws IOException {
         Stage mainAppStage;
         Parent root;
 
-        String userID = txtUserID.getText().toUpperCase();
+        userID = txtUserID.getText().toUpperCase();
         String password = txtPassword.getText();
         boolean status = false;
 
@@ -89,4 +90,5 @@ public class LoginController {
         
         
     }
+    public static String getUserID(){return userID;}
 }

@@ -5,7 +5,6 @@ import java.sql.SQLException;
 import java.util.Optional;
 
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.event.Event;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -23,6 +22,8 @@ public class LibrarianEditBooksController {
     @FXML public AnchorPane mainAnchorPane;
     @FXML public TableView<Book> tblBooksTable;
     @FXML public BooksRepository booksRepository;
+    @FXML public ChoiceBox choiceBoxSearchType;
+    @FXML public TextField searchField;
 
     private ObservableList<Book> tableData;
     private Book selectedBook;
@@ -52,6 +53,14 @@ public class LibrarianEditBooksController {
         if (tableData.size() > 0) {
             tblBooksTable.getSelectionModel().select(0);
         }
+
+        // populate choice box
+        choiceBoxSearchType.getItems().add("BookID");
+        choiceBoxSearchType.getItems().add("ISBN");
+        choiceBoxSearchType.getItems().add("Title");
+        choiceBoxSearchType.getItems().add("Author");
+        choiceBoxSearchType.getItems().add("Subject");
+        choiceBoxSearchType.setValue("BookID");
     }
 
     @FXML
@@ -110,6 +119,12 @@ public class LibrarianEditBooksController {
                 dialog.getDialogPane().getButtonTypes().add(ButtonType.YES);
                 dialog.getDialogPane().getButtonTypes().add(ButtonType.NO);
 
+                Button okBtn = (Button) dialog.getDialogPane().lookupButton(dialog.getDialogPane().getButtonTypes().get(0));
+                Button cancelBtn = (Button) dialog.getDialogPane().lookupButton(dialog.getDialogPane().getButtonTypes().get(1));
+                okBtn.getStyleClass().add("delete-button");
+                cancelBtn.getStyleClass().add("secondary-button");
+
+
                 Optional<ButtonType> result = dialog.showAndWait();
 
                 if (result.isPresent() && result.get() == ButtonType.YES) {
@@ -126,6 +141,22 @@ public class LibrarianEditBooksController {
             }
         }
         selectedBook = null;
+        populateTable();
+    }
+
+    @FXML
+    void search(Event event) {
+        try {
+            var searched = booksRepository.search((String) choiceBoxSearchType.getValue(), searchField.getText());
+            tblBooksTable.setItems(searched);
+            tblBooksTable.refresh();
+        } catch(SQLException sqlException) {
+            System.err.println(sqlException.getMessage());
+        }
+    }
+
+    @FXML
+    void showAllBooks(Event event) throws SQLException {
         populateTable();
     }
 

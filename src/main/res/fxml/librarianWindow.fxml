@@ -21,7 +21,7 @@
     <left>
         <VBox styleClass="nav"  fx:id="navbar" spacing="15">
             <VBox styleClass="img-logo">
-                <ImageView fitWidth="200" preserveRatio="true"><Image url="@../img/logo.png"/></ImageView>
+                <ImageView fitWidth="200" preserveRatio="true"><Image url="@../img/logo-lms.png"/></ImageView>
             </VBox>
             <Button text="Home" onAction="#handleHome">
                 <graphic>
@@ -51,7 +51,7 @@
                         <columnConstraints>
                             <ColumnConstraints prefWidth="40" />
                         </columnConstraints>
-                        <FontAwesomeIconView glyphName="BOOK" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                        <FontAwesomeIconView glyphName="CLIPBOARD" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
                         <Label text="Journal" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
                     </GridPane>
                 </graphic>
@@ -158,8 +158,8 @@
 <!--            <rowConstraints>-->
 <!--                <RowConstraints vgrow="ALWAYS"/>-->
 <!--            </rowConstraints>-->
-<!--            <fx:include source="adminStudentView.fxml" GridPane.columnIndex="0" GridPane.rowIndex="0"/>-->
 <!--        </GridPane>-->
+        <fx:include source="librarianRegistrationView.fxml" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
 
     </center>
 </BorderPane>

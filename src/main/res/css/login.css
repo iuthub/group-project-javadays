@@ -1,3 +1,8 @@
+.root {
+    -fx-background-image: url('../img/loginpage.jpg') ;
+    -fx-padding: 40px 0px 0 0px;
+    -fx-spacing: 15px;
+}
 .vboxMain {
     -fx-background-color: rgb(255, 255, 255);
     -fx-padding: 30px;
@@ -6,4 +11,12 @@
     -fx-border-color: rgb(235, 235, 235);
     -fx-effect: dropshadow(gaussian, rgba(0,0,0,0.1), 10, 0.1, 0.0, 0.0);
     -fx-border-radius: 3px;
+}
+
+.footer {
+    -fx-border-width: 5px 0px 0px 0px;
+    -fx-border-color: #0b67b2;
+    -fx-padding: 15px 0px 0px 0px;
+    -fx-background-color: #231f20;
+    -fx-position: absolute;
 }

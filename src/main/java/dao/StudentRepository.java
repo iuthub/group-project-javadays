@@ -5,15 +5,14 @@ import javafx.collections.ObservableList;
 import model.Student;
 import model.User;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
+import java.sql.*;
 
 public class StudentRepository {
     private static StudentRepository instance;
 
     Connection connection;
+
+
 
     private StudentRepository() throws SQLException {
         connection = ConnectionManager.getConnection();
@@ -39,10 +38,18 @@ public class StudentRepository {
                     result.getInt("status") == 1
             );
         }
-
         return null;
     }
 
+    public void updateStudent(String userId, int fine, int status) throws SQLException {
+        PreparedStatement updateStudentsStmt = this.connection.prepareStatement("UPDATE Students SET UserID=?, Fine=?, Status=? WHERE UserID=?");
+        updateStudentsStmt.setString(1, userId);
+        updateStudentsStmt.setInt(2, fine);
+        updateStudentsStmt.setInt(3, status);
+        updateStudentsStmt.setString(4, userId);
+
+        updateStudentsStmt.executeUpdate();
+    }
 
 
     //Returns student who borrowed book

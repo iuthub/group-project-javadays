@@ -1,9 +1,7 @@
 package controllers;
 
-import dao.BooksRepository;
-import dao.ConnectionManager;
+import dao.*;
 import dao.IssuedBook;
-import dao.IssuedBookRepository;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -12,9 +10,12 @@ import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.Stage;
 import model.Book;
+import model.User;
 
 import java.io.IOException;
+import java.sql.Connection;
 import java.sql.Date;
+import java.sql.PreparedStatement;
 import java.sql.SQLException;
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -39,6 +40,7 @@ public class LibrarianRegistrationController
 
     private final BooksRepository bookRepository;
     private final IssuedBookRepository issuedBookRepository;
+    private final UsersRepository usersRepository;
     // endregion
 
     // region <StartUp>
@@ -46,6 +48,7 @@ public class LibrarianRegistrationController
     {
         bookRepository = BooksRepository.getInstance();
         issuedBookRepository = IssuedBookRepository.getInstance();
+        usersRepository = UsersRepository.getInstance();
     }
 
     public void initialize() throws SQLException
@@ -91,30 +94,33 @@ public class LibrarianRegistrationController
     private void issueHandler() throws SQLException, IOException {
         ObservableList<Book> choosedBooks = choosedBooksTable.getItems();
 
-        FXMLLoader loader = new FXMLLoader(getClass().getResource("/res/fxml/librarianStatusDialogView.fxml"));
-        Parent root = loader.load();
-
-        var messageController = loader.<LibrarianStatusDialogViewController>getController();
-
-        Stage newStage = new Stage();
-        newStage.setScene(new Scene(root));
+        //https://code.makery.ch/blog/javafx-dialogs-official/
+        Alert errorAlert = new Alert(Alert.AlertType.ERROR);
+        errorAlert.setTitle("Validation error");
+        errorAlert.setHeaderText("Operation canceled");
 
         if(IdField.getText()==""){
-            newStage.setTitle("Error");
-            messageController.setMessage("Operation canceled. Please set user ID");
-            newStage.showAndWait();
+            errorAlert.setContentText("Please set user ID");
+            errorAlert.showAndWait();
             return;
         }
         else if(dueDatePicker.getValue()==null){
-            newStage.setTitle("Error");
-            messageController.setMessage("Operation canceled. Please set due date");
-            newStage.showAndWait();
+            errorAlert.setContentText("Please set due date");
+            errorAlert.showAndWait();
             return;
         }
         else if(choosedBooksTable.getItems().stream().count()==0) {
-            newStage.setTitle("Error");
-            messageController.setMessage("Operation canceled. You didn't choose books");
-            newStage.showAndWait();
+            errorAlert.setContentText("You didn't choose books");
+            errorAlert.showAndWait();
+            return;
+        }
+
+        User user = usersRepository.get(IdField.getText());
+
+        if(user.getRole().getValue()!=2)
+        {
+            errorAlert.setContentText("Entered ID is not student's ID please enter another ID");
+            errorAlert.showAndWait();
             return;
         }
 
@@ -130,16 +136,18 @@ public class LibrarianRegistrationController
                 issuedBookRepository.addIssuedBook(issuedBook);
             }
             catch (SQLException e){
-                newStage.setTitle("Error");
-                messageController.setMessage("This user already taken this book! Operation canceled");
-                newStage.showAndWait();
+                errorAlert.setContentText("This user already taken this books! Operation canceled");
+                errorAlert.showAndWait();
                 return;
             }
         }
 
-        newStage.setTitle("Success");
-        messageController.setMessage("Book(s) were successfully registered by student");
-        newStage.showAndWait();
+        Alert successAlert = new Alert(Alert.AlertType.INFORMATION);
+        successAlert.setTitle("Success");
+        successAlert.setHeaderText("Operation completed.");
+
+        successAlert.setContentText("Book(s) were successfully registered by student");
+        successAlert.showAndWait();
 
         IdField.setText("");
         choosedBooksTable.getItems().clear();

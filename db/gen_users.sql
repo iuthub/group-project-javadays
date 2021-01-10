@@ -2,7 +2,7 @@ INSERT INTO Users(UserID, Password, FirstName, LastName, Role) VALUES
 ('U1000000', '33rDS64imjLTVppynQYO', 'Joaquin', 'Young', 1),
 ('U1000001', 'tg5rCy85WKY5yUTPMEpT', 'Johan', 'Ramirez', 1),
 ('U1000002', 'ehd98GSywmsJ1uM41VzP', 'Tristen', 'Thomas', 0),
-('U1000003', 'Q96k83J07Gg5VmNfd49e', 'Ephraim', 'Campbell', 2),
+('U1000003', '1234', 'Ephraim', 'Campbell', 2),
 ('U1000004', '8uIKbZ0qp277sDYSPi20', 'Jesus', 'Mitchell', 1),
 ('U1000005', '1w1N4OvR0p3FojOp8K9q', 'Terrance', 'Martinez', 0),
 ('U1000006', 'QdP279b52oB3841M43Vo', 'Marquis', 'Jackson', 1),

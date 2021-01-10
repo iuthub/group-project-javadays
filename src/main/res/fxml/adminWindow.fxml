@@ -20,7 +20,7 @@
     <left>
         <VBox spacing="15" styleClass="nav">
             <VBox styleClass="img-logo">
-                <ImageView fitWidth="200" preserveRatio="true"><Image url="@../img/logo.png"/></ImageView>
+                <ImageView fitWidth="200" preserveRatio="true"><Image url="@../img/logo-lms.png"/></ImageView>
             </VBox>
             <Button text="Home" onAction="#handleHomeView">
                 <graphic>
