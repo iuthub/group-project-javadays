@@ -115,7 +115,7 @@
                                         <Insets right="5.0" />
                                     </padding>
                                 </Label>
-                                <Label fx:id="labelFineStudent" prefHeight="72.0" prefWidth="685.0" text="NONE" GridPane.columnIndex="1">
+                                <Label fx:id="labelFineStudent" prefHeight="72.0" prefWidth="685.0" text="NONE" GridPane.columnIndex="1" styleClass="important-label">
                                     <padding>
                                         <Insets left="5.0" />
                                     </padding>

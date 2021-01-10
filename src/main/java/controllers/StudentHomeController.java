@@ -58,7 +58,7 @@ public class StudentHomeController {
 
         Student student = StudentRepository.getInstance().getStudent(userID);
         if (student != null && labelFineStudent != null) {
-            labelFineStudent.setText(String.valueOf(student.getFine()));
+            labelFineStudent.setText(String.valueOf(student.getFine()) + "$");
 
             if (student.isStatus()) {
                 labelStatusStudent.setText("Blocked");

@@ -110,6 +110,12 @@ public class LibrarianEditBooksController {
                 dialog.getDialogPane().getButtonTypes().add(ButtonType.YES);
                 dialog.getDialogPane().getButtonTypes().add(ButtonType.NO);
 
+                Button okBtn = (Button) dialog.getDialogPane().lookupButton(dialog.getDialogPane().getButtonTypes().get(0));
+                Button cancelBtn = (Button) dialog.getDialogPane().lookupButton(dialog.getDialogPane().getButtonTypes().get(1));
+                okBtn.getStyleClass().add("delete-button");
+                cancelBtn.getStyleClass().add("secondary-button");
+
+
                 Optional<ButtonType> result = dialog.showAndWait();
 
                 if (result.isPresent() && result.get() == ButtonType.YES) {

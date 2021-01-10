@@ -12,6 +12,8 @@ public class StudentRepository {
 
     Connection connection;
 
+
+
     private StudentRepository() throws SQLException {
         connection = ConnectionManager.getConnection();
     }
@@ -39,18 +41,15 @@ public class StudentRepository {
         return null;
     }
 
-//    public void updateStudents() throws SQLException {
-//
-//        ObservableList<User> users;
-//        PreparedStatement updateStudentsStmt = this.connection.prepareStatement("INSERT INTO Students(UserID) VALUES(?)");
-//
-//        users = UsersRepository.getInstance().getAll(Role.STUDENT);
-//
-//        for (User user : users) {
-//            updateStudentsStmt.setString(1, user.getUserId());
-//            updateStudentsStmt.executeUpdate();
-//        }
-//    }
+    public void updateStudent(String userId, int fine, int status) throws SQLException {
+        PreparedStatement updateStudentsStmt = this.connection.prepareStatement("UPDATE Students SET UserID=?, Fine=?, Status=? WHERE UserID=?");
+        updateStudentsStmt.setString(1, userId);
+        updateStudentsStmt.setInt(2, fine);
+        updateStudentsStmt.setInt(3, status);
+        updateStudentsStmt.setString(4, userId);
+
+        updateStudentsStmt.executeUpdate();
+    }
 
 
     //Returns student who borrowed book

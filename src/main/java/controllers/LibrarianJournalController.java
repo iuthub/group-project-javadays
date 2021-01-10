@@ -77,11 +77,11 @@ public class LibrarianJournalController
         User selectedStudent = studentsTableView.getSelectionModel().getSelectedItem();
         Book selectedBook = chosenBooksTable.getSelectionModel().getSelectedItem();
 
+        IssuedBookRepository.getInstance().calculateDifference(selectedBook.getBookID(), selectedStudent.getUserId());
+
         issuedBookRepository.removeIssuedBook(selectedBook.getBookID(),selectedStudent.getUserId());
 
         chosenBooksTable.getItems().remove(selectedBook);
-
-        IssuedBookRepository.getInstance().calculateDifference(selectedBook.getBookID(), selectedStudent.getUserId());
     }
     //endregion
 

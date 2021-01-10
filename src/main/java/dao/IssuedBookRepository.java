@@ -3,8 +3,14 @@ package dao;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import model.Book;
+import model.Student;
 
 import java.sql.*;
+import java.time.Duration;
+import java.time.*;
+import java.time.format.DateTimeFormatter;
+
+import static java.time.temporal.ChronoUnit.DAYS;
 
 public class IssuedBookRepository
 {
@@ -96,16 +102,48 @@ public class IssuedBookRepository
 
 
     public void calculateDifference(int bookId, String userId) throws SQLException {
-        PreparedStatement calculateDifferenceStmt = connection.prepareStatement("SELECT {fn TIMESTAMPDIFF(SQL_TSI_DAY, IssueDate, ReturnDate)} AS difference FROM IssuedBooks ");
+        PreparedStatement calculateDifferenceStmt = connection.prepareStatement("SELECT * FROM IssuedBooks WHERE BookId=? AND UserId=?");
+
+
+        calculateDifferenceStmt.setInt(1, bookId);
+        calculateDifferenceStmt.setString(2, userId);
 
         ResultSet result = calculateDifferenceStmt.executeQuery();
 
         if (result.next()) {
-            System.out.println(result.getInt("difference"));
+
+            LocalDate returnDate = LocalDate.parse(result.getString("returnDate"));
+            LocalDate studentReturnDate = LocalDate.now();
+
+            DateTimeFormatter dtf = DateTimeFormatter.ofPattern("dd/MM/yyyy"); //Setting date format
+
+            calculateDifferenceStmt.setInt(1, bookId);
+            calculateDifferenceStmt.setString(2, userId);
+
+
+
+            long daysBetween = DAYS.between(studentReturnDate, returnDate);
+
+            if (daysBetween < 0) {
+                Student student = new Student(userId, 0, false);
+
+                student.setFine((int) Math.abs(daysBetween) * 5);
+                student.setStatus(false);
+
+                StudentRepository.getInstance().updateStudent(student.getUserId(), student.getFine(), student.isStatus() ? 1 : 0);
+            }
+
+            System.out.println(returnDate);
+            System.out.println(studentReturnDate);
+            System.out.println(daysBetween);
         }
 
-
-
+//        ResultSet result = calculateDifferenceStmt.executeQuery();
+//
+//        while (result.next()) {
+//            System.out.println(result.getString("userId"));
+//            System.out.println(result.getInt("difference"));
+//        }
     }
 
 

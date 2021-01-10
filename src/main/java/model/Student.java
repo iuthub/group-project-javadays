@@ -4,6 +4,11 @@ public class Student {
     private String userId;
     private int fine;
     private boolean status;
+    private static int FINE_LIMIT;
+
+    static {
+        FINE_LIMIT = 30;
+    }
 
     public Student(String userId, int fine, boolean status) {
         this.userId = userId;
@@ -24,7 +29,7 @@ public class Student {
     }
 
     public void setFine(int fine) {
-        this.fine = fine;
+        this.fine += fine;
     }
 
     public boolean isStatus() {
@@ -32,6 +37,10 @@ public class Student {
     }
 
     public void setStatus(boolean status) {
-        this.status = status;
+        if (getFine() > FINE_LIMIT) {
+            this.status = true;
+        } else {
+            this.status = status;
+        }
     }
 }
