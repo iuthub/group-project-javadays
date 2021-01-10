@@ -1,4 +1,4 @@
-DROP TABLE Books;
+20)DROP TABLE Books;
 
 CREATE TABLE Books (
    BookID      INT             NOT NULL,
