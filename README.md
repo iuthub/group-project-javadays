@@ -3,7 +3,7 @@
 
 ## Font Awesome Dependency
 
-We have used well-known font awesome in our project instead of .png icons. We have included the .zip file with dependencies in our project
+We have used well-known font awesome in our project instead of .png icons. We have included the .zip file with font awesome .jar files in our project
 
 ## Sources folders
 
