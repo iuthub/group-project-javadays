@@ -6,15 +6,18 @@ import dao.IssuedBookRepository;
 import dao.StudentRepository;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.scene.control.TableRow;
-import javafx.scene.control.TableView;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.control.*;
 import model.Book;
 import model.User;
 
+import java.io.IOException;
 import java.sql.SQLException;
+import java.util.Optional;
 
 public class LibrarianJournalController
 {
+    @FXML public Button btnReturn;
     //region <Declarations>
     @FXML private TableView<User> studentsTableView;
     @FXML private TableView<Book> chosenBooksTable;
@@ -73,11 +76,25 @@ public class LibrarianJournalController
     }
 
     @FXML
-    private void returnIssuedBook()throws SQLException {
+    private void returnIssuedBook() throws SQLException {
+
+        Dialog<ButtonType> dialog = new Dialog<>();
+
+        InformationDialogController informationDialogController = InformationDialogController.getDialog(getClass(),dialog, btnReturn, "", "/res/fxml/informationDialog.fxml");
+
         User selectedStudent = studentsTableView.getSelectionModel().getSelectedItem();
         Book selectedBook = chosenBooksTable.getSelectionModel().getSelectedItem();
 
-        IssuedBookRepository.getInstance().calculateDifference(selectedBook.getBookID(), selectedStudent.getUserId());
+
+        int fine = IssuedBookRepository.getInstance().calculateFine(selectedBook.getBookID(), selectedStudent.getUserId());
+
+        if (fine == 0) {
+            informationDialogController.setLabel("Successfully returned");
+        } else {
+            informationDialogController.setLabel("Issued fine: " + fine + "$");
+        }
+
+        dialog.showAndWait();
 
         issuedBookRepository.removeIssuedBook(selectedBook.getBookID(),selectedStudent.getUserId());
 

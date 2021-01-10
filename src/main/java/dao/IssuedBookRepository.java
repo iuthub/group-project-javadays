@@ -101,7 +101,7 @@ public class IssuedBookRepository
     //endregion
 
 
-    public void calculateDifference(int bookId, String userId) throws SQLException {
+    public int calculateFine(int bookId, String userId) throws SQLException {
         PreparedStatement calculateDifferenceStmt = connection.prepareStatement("SELECT * FROM IssuedBooks WHERE BookId=? AND UserId=?");
 
 
@@ -131,11 +131,9 @@ public class IssuedBookRepository
                 student.setStatus(false);
 
                 StudentRepository.getInstance().updateStudent(student.getUserId(), student.getFine(), student.isStatus() ? 1 : 0);
-            }
 
-            System.out.println(returnDate);
-            System.out.println(studentReturnDate);
-            System.out.println(daysBetween);
+                return student.getFine();
+            }
         }
 
 //        ResultSet result = calculateDifferenceStmt.executeQuery();
@@ -144,6 +142,8 @@ public class IssuedBookRepository
 //            System.out.println(result.getString("userId"));
 //            System.out.println(result.getInt("difference"));
 //        }
+
+        return 0;
     }
 
 
