@@ -31,7 +31,7 @@
             <columns>
                 <TableColumn minWidth="53.0" prefWidth="115.0" text="ID">
                     <cellValueFactory>
-                        <PropertyValueFactory property="UserId"/>
+                        <PropertyValueFactory property="UserID"/>
                     </cellValueFactory>
                 </TableColumn>
                 <TableColumn minWidth="90.0" prefWidth="160.0" text="First name">

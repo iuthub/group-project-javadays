@@ -42,7 +42,7 @@ public class LibrarianWindowController {
         }
 
         LibrarianHomeController controller = fxmlLoader.getController();
-        controller.setLibrarianId(librarian.getUserId());
+        controller.setLibrarianId(librarian.getUserID());
 
         try {
             controller.init();

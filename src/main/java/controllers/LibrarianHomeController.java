@@ -35,7 +35,7 @@ public class LibrarianHomeController{
         lblBooksCount.setText(Integer.toString(books));
 
         User u = ur.get(librarianId);
-        lblUserID.setText(u.getUserId());
+        lblUserID.setText(u.getUserID());
         lblUserName.setText(String.format("%s %s", u.getFirstName(), u.getLastName()));
     }
 
