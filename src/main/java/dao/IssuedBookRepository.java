@@ -157,4 +157,15 @@ public class IssuedBookRepository
         return instance;
     }
     //endregion
+
+    public int getCount(String userId) throws SQLException{
+        PreparedStatement getTotalCount = connection.prepareStatement("SELECT COUNT(*) FROM IssuedBooks WHERE UserID = ?");
+        getTotalCount.setString(1, userId);
+        ResultSet rs = getTotalCount.executeQuery();
+        if (rs.next()){
+            return rs.getInt(1);
+        }
+        return 0;
+    }
 }
+

@@ -22,7 +22,7 @@ public class LibrarianEditBooksController {
     @FXML public AnchorPane mainAnchorPane;
     @FXML public TableView<Book> tblBooksTable;
     @FXML public BooksRepository booksRepository;
-    @FXML public ChoiceBox choiceBoxSearchType;
+    @FXML public ChoiceBox<String> choiceBoxSearchType;
     @FXML public TextField searchField;
 
     private ObservableList<Book> tableData;
@@ -142,6 +142,11 @@ public class LibrarianEditBooksController {
         }
         selectedBook = null;
         populateTable();
+
+        // by default, the first row is selected
+        if (tableData.size() > 0) {
+            tblBooksTable.getSelectionModel().select(0);
+        }
     }
 
     @FXML

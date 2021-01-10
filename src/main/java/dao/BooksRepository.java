@@ -183,19 +183,24 @@ public class BooksRepository {
         deleteStmt.executeUpdate();
     }
 
-    public ObservableList<Book> search(String searchBy, String searchByValue) throws SQLException {
-        var searchQuery = String.format("SELECT * FROM Books WHERE %s=?", searchBy);
-        var stmt = ConnectionManager.getConnection().prepareStatement(searchQuery);
+    public ObservableList<Book> search(String searchBy, String searchValue) throws SQLException {
+        String searchQuery = String.format("SELECT * FROM Books WHERE %s ", searchBy);
+        PreparedStatement stmt;
 
         if (searchBy.equals("BookID")) {
+            stmt = ConnectionManager.getConnection().prepareStatement(searchQuery + "= ?");
+
             try {
-                stmt.setInt(1, Integer.parseInt(searchByValue));
+                stmt.setInt(1, Integer.parseInt(searchValue));
             } catch(NumberFormatException ignored) {
-                System.err.printf("Error while parsing '%s' to integer.", searchByValue);
+                System.err.printf("Error while parsing '%s' to integer.", searchValue);
             }
+
         } else {
-            stmt.setString(1, searchByValue);
+            stmt = ConnectionManager.getConnection().prepareStatement(searchQuery + "LIKE ?");
+            stmt.setString(1, searchValue + "%");
         }
+
         ObservableList<Book> list = FXCollections.observableArrayList();
         ResultSet result = stmt.executeQuery();
 

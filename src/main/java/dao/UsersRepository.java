@@ -1,9 +1,8 @@
 package dao;
 
 import javafx.collections.FXCollections;
-import javafx.collections.ObservableArray;
 import javafx.collections.ObservableList;
-import model.AdminWindowStudent;
+import model.AdminWindowDisplay;
 import model.User;
 import java.sql.*;
 
@@ -134,19 +133,30 @@ public class UsersRepository {
         updUserStmt.executeUpdate();
     }
 
-    public ObservableList<AdminWindowStudent> getForAdmin(Role role, int page) throws SQLException {
-        ObservableList<AdminWindowStudent> list = FXCollections.observableArrayList();
+    public ObservableList<AdminWindowDisplay> getForAdmin(Role role, int page) throws SQLException {
+        ObservableList<AdminWindowDisplay> list = FXCollections.observableArrayList();
         getForAdminStmt.setInt(1, role.getValue());
         getForAdminStmt.setInt(2, page * 100);
         ResultSet result = getForAdminStmt.executeQuery();
 
         while (result.next()){
-            list.add(
-                new AdminWindowStudent(
-                    result.getString("UserID"),
-                    result.getString("Name")
-                )
-            );
+            if (role == Role.LIBRARIAN){
+                list.add(
+                        new AdminWindowDisplay(
+                                result.getString("UserID"),
+                                result.getString("Name")
+                        )
+                );
+            } else{
+                int count = IssuedBookRepository.getInstance().getCount(result.getString("UserID"));
+                list.add(
+                        new AdminWindowDisplay(
+                                result.getString("UserID"),
+                                result.getString("Name"),
+                                count
+                        )
+                );
+            }
         }
         return list;
     }
@@ -170,7 +180,7 @@ public class UsersRepository {
         return list;
     }
 
-    public ObservableList<AdminWindowStudent> searchForAdmin(Role role, String type, String search) throws SQLException {
+    public ObservableList<AdminWindowDisplay> searchForAdmin(Role role, String type, String search) throws SQLException {
         Connection conn = ConnectionManager.getConnection();
         String cName = "UserId";
         search = capitalize(search);
@@ -194,12 +204,12 @@ public class UsersRepository {
         searchByParamStmt.setInt(1, role.getValue());
         searchByParamStmt.setString(2, search + "%");
 
-        ObservableList<AdminWindowStudent> list = FXCollections.observableArrayList();
+        ObservableList<AdminWindowDisplay> list = FXCollections.observableArrayList();
         ResultSet result = searchByParamStmt.executeQuery();
 
         while (result.next()){
             list.add(
-                new AdminWindowStudent(
+                new AdminWindowDisplay(
                     result.getString("UserID"),
                     result.getString("Name")
                 )

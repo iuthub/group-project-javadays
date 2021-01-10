@@ -12,18 +12,19 @@ CREATE TABLE Users(
 
 -- Admins
 INSERT INTO Users(UserID, Password, FirstName, LastName, Role) VALUES
-    ('U1410000', '1234', 'Admin', 'Adminov', 0),
-    ('U1410001', '1234', 'Sardor', 'Brown', 0);
+    ('U1400000', '1234', 'Jasur', 'Yusupov', 0),
+    ('U1400001', '1234', 'Mukhammadsaid', 'Mamasaidov', 0);
 
 -- Librarians
 INSERT INTO Users(UserID, Password, FirstName, LastName, Role) VALUES
-    ('U1510000', '1234', 'Libman', 'Bookshelfov', 1),
-    ('U1510001', '1234', 'Kamron', 'Shinavanda', 1);
+    ('U1530000', '1234', 'Bekzod', 'Allaev', 1),
+    ('U1530001', '1234', 'Asadbek', 'Khasanov', 1);
 
 -- Students
 INSERT INTO Users (UserID, Password, FirstName, LastName, Role) VALUES
-    ('U1910000', '1234', 'Eshmat', 'Toshmatov', 2),
-    ('U1910001', '1234', 'Marat', 'Shpagat', 2),
+    ('U1910000', '1234', 'Saidakbar', 'Saydakhmedov', 2);
+
+INSERT INTO Users (UserID, Password, FirstName, LastName, Role) VALUES
     ('U1910223', '1234', 'Mukhammadsaid', 'Mamasaidov', 2),
     ('U1910236', '1234', 'Jasur', 'Yusupov', 2),
     ('U1910103', '1234', 'Asadbek', 'Khasanov', 2),

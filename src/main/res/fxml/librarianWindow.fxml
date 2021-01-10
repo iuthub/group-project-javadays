@@ -67,6 +67,17 @@
                     </GridPane>
                 </graphic>
             </Button>
+            <Button text="Overdue" onAction="#handleOverdue">
+                <graphic>
+                    <GridPane styleClass="menuGridPane">
+                        <columnConstraints>
+                            <ColumnConstraints prefWidth="40" />
+                        </columnConstraints>
+                        <FontAwesomeIconView glyphName="LIST" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                        <Label text="Overdue" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                    </GridPane>
+                </graphic>
+            </Button>
             <Button text="Students" onAction="#handleStudents">
                 <graphic>
                     <GridPane styleClass="menuGridPane">

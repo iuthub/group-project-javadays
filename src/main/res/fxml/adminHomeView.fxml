@@ -53,8 +53,8 @@
         </GridPane.margin>
     </Label>
 
-    <ImageView fitHeight="204.0" fitWidth="246.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowSpan="2" GridPane.valignment="CENTER">
-        <Image url="@../img/profile_male.png" />
+    <ImageView fitHeight="187.0" fitWidth="188.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+        <Image url="@../img/admin-profile.png" />
     </ImageView>
     <Label alignment="BOTTOM_CENTER" contentDisplay="CENTER" prefHeight="39.0" prefWidth="520.0" styleClass="label-title" text="Profile" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
         <font>
