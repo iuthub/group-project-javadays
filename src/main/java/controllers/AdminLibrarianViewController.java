@@ -157,6 +157,11 @@ public class AdminLibrarianViewController {
         dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
         dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
 
+        Button okBtn = (Button) dialog.getDialogPane().lookupButton(dialog.getDialogPane().getButtonTypes().get(0));
+        Button cancelBtn = (Button) dialog.getDialogPane().lookupButton(dialog.getDialogPane().getButtonTypes().get(1));
+        okBtn.getStyleClass().add("submit-button");
+        cancelBtn.getStyleClass().add("secondary-button");
+
         AdminAddModifyDialogController controller = fxmlLoader.getController();
 
         final Button okButton = (Button) dialog.getDialogPane().lookupButton(ButtonType.OK);
@@ -200,6 +205,11 @@ public class AdminLibrarianViewController {
 
             dialog.getDialogPane().getButtonTypes().add(ButtonType.OK);
             dialog.getDialogPane().getButtonTypes().add(ButtonType.CANCEL);
+
+            Button okBtn = (Button) dialog.getDialogPane().lookupButton(dialog.getDialogPane().getButtonTypes().get(0));
+            Button cancelBtn = (Button) dialog.getDialogPane().lookupButton(dialog.getDialogPane().getButtonTypes().get(1));
+            okBtn.getStyleClass().add("submit-button");
+            cancelBtn.getStyleClass().add("secondary-button");
 
             AdminAddModifyDialogController controller = fxmlLoader.getController();
             controller.initializeFields(selectedLibrarianId);
