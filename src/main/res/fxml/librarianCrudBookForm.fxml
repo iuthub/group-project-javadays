@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Font?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controllers.LibrarianCrudBookFormController"
+            prefHeight="400.0" prefWidth="600.0" stylesheets="@../css/style.css">
+
+    <GridPane
+            AnchorPane.leftAnchor="10.0"
+            AnchorPane.rightAnchor="10.0"
+            AnchorPane.topAnchor="10.0"
+            AnchorPane.bottomAnchor="10.0" vgap="10">
+
+        <columnConstraints>
+            <ColumnConstraints minWidth="130" hgrow="NEVER"/>
+            <ColumnConstraints hgrow="ALWAYS"/>
+        </columnConstraints>
+        <rowConstraints>
+            <RowConstraints vgrow="ALWAYS"/>
+            <RowConstraints vgrow="ALWAYS"/>
+            <RowConstraints vgrow="ALWAYS"/>
+            <RowConstraints vgrow="ALWAYS"/>
+            <RowConstraints vgrow="ALWAYS"/>
+            <RowConstraints vgrow="ALWAYS"/>
+            <RowConstraints minHeight="40" vgrow="NEVER"/>
+        </rowConstraints>
+
+        <Label text="Book ID: *" GridPane.rowIndex="0" GridPane.columnIndex="0">
+            <font>
+                <Font size="17"/>
+            </font>
+        </Label>
+        <TextField fx:id="bookId" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+        <Label text="ISBN: *" GridPane.rowIndex="1" GridPane.columnIndex="0">
+            <font>
+                <Font size="17"/>
+            </font>
+        </Label>
+        <TextField fx:id="isbn" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+        <Label text="Title: *" GridPane.rowIndex="2" GridPane.columnIndex="0">
+            <font>
+                <Font size="17"/>
+            </font>
+        </Label>
+        <TextField fx:id="title" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+        <Label text="Subject: *" GridPane.rowIndex="3" GridPane.columnIndex="0">
+            <font>
+                <Font size="17"/>
+            </font>
+        </Label>
+        <TextField fx:id="subject" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+        <Label text="Author: *" GridPane.rowIndex="4" GridPane.columnIndex="0">
+            <font>
+                <Font size="17"/>
+            </font>
+        </Label>
+        <TextField fx:id="author" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+        <Label text="Publish Date: *" GridPane.rowIndex="5" GridPane.columnIndex="0">
+            <font>
+                <Font size="17"/>
+            </font>
+        </Label>
+        <DatePicker fx:id="publishDate" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+
+        <Label text="Description: *" GridPane.rowIndex="6" GridPane.columnIndex="0">
+            <font>
+                <Font size="17"/>
+            </font>
+        </Label>
+        <TextArea fx:id="description" GridPane.rowIndex="6" GridPane.columnIndex="1" wrapText="true"/>
+
+        <HBox spacing="10.0" GridPane.rowIndex="7" GridPane.columnIndex="1" GridPane.halignment="RIGHT" alignment="CENTER_RIGHT">
+            <Button fx:id="button" onAction="#handleButton" styleClass="submit-button"/>
+            <Button text="Cancel" fx:id="cancel" onAction="#handleCancel" styleClass="secondary-button"/>
+        </HBox>
+    </GridPane>
+</AnchorPane>

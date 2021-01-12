@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import de.jensd.fx.glyphs.fontawesome.*?>
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<GridPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="634.0" prefWidth="941.0" stylesheets="@../css/home_view.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.AdminHomeViewController">
+    <columnConstraints>
+        <ColumnConstraints maxWidth="80.0" minWidth="50.0" prefWidth="68.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="293.0" minWidth="10.0" prefWidth="180.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="472.0" minWidth="10.0" prefWidth="198.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="472.0" minWidth="0.0" prefWidth="8.0" />
+        <ColumnConstraints hgrow="SOMETIMES" maxWidth="472.0" minWidth="10.0" prefWidth="220.0" />
+      <ColumnConstraints hgrow="SOMETIMES" maxWidth="472.0" minWidth="10.0" prefWidth="290.0" />
+    </columnConstraints>
+    <rowConstraints>
+        <RowConstraints percentHeight="100.0" vgrow="SOMETIMES" />
+        <RowConstraints percentHeight="100.0" vgrow="SOMETIMES" />
+        <RowConstraints percentHeight="100.0" vgrow="SOMETIMES" />
+        <RowConstraints percentHeight="100.0" vgrow="SOMETIMES" />
+    </rowConstraints>
+    <Label alignment="CENTER" contentDisplay="CENTER" prefHeight="39.0" prefWidth="455.0" styleClass="label-title" text="System statistics:" GridPane.columnSpan="3" GridPane.halignment="CENTER" GridPane.valignment="CENTER">
+        <font>
+          <Font size="14.0" />
+        </font>
+    </Label>
+
+    <FontAwesomeIconView glyphName="USERS" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="1" GridPane.valignment="CENTER" />
+    <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="226.0" text="Librarians count:" GridPane.columnIndex="1" GridPane.rowIndex="1" />
+
+    <FontAwesomeIconView glyphName="GRADUATION_CAP" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="2" GridPane.valignment="CENTER" />
+    <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="228.0" text="Students count:" GridPane.columnIndex="1" GridPane.rowIndex="2" />
+
+    <FontAwesomeIconView glyphName="BOOK" GridPane.columnIndex="0" GridPane.halignment="CENTER" GridPane.rowIndex="3" GridPane.valignment="CENTER" />
+    <Label alignment="CENTER_RIGHT" prefHeight="17.0" prefWidth="291.0" text="Books count:" GridPane.columnIndex="1" GridPane.rowIndex="3" />
+
+    <Label fx:id="lblLibrariansCount" alignment="CENTER" contentDisplay="CENTER" prefHeight="70.0" prefWidth="70.0" styleClass="label-result" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="1">
+        <GridPane.margin>
+            <Insets left="25.0" />
+        </GridPane.margin>
+    </Label>
+    <Label fx:id="lblStudentsCount" alignment="CENTER" prefHeight="70.0" prefWidth="70.0" styleClass="label-result" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="2">
+        <GridPane.margin>
+            <Insets left="25.0" />
+        </GridPane.margin>
+    </Label>
+    <Label fx:id="lblBooksCount" alignment="CENTER" prefHeight="70.0" prefWidth="70.0" styleClass="label-result" text="Label" GridPane.columnIndex="2" GridPane.rowIndex="3">
+        <GridPane.margin>
+            <Insets left="25.0" />
+        </GridPane.margin>
+    </Label>
+
+    <ImageView fitHeight="187.0" fitWidth="188.0" pickOnBounds="true" preserveRatio="true" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.halignment="CENTER" GridPane.rowSpan="2" GridPane.valignment="CENTER">
+        <Image url="@../img/profile-admin.png" />
+    </ImageView>
+    <Label alignment="BOTTOM_CENTER" contentDisplay="CENTER" prefHeight="39.0" prefWidth="520.0" styleClass="label-title" text="Profile" GridPane.columnIndex="4" GridPane.columnSpan="2" GridPane.rowIndex="1" GridPane.valignment="BOTTOM">
+        <font>
+          <Font size="14.0" />
+        </font>
+    </Label>
+    <Label text="ID:" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.rowIndex="2" GridPane.valignment="CENTER">
+        <GridPane.margin>
+          <Insets top="60.0" />
+        </GridPane.margin>
+    </Label>
+    <Label text="Name:" GridPane.columnIndex="4" GridPane.halignment="RIGHT" GridPane.rowIndex="3">
+        <GridPane.margin>
+          <Insets bottom="60.0" />
+        </GridPane.margin>
+    </Label>
+    <Separator orientation="VERTICAL" prefHeight="102.0" prefWidth="31.0" GridPane.columnIndex="3" GridPane.rowSpan="4" />
+    <Label fx:id="lblUserID" text="Label" GridPane.columnIndex="5" GridPane.rowIndex="2">
+        <GridPane.margin>
+          <Insets left="10.0" top="60.0" />
+        </GridPane.margin>
+    </Label>
+    <Label fx:id="lblUserName" text="Label" GridPane.columnIndex="5" GridPane.rowIndex="3">
+        <GridPane.margin>
+          <Insets bottom="60.0" left="10.0" />
+        </GridPane.margin>
+    </Label>
+</GridPane>

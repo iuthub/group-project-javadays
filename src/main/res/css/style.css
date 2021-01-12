@@ -1,0 +1,126 @@
+.root {
+    -fx-font-size: 12pt;
+    -fx-font-family: "Lato", sans-serif;
+}
+
+.h1 {
+    -fx-font-weight: bold;
+    -fx-font-size: 24pt;
+}
+
+.vbox {
+    -fx-spacing: 8px;
+}
+
+.label {
+   -fx-text-fill: gray;
+}
+
+.alert {
+   -fx-text-fill: red;
+}
+
+.label, .alert {
+   -fx-font-size: 11pt;
+   -fx-font-family: "Lato Medium", sans-serif;
+
+}
+
+.text-flow-footer > Text {
+    -fx-fill: #b2b2b2;
+    -fx-font-size: 9pt;
+}
+
+
+.error-label {
+    -fx-text-fill: RED;
+}
+
+.text-field:focused {
+    -fx-border-style: solid outside;
+    -fx-border-width: 2px;
+    -fx-border-color: #c0cbf9;
+    -fx-border-radius: 3px;
+}
+
+.submit-button {
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+    -fx-background-color: #0066b2;
+    -fx-background-radius: 0 0 0 0;
+
+}
+
+.submit-button:hover {
+    -fx-background-color: #004d85;
+}
+
+.submit-button:pressed, .submit-button:focused {
+    -fx-border-style: solid outside;
+    -fx-border-color: #a9b5fc;
+    -fx-background-color: #004d85;
+}
+
+.text-field {
+    -fx-min-height: 40px;
+}
+
+.secondary-button {
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+    -fx-background-color: #6c757d;
+}
+
+.secondary-button:hover {
+    -fx-background-color: #5c636a;
+}
+
+.secondary-button:pressed, .secondary-button:focused {
+    -fx-background-color: #5c636a;
+}
+
+.delete-button {
+    -fx-font-weight: bold;
+    -fx-text-fill: #ffffff;
+    -fx-background-color: #dc3545;
+}
+
+.delete-button:hover {
+    -fx-background-color: #bb2d3b;
+}
+
+.delete-button:pressed, .delete-button:focused {
+    -fx-background-color: #bb2d3b;
+}
+
+.label-title {
+    -fx-font-size: 20pt;
+    -fx-font-weight: bold;
+    -fx-text-fill: #0b67b2;
+}
+
+.label-status-active {
+    -fx-font-size: 20pt;
+    -fx-font-weight: bold;
+    -fx-text-fill: GREEN;
+}
+
+.label-status-blocked {
+    -fx-font-size: 20pt;
+    -fx-font-weight: bold;
+    -fx-text-fill: RED;
+}
+
+
+/*.footer {*/
+
+/*    -fx-background-color: #000000;*/
+/*    -fx-border-width: 3px 0px 0px 0px;*/
+/*    -fx-border-color: #0066b2;*/
+/*    -fx-font-size: 10pt;*/
+/*    -fx-alignment: center;*/
+/*}*/
+
+/*.footer > .text {*/
+/*    -fx-text-fill: #ffffff;*/
+/*}*/

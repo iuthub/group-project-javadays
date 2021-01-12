@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controllers.LibrarianWindowController"
+            fx:id="mainBorderPane"
+            stylesheets="@../css/main.css">
+
+    <left>
+        <VBox styleClass="nav"  fx:id="navbar" spacing="15">
+            <VBox styleClass="img-logo">
+                <ImageView fitWidth="200" preserveRatio="true"><Image url="@../img/logo-lms.png"/></ImageView>
+            </VBox>
+            <Button text="Home" onAction="#handleHome">
+                <graphic>
+                    <GridPane styleClass="menuGridPane">
+                        <columnConstraints>
+                            <ColumnConstraints prefWidth="40" />
+                        </columnConstraints>
+                        <FontAwesomeIconView glyphName="HOME" glyphSize="20" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                        <Label text="Home" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                    </GridPane>
+                </graphic>
+            </Button>
+            <Button text="Registration" onAction="#handleRegistrationPanel">
+                <graphic>
+                    <GridPane styleClass="menuGridPane">
+                        <columnConstraints>
+                            <ColumnConstraints prefWidth="40" />
+                        </columnConstraints>
+                        <FontAwesomeIconView glyphName="UNDO" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                        <Label text="Registration" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                    </GridPane>
+                </graphic>
+            </Button>
+            <Button text="Journal" onAction="#handleJournal" >
+                <graphic>
+                    <GridPane styleClass="menuGridPane">
+                        <columnConstraints>
+                            <ColumnConstraints prefWidth="40" />
+                        </columnConstraints>
+                        <FontAwesomeIconView glyphName="CLIPBOARD" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                        <Label text="Journal" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                    </GridPane>
+                </graphic>
+            </Button>
+            <Button text="Edit Books" onAction="#handleEditBooks">
+                <graphic>
+                    <GridPane styleClass="menuGridPane">
+                        <columnConstraints>
+                            <ColumnConstraints prefWidth="40" />
+                        </columnConstraints>
+                        <FontAwesomeIconView glyphName="BOOK" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                        <Label text="Edit Books" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                    </GridPane>
+                </graphic>
+            </Button>
+            <Button text="Overdue" onAction="#handleOverdue">
+                <graphic>
+                    <GridPane styleClass="menuGridPane">
+                        <columnConstraints>
+                            <ColumnConstraints prefWidth="40" />
+                        </columnConstraints>
+                        <FontAwesomeIconView glyphName="LIST" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                        <Label text="Overdue" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                    </GridPane>
+                </graphic>
+            </Button>
+            <Button text="Students" onAction="#handleStudents">
+                <graphic>
+                    <GridPane styleClass="menuGridPane">
+                        <columnConstraints>
+                            <ColumnConstraints prefWidth="40" />
+                        </columnConstraints>
+                        <FontAwesomeIconView glyphName="USERS" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                        <Label text="Students" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                    </GridPane>
+                </graphic>
+            </Button>
+            <Button text="Settings">
+                <graphic>
+                    <GridPane styleClass="menuGridPane">
+                        <columnConstraints>
+                            <ColumnConstraints prefWidth="40" />
+                        </columnConstraints>
+                        <FontAwesomeIconView glyphName="COGS" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                        <Label text="Settings" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                    </GridPane>
+                </graphic>
+            </Button>
+            <Region VBox.vgrow="ALWAYS" />
+            <Button text="Logout" onAction="#handleLogOut" fx:id="btnLogOut">
+                <graphic>
+                    <GridPane styleClass="menuGridPane">
+                        <columnConstraints>
+                            <ColumnConstraints prefWidth="40" />
+                        </columnConstraints>
+                        <FontAwesomeIconView glyphName="SIGN_OUT" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                        <Label text="Log Out" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                    </GridPane>
+                </graphic>
+            </Button>
+        </VBox>
+    </left>
+
+    <center>
+<!--        <GridPane visible="false" fx:id="journalGridPane"-->
+<!--                  AnchorPane.leftAnchor="280.0"-->
+<!--                  AnchorPane.rightAnchor="10.0"-->
+<!--                  AnchorPane.topAnchor="10.0"-->
+<!--                  AnchorPane.bottomAnchor="10.0">-->
+<!--            <columnConstraints>-->
+<!--                <ColumnConstraints hgrow="ALWAYS"/>-->
+<!--            </columnConstraints>-->
+<!--            <rowConstraints>-->
+<!--                <RowConstraints vgrow="ALWAYS"/>-->
+<!--            </rowConstraints>-->
+<!--            <fx:include source="librarianJournalView.fxml" GridPane.rowIndex="0" GridPane.columnIndex="0"/>-->
+<!--        </GridPane>-->
+
+<!--        <GridPane visible="false" fx:id="registrationPanelGridPane"-->
+<!--                  AnchorPane.leftAnchor="280.0"-->
+<!--                  AnchorPane.rightAnchor="10.0"-->
+<!--                  AnchorPane.topAnchor="10.0"-->
+<!--                  AnchorPane.bottomAnchor="10.0">-->
+<!--            <columnConstraints>-->
+<!--                <ColumnConstraints hgrow="ALWAYS"/>-->
+<!--            </columnConstraints>-->
+<!--            <rowConstraints>-->
+<!--                <RowConstraints vgrow="ALWAYS"/>-->
+<!--            </rowConstraints>-->
+<!--            <fx:include source="librarianRegistrationView.fxml" GridPane.rowIndex="0" GridPane.columnIndex="0"/>-->
+<!--        </GridPane>-->
+
+<!--        <GridPane visible="false" fx:id="editBooksGridPane"-->
+<!--                  AnchorPane.leftAnchor="280.0"-->
+<!--                  AnchorPane.rightAnchor="10.0"-->
+<!--                  AnchorPane.topAnchor="10.0"-->
+<!--                  AnchorPane.bottomAnchor="10.0">-->
+<!--            <columnConstraints>-->
+<!--                <ColumnConstraints hgrow="ALWAYS"/>-->
+<!--            </columnConstraints>-->
+<!--            <rowConstraints>-->
+<!--                <RowConstraints vgrow="ALWAYS"/>-->
+<!--            </rowConstraints>-->
+<!--            <fx:include source="librarianEditBooksView.fxml" GridPane.rowIndex="0" GridPane.columnIndex="0"/>-->
+<!--        </GridPane>-->
+
+<!--        <GridPane visible="false" fx:id="studentsGridPane"-->
+<!--                  AnchorPane.leftAnchor="280.0"-->
+<!--                  AnchorPane.rightAnchor="10.0"-->
+<!--                  AnchorPane.bottomAnchor="10.0"-->
+<!--                  AnchorPane.topAnchor="10.0">-->
+<!--            <columnConstraints>-->
+<!--                <ColumnConstraints hgrow="ALWAYS"/>-->
+<!--            </columnConstraints>-->
+<!--            <rowConstraints>-->
+<!--                <RowConstraints vgrow="ALWAYS"/>-->
+<!--            </rowConstraints>-->
+<!--        </GridPane>-->
+        <fx:include source="librarianRegistrationView.fxml" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+
+    </center>
+</BorderPane>

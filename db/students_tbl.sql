@@ -1,0 +1,11 @@
+DROP TABLE Students;
+
+CREATE TABLE Students (
+    UserID VARCHAR(8) NOT NULL REFERENCES Users(UserID),
+    Fine INT NOT NULL DEFAULT 0,
+    Status INT NOT NULL DEFAULT 0,
+
+    PRIMARY KEY (UserID)
+);
+
+INSERT INTO Students(UserID) SELECT UserID FROM Users WHERE Role = 2;

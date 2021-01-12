@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.geometry.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.image.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.text.*?>
+
+<BorderPane fx:id="loginBorderPane" prefHeight="538.0" prefWidth="921.0" stylesheets="@../css/login.css" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controllers.LoginController">
+
+    <center>
+        <VBox maxHeight="380.0" maxWidth="441.0" prefWidth="441.0" styleClass="vboxMain">
+            <ImageView fitWidth="350" pickOnBounds="true" preserveRatio="true">
+                <Image url="@../img/logo-lms.png" />
+            </ImageView>
+
+            <VBox styleClass="vbox">
+                <Text styleClass="h1" text="Welcome to Inha Library." />
+                <Text>New here? Find out how to get your credentials.</Text>
+            </VBox>
+
+            <VBox styleClass="vbox">
+                <Label styleClass="label" text="User ID" />
+                <TextField fx:id="txtUserID" />
+            </VBox>
+
+            <VBox styleClass="vbox">
+                <Label styleClass="label" text="Password" />
+                <PasswordField fx:id="txtPassword" />
+            </VBox>
+         <Label fx:id="lblAlert" styleClass="alert" />
+
+            <Button fx:id="btnSubmit" defaultButton="true" onAction="#handleSubmit" prefWidth="Infinity" style="-fx-min-height: 40px;" styleClass="submit-button" text="Sign in" />
+        </VBox>
+    </center>
+
+    <bottom>
+        <GridPane alignment="CENTER" styleClass="footer">
+            <HBox alignment="CENTER" minHeight="60" prefWidth="574.0">
+                <ImageView fitWidth="220" pickOnBounds="true" preserveRatio="true">
+                    <Image url="@../img/logo-lms-dark.png" />
+                </ImageView>
+
+                <VBox spacing="10">
+                    <TextFlow lineSpacing="10" maxWidth="500" styleClass="text-flow-footer">
+                        <Text text="Copyright © 2021 Inha University in Tashkent JavaDays Team" />
+                  <padding>
+                     <Insets top="10.0" />
+                  </padding>
+                  <VBox.margin>
+                     <Insets top="10.0" />
+                  </VBox.margin>
+                    </TextFlow>
+                </VBox>
+            </HBox>
+         <columnConstraints>
+            <ColumnConstraints />
+         </columnConstraints>
+         <rowConstraints>
+            <RowConstraints />
+         </rowConstraints>
+         <BorderPane.margin>
+            <Insets top="15.0" />
+         </BorderPane.margin>
+         <padding>
+            <Insets left="20.0" />
+         </padding>
+        </GridPane>
+    </bottom>
+</BorderPane>

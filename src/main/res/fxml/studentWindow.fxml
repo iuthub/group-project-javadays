@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import java.lang.*?>
+<?import java.util.*?>
+<?import javafx.scene.*?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<?import javafx.scene.text.Text?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.image.Image?>
+
+
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<BorderPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controllers.StudentHomeController"
+            fx:id="mainBorderPane"
+            stylesheets="@../css/main.css">
+
+    <left>
+        <VBox spacing="15" styleClass="nav">
+            <VBox styleClass="img-logo">
+                <ImageView fitWidth="200" preserveRatio="true"><Image url="@../img/logo-lms.png"/></ImageView>
+            </VBox>
+            <Button text="Home" fx:id="btnStudentHome" onAction="#handleStudentHome">
+                <graphic>
+                    <GridPane styleClass="menuGridPane">
+                        <columnConstraints>
+                            <ColumnConstraints prefWidth="40" />
+                        </columnConstraints>
+                        <FontAwesomeIconView glyphName="HOME" glyphSize="20" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                        <Label text="Home" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                    </GridPane>
+
+                </graphic>
+            </Button>
+            <Button text="Books" fx:id="btnStudentBooks" onAction="#handleStudentBooks">
+                <graphic>
+                    <GridPane styleClass="menuGridPane">
+                        <columnConstraints>
+                            <ColumnConstraints prefWidth="40" />
+                        </columnConstraints>
+                        <FontAwesomeIconView glyphName="BOOK" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                        <Label text="Books" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                    </GridPane>
+
+                </graphic>
+            </Button>
+
+            <Button text="Settings">
+                <graphic>
+                    <GridPane styleClass="menuGridPane">
+                        <columnConstraints>
+                            <ColumnConstraints prefWidth="40" />
+                        </columnConstraints>
+                        <FontAwesomeIconView glyphName="COGS" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                        <Label text="Settings" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                    </GridPane>
+                </graphic>
+            </Button>
+
+            <Region VBox.vgrow="ALWAYS" />
+
+            <Button text="Logout" onAction="#handleLogOut" fx:id="btnLogOut">
+                <graphic>
+                    <GridPane styleClass="menuGridPane">
+                        <columnConstraints>
+                            <ColumnConstraints prefWidth="40" />
+                        </columnConstraints>
+                        <FontAwesomeIconView glyphName="SIGN_OUT" GridPane.columnIndex="0" GridPane.rowIndex="0"/>
+                        <Label text="Log Out" GridPane.columnIndex="1" GridPane.rowIndex="0"/>
+                    </GridPane>
+                </graphic>
+            </Button>
+        </VBox>
+    </left>
+
+    <center>
+        <fx:include source="studentHomeView.fxml"/>
+
+    </center>
+
+    <bottom>
+
+    </bottom>
+
+</BorderPane>

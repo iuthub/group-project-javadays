@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+<?import javafx.scene.control.cell.PropertyValueFactory?>
+
+<?import javafx.scene.chart.BubbleChart?>
+<?import javafx.scene.text.Font?>
+<?import de.jensd.fx.glyphs.fontawesome.FontAwesomeIconView?>
+<AnchorPane xmlns="http://javafx.com/javafx"
+            xmlns:fx="http://javafx.com/fxml"
+            fx:controller="controllers.LibrarianEditBooksController"
+            fx:id="mainAnchorPane"
+            stylesheets="@../css/student_view.css">
+    <VBox spacing="20.0"
+            AnchorPane.bottomAnchor="10.0"
+            AnchorPane.topAnchor="10.0"
+            AnchorPane.leftAnchor="10.0"
+            AnchorPane.rightAnchor="10.0">
+
+        <HBox VBox.vgrow="NEVER" spacing="15.0" alignment="CENTER">
+            <Label layoutX="28.0" layoutY="41.0" prefHeight="21.0" prefWidth="83.0" text="Search by: ">
+                <font>
+                    <Font size="15.0" />
+                </font>
+            </Label>
+            <ChoiceBox fx:id="choiceBoxSearchType" layoutX="109.0" layoutY="33.0" prefHeight="36.0" prefWidth="112.0" />
+            <TextField fx:id="searchField" layoutX="235.0" layoutY="32.0" prefHeight="25.0" prefWidth="340.0" />
+            <Button onAction="#search" defaultButton="true" styleClass="submit-button" layoutX="592.0" layoutY="29.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="48.0" style="-fx-background-radius: 50px">
+                <graphic>
+                    <FontAwesomeIconView glyphName="SEARCH" glyphSize="20" styleClass="white-glyph"/>
+                </graphic>
+            </Button>
+            <Button onAction="#showAllBooks" defaultButton="true" styleClass="submit-button" layoutX="592.0" layoutY="29.0" mnemonicParsing="false" prefHeight="44.0" prefWidth="48.0" style="-fx-background-radius: 50px">
+                <graphic>
+                    <FontAwesomeIconView glyphName="REFRESH" glyphSize="20" styleClass="white-glyph"/>
+                </graphic>
+            </Button>
+        </HBox>
+
+        <TableView fx:id="tblBooksTable" VBox.vgrow="ALWAYS">
+            <columns>
+                <TableColumn minWidth="60.0" text="BookID">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="BookID" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn minWidth="200.0" text="Title">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="Title" />
+                    </cellValueFactory>
+                </TableColumn>
+                <TableColumn minWidth="200.0" text="Author">
+                    <cellValueFactory>
+                        <PropertyValueFactory property="Author" />
+                    </cellValueFactory>
+                </TableColumn>
+            </columns>
+        </TableView>
+
+        <HBox VBox.vgrow="NEVER" spacing="15.0" alignment="CENTER_RIGHT">
+            <Button text="Create" onAction="#handleCreateButton" styleClass="submit-button"/>
+            <Button text="Update" onAction="#handleUpdateButton" styleClass="secondary-button"/>
+            <Button text="Delete" onAction="#handleDeleteButton" styleClass="delete-button"/>
+        </HBox>
+    </VBox>
+</AnchorPane>
